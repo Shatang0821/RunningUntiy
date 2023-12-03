@@ -148,7 +148,7 @@ Transform:
   m_GameObject: {fileID: 147323212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.493, z: 0}
+  m_LocalPosition: {x: 0, y: -0.418, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 541441017}
   - component: {fileID: 541441016}
   - component: {fileID: 541441019}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlatForm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -393,8 +393,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -620255849
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000
+  m_ApplyToSortingLayers: 000000006fd64b3597a507dbaddccd6d
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -566,6 +566,8 @@ MonoBehaviour:
   states:
   - {fileID: 11400000, guid: f2347417fbe63dd4e901246a723f59ae, type: 2}
   - {fileID: 11400000, guid: 6cc9486a814336b42b33e081071b2495, type: 2}
+  - {fileID: 11400000, guid: 39c473c27ce231644b81cc1b9562b129, type: 2}
+  - {fileID: 11400000, guid: 63547d3091e1f5049a83d1b9468f3875, type: 2}
   input: {fileID: 11400000, guid: f320cd6610f61d14081ad57a28747d07, type: 2}
 --- !u!114 &684187233
 MonoBehaviour:
@@ -585,7 +587,7 @@ MonoBehaviour:
   wallCheckDistance: 0.09
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!70 &684187234
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -618,8 +620,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.12206823}
-  m_Size: {x: 0.5, y: 0.75586355}
+  m_Offset: {x: 0, y: -0.11367679}
+  m_Size: {x: 0.5, y: 0.73908067}
   m_Direction: 0
 --- !u!50 &684187235
 Rigidbody2D:
@@ -636,8 +638,8 @@ Rigidbody2D:
   m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_GravityScale: 1
+  m_Material: {fileID: 6200000, guid: b10f128dfad8a0042b74f8cb32eec684, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -833,8 +835,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1842207917
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -913308272, guid: d76d29aa7d2bcbc498a7187c487d248e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

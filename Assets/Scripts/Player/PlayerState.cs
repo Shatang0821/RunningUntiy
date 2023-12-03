@@ -1,5 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+[CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/PlayerState", fileName = "PlayerState")]
 public class PlayerState : ScriptableObject, IState
 {
     protected PlayerStateMachine stateMachine;
@@ -22,6 +23,8 @@ public class PlayerState : ScriptableObject, IState
     protected PlayerInput input;
     protected float xInput => input.Axis.x;
     protected float yInput => input.Axis.y;
+
+    protected bool Jump => input.Jump;
     #endregion
 
     private void OnEnable()
@@ -50,10 +53,12 @@ public class PlayerState : ScriptableObject, IState
     public virtual void LogicUpdate()
     {
         stateTimer -= Time.deltaTime;
+        player.anim.SetFloat("yVelocity", rb.velocity.y);
     }
 
     public virtual void PhysicUpdate()
     {
-        
+
     }
+
 }

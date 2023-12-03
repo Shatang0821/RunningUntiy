@@ -9,6 +9,7 @@ public class PlayerInput : ScriptableObject
 
 
     public Vector2 Axis=>inputActions.GamePlay.Axis.ReadValue<Vector2>().normalized;
+    public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();
 
     private void OnEnable()
     {

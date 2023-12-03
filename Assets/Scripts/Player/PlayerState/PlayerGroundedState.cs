@@ -20,6 +20,8 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(Jump)
+            stateMachine.SwitchState(typeof(PlayerJumpState));
 
     }
 
