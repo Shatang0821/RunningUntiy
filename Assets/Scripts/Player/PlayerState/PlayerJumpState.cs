@@ -19,14 +19,13 @@ public class PlayerJumpState : PlayerAirState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(currentFrame>=6)
-            stateMachine.SwitchState(typeof(PlayerIdleState));
+        if(rb.velocity.y<=0)
+            stateMachine.SwitchState(typeof(PlayerFallState));
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        currentFrame++;
     }
 
 }

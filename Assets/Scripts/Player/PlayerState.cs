@@ -58,7 +58,7 @@ public class PlayerState : ScriptableObject, IState
 
     public virtual void PhysicUpdate()
     {
-
+        
     }
-
+    
 }

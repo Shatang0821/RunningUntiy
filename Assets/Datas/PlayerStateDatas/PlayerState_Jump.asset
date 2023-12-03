@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerState_Jump
   m_EditorClassIdentifier: 
   animBoolName: Jump
-  moveSpeed: 2
-  JumpForce: 5
+  moveSpeed: 4
+  JumpForce: 10
