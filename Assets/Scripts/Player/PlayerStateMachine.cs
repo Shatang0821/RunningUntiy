@@ -1,18 +1,27 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : StateMachine
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] PlayerState[] states;
+
+    Player player;
+
+    private void Awake()
     {
-        
+        player = GetComponent<Player>();
+
+        stateTable = new Dictionary<System.Type,IState>(states.Length);
+
+        foreach(PlayerState state in states)
+        {
+            state.Initialize(player, this);
+            stateTable.Add(state.GetType(), state);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        SwitchOn(stateTable[typeof(PlayerIdleState)]);
     }
 }
