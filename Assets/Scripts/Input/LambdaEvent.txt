@@ -1,0 +1,44 @@
+使用Lambda表达式处理Unity新Input System中的输入事件
+1. 创建 Input Actions
+
+在Unity编辑器中创建一个Input Actions资产。
+定义所需的输入操作，例如 "Pause"、"Move" 等。
+2. 设置 Input Actions 实例
+
+在Unity脚本中创建Input Actions类的实例。
+csharp
+Copy code
+private MyGameInputActions inputActions;
+3. 绑定事件处理器
+
+为输入操作绑定Lambda表达式作为事件处理器。这可以针对 performed（操作执行时）和 canceled（操作取消时）等事件进行。
+csharp
+Copy code
+inputActions.Gameplay.Pause.performed += context => HandlePause(context);
+4. 实现事件处理方法
+
+定义方法来处理输入事件。这些方法在Lambda表达式中被调用。
+csharp
+Copy code
+private void HandlePause(InputAction.CallbackContext context)
+{
+    // 实现暂停逻辑
+}
+5. 启用和禁用 Input Actions
+
+在脚本的 OnEnable 方法中启用Input Actions。
+csharp
+Copy code
+inputActions.Gameplay.Enable();
+在脚本的 OnDisable 方法中禁用Input Actions。
+csharp
+Copy code
+inputActions.Gameplay.Disable();
+6. 清理
+
+为避免内存泄漏或资源占用，确保在不再需要事件处理器时解绑它们。
+csharp
+Copy code
+inputActions.Gameplay.Pause.performed -= context => HandlePause(context);
+总结
+使用Lambda表达式作为事件处理器是一种简洁且高效的方式来处理Unity新Input System中的输入事件。这种方法降低了代码的复杂性，使得输入处理逻辑更加集中和清晰。通过为不同的输入操作绑定不同的Lambda表达式，并在这些表达式中直接调用处理方法，可以灵活地对各种输入事件做出响应。

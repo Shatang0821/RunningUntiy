@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+[CreateAssetMenu(menuName = "Player Input", fileName = "Player Input")]
+public class PlayerInput : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private InputActions inputActions;
+
+
+    public Vector2 Axis=>inputActions.GamePlay.Axis.ReadValue<Vector2>().normalized;
+
+    private void OnEnable()
     {
-        
+        inputActions = new InputActions();
+
+        inputActions.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        inputActions.Disable();
     }
 }

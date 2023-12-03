@@ -7,6 +7,7 @@ public class PlayerStateMachine : StateMachine
 
     Player player;
 
+    [SerializeField] PlayerInput input;
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -15,7 +16,7 @@ public class PlayerStateMachine : StateMachine
 
         foreach(PlayerState state in states)
         {
-            state.Initialize(player, this);
+            state.Initialize(player, this,input);
             stateTable.Add(state.GetType(), state);
         }
     }

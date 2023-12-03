@@ -40,10 +40,34 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void ZeroVelocity() => rb.velocity = Vector2.zero;
 
-    public void SetVelocity(float _xVelocity, float _yVelocity)
+    public void SetVelocity(Vector2 velocity)
     {
-        rb.velocity = new Vector2(_xVelocity, _yVelocity);
-        FlipController(_xVelocity);
+        rb.velocity = velocity;
+        FlipController(velocity.x);
+    }
+
+    /// <summary>
+    /// X速度設定
+    /// </summary>
+    /// <param name="velocityX">X速度</param>
+    public void SetVelocityX(float velocityX)
+    {
+        rb.velocity = new Vector2(velocityX, rb.velocity.y);
+        FlipController(velocityX);
+    }
+
+    /// <summary>
+    /// Y速度設定
+    /// </summary>
+    /// <param name="velocityY">Y速度</param>
+    public void SetVelocityY(float velocityY)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, velocityY);
+    }
+
+    public void SetUseGravity(float value)
+    {
+        rb.gravityScale = value;
     }
     #endregion
 
