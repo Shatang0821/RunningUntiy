@@ -22,6 +22,8 @@ public class PlayerGroundedState : PlayerState
         base.LogicUpdate();
         if(Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
+        if (!player.IsGroundDetected() && !Jump)
+            stateMachine.SwitchState(typeof(PlayerFallState));
 
     }
 
