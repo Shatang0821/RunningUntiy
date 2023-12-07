@@ -4,6 +4,7 @@ public class PlayerGroundedState : PlayerState
 {
     protected float coyoteTime;
     protected int currentFrame;
+
     public override void Enter()
     {
         currentFrame = 0;
