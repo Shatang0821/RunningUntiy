@@ -28,10 +28,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""id"": ""75bd10bf-5ea8-49ee-b98b-7666a4fa4d3e"",
             ""actions"": [
                 {
-                    ""name"": ""Axis"",
+                    ""name"": ""AxisX"",
                     ""type"": ""Value"",
                     ""id"": ""6c7daee2-d6c1-48b5-ba85-9259fe3eb0e4"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""AxisY"",
+                    ""type"": ""Value"",
+                    ""id"": ""8e9c2d1d-d6cc-474e-8b3b-828ab34e16ea"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -44,72 +53,81 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""2816cf9e-968d-4374-ae10-95a3da455540"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""AD"",
                     ""id"": ""a769afca-3739-4a18-af68-8584b558ca41"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Negative"",
                     ""id"": ""14a1630e-3de2-4af3-96ed-9ad5fb8d5684"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Positive"",
                     ""id"": ""b1119859-005f-4cc0-950b-cbd3a8417b5a"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""Arrows"",
+                    ""name"": ""RIGHTLEFT"",
                     ""id"": ""e299b206-5bc2-4c9c-a57d-21757f35e532"",
-                    ""path"": ""2DVector"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Negative"",
                     ""id"": ""05b64c44-1d2c-4120-b29e-e291dc5a51d1"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Positive"",
                     ""id"": ""dbf2128c-da20-42b8-9e15-ea512344792b"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""PC"",
-                    ""action"": ""Axis"",
+                    ""action"": ""AxisX"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -123,6 +141,83 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""664b8573-6ea6-455f-be8c-94e4cc2ce9c5"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WS"",
+                    ""id"": ""847afbd8-22b4-4894-b3ca-e9f63f15e4cc"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""b9c12ef1-e2fe-40cf-8ecf-8733f092a62a"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""52525972-d8e4-4c2b-ab12-e527541bd4d1"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""UPDOWN"",
+                    ""id"": ""c621c9c0-e100-4c86-98c8-43f9eeb6ef21"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""baa40dce-41f5-4455-b6f9-29153176ce1b"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1ff432aa-5314-4c06-9d02-53ed4ac2f72e"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""PC"",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -137,8 +232,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
 }");
         // GamePlay
         m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
-        m_GamePlay_Axis = m_GamePlay.FindAction("Axis", throwIfNotFound: true);
+        m_GamePlay_AxisX = m_GamePlay.FindAction("AxisX", throwIfNotFound: true);
+        m_GamePlay_AxisY = m_GamePlay.FindAction("AxisY", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
+        m_GamePlay_Dash = m_GamePlay.FindAction("Dash", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,14 +297,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     // GamePlay
     private readonly InputActionMap m_GamePlay;
     private List<IGamePlayActions> m_GamePlayActionsCallbackInterfaces = new List<IGamePlayActions>();
-    private readonly InputAction m_GamePlay_Axis;
+    private readonly InputAction m_GamePlay_AxisX;
+    private readonly InputAction m_GamePlay_AxisY;
     private readonly InputAction m_GamePlay_Jump;
+    private readonly InputAction m_GamePlay_Dash;
     public struct GamePlayActions
     {
         private @InputActions m_Wrapper;
         public GamePlayActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Axis => m_Wrapper.m_GamePlay_Axis;
+        public InputAction @AxisX => m_Wrapper.m_GamePlay_AxisX;
+        public InputAction @AxisY => m_Wrapper.m_GamePlay_AxisY;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
+        public InputAction @Dash => m_Wrapper.m_GamePlay_Dash;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -217,22 +318,34 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_GamePlayActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_GamePlayActionsCallbackInterfaces.Add(instance);
-            @Axis.started += instance.OnAxis;
-            @Axis.performed += instance.OnAxis;
-            @Axis.canceled += instance.OnAxis;
+            @AxisX.started += instance.OnAxisX;
+            @AxisX.performed += instance.OnAxisX;
+            @AxisX.canceled += instance.OnAxisX;
+            @AxisY.started += instance.OnAxisY;
+            @AxisY.performed += instance.OnAxisY;
+            @AxisY.canceled += instance.OnAxisY;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Dash.started += instance.OnDash;
+            @Dash.performed += instance.OnDash;
+            @Dash.canceled += instance.OnDash;
         }
 
         private void UnregisterCallbacks(IGamePlayActions instance)
         {
-            @Axis.started -= instance.OnAxis;
-            @Axis.performed -= instance.OnAxis;
-            @Axis.canceled -= instance.OnAxis;
+            @AxisX.started -= instance.OnAxisX;
+            @AxisX.performed -= instance.OnAxisX;
+            @AxisX.canceled -= instance.OnAxisX;
+            @AxisY.started -= instance.OnAxisY;
+            @AxisY.performed -= instance.OnAxisY;
+            @AxisY.canceled -= instance.OnAxisY;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Dash.started -= instance.OnDash;
+            @Dash.performed -= instance.OnDash;
+            @Dash.canceled -= instance.OnDash;
         }
 
         public void RemoveCallbacks(IGamePlayActions instance)
@@ -261,7 +374,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     }
     public interface IGamePlayActions
     {
-        void OnAxis(InputAction.CallbackContext context);
+        void OnAxisX(InputAction.CallbackContext context);
+        void OnAxisY(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
 }

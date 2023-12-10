@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerAirState : PlayerState
 {
+    [Header("AirMove info")]
     [SerializeField] float moveSpeed = 2f;
     [SerializeField] float gravity;
     public override void Enter()

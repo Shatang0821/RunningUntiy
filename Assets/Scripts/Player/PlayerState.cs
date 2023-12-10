@@ -25,7 +25,14 @@ public class PlayerState : ScriptableObject, IState
     protected float yInput => input.Axis.y;
 
     protected bool Jump => input.Jump;
+    protected bool Dash => input.Dash;
     #endregion
+
+    //変更予定
+    [Header("Dash info")]
+    [SerializeField] private float dashCooldown;
+    private float dashUsageTimer;
+
 
     private void OnEnable()
     {
@@ -53,12 +60,30 @@ public class PlayerState : ScriptableObject, IState
     public virtual void LogicUpdate()
     {
         stateTimer -= Time.deltaTime;
+
         player.anim.SetFloat("yVelocity", rb.velocity.y);
+
+        CheckForDashInput();
     }
 
     public virtual void PhysicUpdate()
     {
         
     }
-    
+
+    private void CheckForDashInput()
+    {
+        if (player.IsWallDetected())
+            return;
+        dashUsageTimer -= Time.deltaTime;
+
+
+        if (Dash && dashUsageTimer < 0)
+        {
+            dashUsageTimer = dashCooldown;
+            
+            stateMachine.SwitchState(typeof(PlayerDashState));
+        }
+
+    }
 }

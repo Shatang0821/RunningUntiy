@@ -6,6 +6,7 @@ public class PlayerFallState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Fall");
     }
 
     public override void Exit()
@@ -17,7 +18,11 @@ public class PlayerFallState : PlayerAirState
     {
         base.LogicUpdate();
         if (player.IsGroundDetected())
-            stateMachine.SwitchState(typeof(PlayerIdleState));
+            stateMachine.SwitchState(typeof(PlayerLandState));
+        if (Jump)
+            player.SetJumpInputBufferTimer();
+        if (player.IsWallDetected())
+            stateMachine.SwitchState(typeof(PlayerWallSlideState));
     }
 
     public override void PhysicUpdate()

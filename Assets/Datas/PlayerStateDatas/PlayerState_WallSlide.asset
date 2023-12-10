@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f8376c80799f144c8b6a59b02f4111d, type: 3}
-  m_Name: PlayerState
+  m_Script: {fileID: 11500000, guid: a1095c0f50302f449b22122720318ba6, type: 3}
+  m_Name: PlayerState_WallSlide
   m_EditorClassIdentifier: 
-  animBoolName: 
-  dashCooldown: 1
+  animBoolName: WallSlide
+  dashCooldown: 0
+  gravity: 28

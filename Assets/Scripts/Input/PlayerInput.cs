@@ -7,10 +7,14 @@ public class PlayerInput : ScriptableObject
 {
     private InputActions inputActions;
 
+    public float AxisX =>inputActions.GamePlay.AxisX.ReadValue<float>();
+    public float AxisY =>inputActions.GamePlay.AxisY.ReadValue<float>();
 
-    public Vector2 Axis=>inputActions.GamePlay.Axis.ReadValue<Vector2>().normalized;
+    public Vector2 Axis => new(AxisX, AxisY);
+
     public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();
 
+    public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();
     private void OnEnable()
     {
         inputActions = new InputActions();

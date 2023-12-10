@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/Move", fileName = "PlayerState_Move")]
 public class PlayerMoveState : PlayerGroundedState
 {
+
+    [Header("Move info")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private int accelerationFrames = 6;//加速フレーム
 
@@ -13,6 +15,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Move");
         targetVelocityX = xInput * moveSpeed;
     }
 

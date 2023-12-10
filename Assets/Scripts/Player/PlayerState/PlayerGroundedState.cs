@@ -8,7 +8,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         currentFrame = 0;
-        coyoteTime = .3f;
+        coyoteTime = 0.1f;
         base.Enter();
         
     }
@@ -21,9 +21,21 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(Jump)
+        if (Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
-        if (!player.IsGroundDetected() && !Jump)
+
+        if (!player.IsGroundDetected())
+        {
+            if(coyoteTime > 0)
+            {
+                coyoteTime -= Time.deltaTime;
+                if (Jump)
+                    stateMachine.SwitchState(typeof(PlayerJumpState));
+                return;
+            }
+        }
+            
+        if (!player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
 
     }
@@ -33,7 +45,7 @@ public class PlayerGroundedState : PlayerState
         base.PhysicUpdate();
         currentFrame++;
     }
-
+        
     /// <summary>
     /// フレームで速度コントロール
     /// </summary>
