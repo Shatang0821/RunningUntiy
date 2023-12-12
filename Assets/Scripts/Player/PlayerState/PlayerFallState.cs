@@ -21,7 +21,7 @@ public class PlayerFallState : PlayerAirState
             stateMachine.SwitchState(typeof(PlayerLandState));
         if (Jump)
             player.SetJumpInputBufferTimer();
-        if (player.IsWallDetected())
+        if (player.IsWallDetected()&&xInput ==player.facingDir)
             stateMachine.SwitchState(typeof(PlayerWallSlideState));
     }
 

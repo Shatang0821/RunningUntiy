@@ -9,8 +9,9 @@ public class PlayerGroundedState : PlayerState
     {
         currentFrame = 0;
         coyoteTime = 0.1f;
+        //地面に戻るとダッシュリセット
+        player.dashTrigger = false;
         base.Enter();
-        
     }
 
     public override void Exit()

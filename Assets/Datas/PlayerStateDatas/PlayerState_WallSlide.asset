@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: PlayerState_WallSlide
   m_EditorClassIdentifier: 
   animBoolName: WallSlide
-  dashCooldown: 0
-  gravity: 0
+  gravity: 0.2
