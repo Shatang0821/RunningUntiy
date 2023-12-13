@@ -7,8 +7,7 @@ public class PlayerInput : ScriptableObject
 {
     private InputActions inputActions;
 
-    public float AxisX =>inputActions.GamePlay.AxisX.ReadValue<float>();
-    public float AxisY =>inputActions.GamePlay.AxisY.ReadValue<float>();
+    public Vector2 Axis =>inputActions.GamePlay.Axis.ReadValue<Vector2>();
 
 
     public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();

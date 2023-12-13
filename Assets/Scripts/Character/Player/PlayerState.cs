@@ -24,8 +24,30 @@ public class PlayerState : ScriptableObject, IState
 
     #region Input
     protected PlayerInput input;
-    protected float xInput => input.AxisX;
-    protected float yInput => input.AxisY;
+    protected float xInput
+    {
+        get
+        {
+            if (input.Axis.x > 0)
+                return 1;
+            else if (input.Axis.x < 0)
+                return -1;
+            else
+                return 0;
+        }
+    }
+    protected float yInput
+    {
+        get
+        {
+            if (input.Axis.y > 0)
+                return 1;
+            else if (input.Axis.y < 0)
+                return -1;
+            else
+                return 0;
+        }
+    }
 
     protected bool Jump => input.Jump;
     protected bool Dash => input.Dash;
@@ -61,7 +83,6 @@ public class PlayerState : ScriptableObject, IState
         player.anim.SetFloat("yVelocity", rb.velocity.y);
         CheckForDashInput();
 
-        Debug.Log(xInput + " " + yInput);
     }
 
     public virtual void PhysicUpdate()

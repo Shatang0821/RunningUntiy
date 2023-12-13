@@ -69,7 +69,7 @@ public class PlayerDashState : PlayerState
     void CheckDir()
     {
 
-        dashDir = new Vector2(xInput,yInput);
+        dashDir = input.Axis;
 
         if (dashDir == Vector2.zero)
             dashDir = new Vector2(player.facingDir,0);
