@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerState_Move
   m_EditorClassIdentifier: 
   animBoolName: Move
-  moveSpeed: 4
+  moveSpeed: 5
   accelerationFrames: 12

@@ -19,10 +19,12 @@ public class PlayerFallState : PlayerAirState
         base.LogicUpdate();
         if (player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerLandState));
-        if (Jump)
+        if (Jump && !player.IsWallDetected())
             player.SetJumpInputBufferTimer();
         if (player.IsWallDetected()&&xInput ==player.facingDir)
             stateMachine.SwitchState(typeof(PlayerWallSlideState));
+        if(Jump && player.IsWallDetected()) 
+            stateMachine.SwitchState(typeof(PlayerJumpState));
     }
 
     public override void PhysicUpdate()

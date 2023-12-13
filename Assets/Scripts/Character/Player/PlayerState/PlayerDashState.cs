@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +6,12 @@ using UnityEngine;
 public class PlayerDashState : PlayerState
 {
     /*
-     �ǒ��_�b�V���ł��Ȃ�
+     壁中ダッシュできない
      */
     [SerializeField] private float dashDuration;
     [SerializeField] private float dashSpeed;
     [SerializeField] private Vector2 dashDir;
+    private float releaseTimer = 0.02f;
     public override void Enter()
     {
         base.Enter();
@@ -19,9 +20,10 @@ public class PlayerDashState : PlayerState
 
         CheckDir();
 
-        player.dashTrigger = true;
+        dashTrigger = true;
 
         stateTimer = dashDuration;
+
     }
 
     public override void Exit()
@@ -40,8 +42,21 @@ public class PlayerDashState : PlayerState
             if (player.IsGroundDetected())
                 stateMachine.SwitchState(typeof(PlayerIdleState));
         }
-        if (player.IsWallDetected())
-            stateMachine.SwitchState(typeof(PlayerWallSlideState));
+
+        // 添加一个计时器控制 PoolManager.Release 的调用频率
+        if (releaseTimer <= 0)
+        {
+            float alpha = 1 - (stateTimer % 6 / dashDuration);
+            alpha = Mathf.Clamp(alpha, 0, 1); // 确保 alpha 值在 0 到 1 之间
+            PoolManager.Release(player.dashGhost, player.transform.position,player.transform.rotation, player.sprite, alpha);
+            releaseTimer = 0.02f; // 重置计时器为 0.03 秒
+        }
+        else
+        {
+            releaseTimer -= Time.deltaTime; // 更新计时器
+        }
+
+
             
     }
 
@@ -53,7 +68,8 @@ public class PlayerDashState : PlayerState
 
     void CheckDir()
     {
-        dashDir = input.Axis.normalized;
+
+        dashDir = new Vector2(xInput,yInput);
 
         if (dashDir == Vector2.zero)
             dashDir = new Vector2(player.facingDir,0);

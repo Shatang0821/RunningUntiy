@@ -10,9 +10,9 @@ public class PlayerInput : ScriptableObject
     public float AxisX =>inputActions.GamePlay.AxisX.ReadValue<float>();
     public float AxisY =>inputActions.GamePlay.AxisY.ReadValue<float>();
 
-    public Vector2 Axis => new(AxisX, AxisY);
 
     public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();
+    public bool StopJump => inputActions.GamePlay.Jump.WasReleasedThisFrame();
 
     public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();
     private void OnEnable()

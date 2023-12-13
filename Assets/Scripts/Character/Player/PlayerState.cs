@@ -18,16 +18,18 @@ public class PlayerState : ScriptableObject, IState
 
     protected bool triggerCalled;
 
-
+    //Dash制限
+    protected static bool dashTrigger;
     #endregion
 
     #region Input
     protected PlayerInput input;
-    protected float xInput => input.Axis.x;
-    protected float yInput => input.Axis.y;
+    protected float xInput => input.AxisX;
+    protected float yInput => input.AxisY;
 
     protected bool Jump => input.Jump;
     protected bool Dash => input.Dash;
+    protected bool StopJump => input.StopJump;
     #endregion
 
     private void OnEnable()
@@ -58,6 +60,8 @@ public class PlayerState : ScriptableObject, IState
         stateTimer -= Time.deltaTime;
         player.anim.SetFloat("yVelocity", rb.velocity.y);
         CheckForDashInput();
+
+        Debug.Log(xInput + " " + yInput);
     }
 
     public virtual void PhysicUpdate()
@@ -67,7 +71,7 @@ public class PlayerState : ScriptableObject, IState
 
     private void CheckForDashInput()
     {
-        if (player.IsWallDetected() || player.dashTrigger)
+        if (dashTrigger)
             return;
 
         if (Dash)

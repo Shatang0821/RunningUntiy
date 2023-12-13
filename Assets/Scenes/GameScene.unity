@@ -154,6 +154,53 @@ Transform:
   m_Children: []
   m_Father: {fileID: 684187236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &309154636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 309154638}
+  - component: {fileID: 309154637}
+  m_Layer: 0
+  m_Name: PoolManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &309154637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309154636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e7491a9743b56c43a0f5ed4fc5b92b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashGhost:
+  - prefab: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
+    size: 5
+--- !u!4 &309154638
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309154636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.0111103, y: -0.85274696, z: 0.059548445}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -591,7 +638,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  jumpInputBufferTime: 0.2
+  jumpInputBufferTime: 0.1
+  dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
+  dashTrigger: 0
 --- !u!70 &684187234
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1180,3 +1229,4 @@ SceneRoots:
   - {fileID: 541441018}
   - {fileID: 1218978802}
   - {fileID: 1897641970}
+  - {fileID: 309154638}

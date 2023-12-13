@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: PlayerState_Jump
   m_EditorClassIdentifier: 
   animBoolName: Jump
-  dashCooldown: 0
-  moveSpeed: 4
+  moveSpeed: 5
   gravity: 3
   JumpForce: 10

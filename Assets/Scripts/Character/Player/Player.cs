@@ -12,9 +12,10 @@ public class Player : Entity
     //ジャンプ関連 キーを押したらtrueになる
     public bool HasJumpInputBuffer { get; set; }
 
-    //変更予定
-    [Header("Dash info")]
-    [SerializeField] public bool dashTrigger;
+    public GameObject dashGhost;
+
+    public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+    
 
     protected override void Awake()
     {

@@ -133,6 +133,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1fb9a58a-2ce6-44ba-b9d6-802f2904c497"",
+                    ""path"": ""<XInputController>/leftStick/x"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""AxisX"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""5d406f45-31e1-4de2-9d10-8efa46a10c99"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -218,6 +229,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""AxisY"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97329f79-56ad-4413-84ba-8de767c6f903"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""AxisY"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }

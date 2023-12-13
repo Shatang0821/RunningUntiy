@@ -26,7 +26,7 @@ public class PlayerWallSlideState : PlayerState
         base.LogicUpdate();
         if (player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerIdleState));
-        if(xInput == (player.facingDir * -1))
+        if(xInput == (player.facingDir * -1) || xInput == 0)
             stateMachine.SwitchState(typeof(PlayerFallState));
 
     }
