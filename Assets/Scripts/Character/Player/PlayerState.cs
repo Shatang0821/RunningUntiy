@@ -8,6 +8,8 @@ public class PlayerState : ScriptableObject, IState
 
     protected Rigidbody2D rb;
 
+    
+
     #region Animator
     [SerializeField] private string animBoolName;
     protected int stateBoolHash;
@@ -20,6 +22,7 @@ public class PlayerState : ScriptableObject, IState
 
     //Dash制限
     protected static bool dashTrigger;
+
     #endregion
 
     #region Input

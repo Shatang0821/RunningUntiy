@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWallJumpState : MonoBehaviour
+[CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/WallJump", fileName = "PlayerState_WallJump")]
+public class PlayerWallJumpState : PlayerAirState
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float jumpDuration;
+    [SerializeField] private Vector2 jumpVelocity;
+    public override void Enter()
     {
-        
+        base.Enter();
+        stateTimer = jumpDuration;
+        player.SetVelocity(jumpVelocity, xInput);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        if (stateTimer < 0)
+            stateMachine.SwitchState(typeof(PlayerFallState));
+    }
+
+    public override void PhysicUpdate()
+    {
+        base.PhysicUpdate();
     }
 }

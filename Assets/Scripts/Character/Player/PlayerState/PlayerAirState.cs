@@ -26,6 +26,6 @@ public class PlayerAirState : PlayerState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        player.SetVelocityX(xInput * moveSpeed);
+        player.SetVelocityX(xInput * moveSpeed,xInput);
     }
 }

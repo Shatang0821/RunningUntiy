@@ -29,7 +29,7 @@ public class PlayerDashState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        player.SetVelocity(new Vector2(0, 0));
+        player.SetVelocity(new Vector2(0, 0), xInput);
     }
 
     public override void LogicUpdate()
@@ -63,7 +63,7 @@ public class PlayerDashState : PlayerState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        player.SetVelocity(dashSpeed * dashDir);
+        player.SetVelocity(dashSpeed * dashDir,xInput);
     }
 
     void CheckDir()
