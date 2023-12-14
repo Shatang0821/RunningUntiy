@@ -12,7 +12,7 @@ public class ItemsGet : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             this.gameObject.SetActive(false);
-            PoolManager.Release(collectVFX, transform.position);
+            //PoolManager.Release(collectVFX, transform.position);
         }
     }
 

@@ -5,6 +5,14 @@ using UnityEngine.Windows;
 
 public class Player : Entity
 {
+    [Header("==== PARTICLE ====")]
+    public ParticleSystem movementParticle;
+    public ParticleSystem fallParticle;
+    public ParticleSystem jumpParticle;
+    public ParticleSystem touchParticle;
+
+    [Space]
+
     [SerializeField] public float jumpInputBufferTime = 0.5f;
 
     public WaitForSeconds waitJumpInputBufferTime;

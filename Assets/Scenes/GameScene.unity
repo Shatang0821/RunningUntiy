@@ -157,7 +157,7 @@ MonoBehaviour:
     size: 5
   apple:
   - prefab: {fileID: 7316362201581750905, guid: 1dbefb44e97d96a4dbb239cef224108e, type: 3}
-    size: 35
+    size: 36
 --- !u!4 &309154638
 Transform:
   m_ObjectHideFlags: 0
@@ -2107,6 +2107,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &587616622 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1083541509368115021, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+  m_PrefabInstance: {fileID: 4901491375747029701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2279,6 +2284,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!198 &904651329 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6712759195562646523, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+  m_PrefabInstance: {fileID: 4901491375747029701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1485649281
 GameObject:
   m_ObjectHideFlags: 0
@@ -3357,6 +3367,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!198 &1757626849 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6108822775902704487, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+  m_PrefabInstance: {fileID: 4901491375747029701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1759857040
 GameObject:
   m_ObjectHideFlags: 0
@@ -4795,6 +4810,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!198 &1836000020 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8674703657866781318, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+  m_PrefabInstance: {fileID: 4901491375747029701}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2145384201
 GameObject:
   m_ObjectHideFlags: 0
@@ -4836,6 +4856,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1083541509368115021, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4410657518137579253, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: fallParticle
+      value: 
+      objectReference: {fileID: 1757626849}
+    - target: {fileID: 4410657518137579253, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: jumpParticle
+      value: 
+      objectReference: {fileID: 1836000020}
+    - target: {fileID: 4410657518137579253, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: touchParticle
+      value: 
+      objectReference: {fileID: 904651329}
+    - target: {fileID: 4410657518137579253, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: movementParticle
+      value: 
+      objectReference: {fileID: 587616622}
     - target: {fileID: 5456815166376228667, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -13.15
@@ -4878,10 +4918,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599041377771758214, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
       propertyPath: m_Name
-      value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7599041377771758214, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
-      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
