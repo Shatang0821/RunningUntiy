@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0d46f8f0449c244da6859f446540b6b, type: 3}
   m_Name: PlayerState_WallJump
   m_EditorClassIdentifier: 
-  animBoolName: 
-  moveSpeed: 2
-  gravity: 0
-  jumpDuration: 0
-  jumpVelocity: {x: 0, y: 0}
+  animBoolName: Jump
+  moveSpeed: 5
+  gravity: 3
+  jumpDuration: 0.3
+  jumpVelocity: {x: 3, y: 10}

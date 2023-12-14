@@ -28,6 +28,8 @@ public class PlayerWallSlideState : PlayerState
             stateMachine.SwitchState(typeof(PlayerIdleState));
         if(xInput == (player.facingDir * -1) || xInput == 0)
             stateMachine.SwitchState(typeof(PlayerFallState));
+        if (Jump && player.IsWallDetected())
+            stateMachine.SwitchState(typeof(PlayerWallJumpState));
 
     }
 
