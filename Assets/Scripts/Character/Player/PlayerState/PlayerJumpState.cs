@@ -21,7 +21,7 @@ public class PlayerJumpState : PlayerAirState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(rb.velocity.y<=0 || StopJump)
+        if(rb.velocity.y<=0)
             stateMachine.SwitchState(typeof(PlayerFallState));
     }
 
