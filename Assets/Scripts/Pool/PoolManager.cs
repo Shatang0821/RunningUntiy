@@ -7,7 +7,8 @@ public class PoolManager : MonoBehaviour
 {
 
     [SerializeField] Pool[] dashGhost;
-    [SerializeField] Pool[] apple;
+    [SerializeField] Pool[] tiles;
+    [SerializeField] Pool[] VFX;
 
     // 各プレハブとそれに関連するオブジェクトプールを関連付けるための辞書。
     static Dictionary<GameObject, Pool> dictionary;
@@ -16,7 +17,8 @@ public class PoolManager : MonoBehaviour
     {
         dictionary = new Dictionary<GameObject, Pool>();
         Initialize(dashGhost);
-        Initialize(apple);
+        Initialize(tiles);
+        Initialize(VFX);
     }
 
     // UNITY_EDITORディレクティブは、Unityエディタ環境内でのみコードを実行するためのもの。
@@ -26,7 +28,8 @@ public class PoolManager : MonoBehaviour
     {
         //プールサイズが正しいかをチェックする
         CheckPoolSize(dashGhost);
-        CheckPoolSize(apple);
+        CheckPoolSize(tiles);
+        CheckPoolSize(VFX);
     }
 #endif
 

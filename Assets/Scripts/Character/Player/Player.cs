@@ -10,20 +10,24 @@ public class Player : Entity
     public ParticleSystem fallParticle;
     public ParticleSystem jumpParticle;
     public ParticleSystem touchParticle;
-
     [Space]
+    public float jumpInputBufferTime = 0.5f;
 
-    [SerializeField] public float jumpInputBufferTime = 0.5f;
-
+    [HideInInspector]
     public WaitForSeconds waitJumpInputBufferTime;
 
     //ジャンプ関連 キーを押したらtrueになる
+    [HideInInspector]
     public bool HasJumpInputBuffer { get; set; }
 
     public GameObject dashGhost;
 
+    [HideInInspector]
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
-    
+
+    [Header("==== DEATH ====")]
+    public GameObject DeathVFX;
+
 
     protected override void Awake()
     {
@@ -45,4 +49,22 @@ public class Player : Entity
 
         HasJumpInputBuffer = false;
     }
+
+    #region 死亡処理
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Traps")
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        PoolManager.Release(DeathVFX, transform.position);
+        this.gameObject.SetActive(false);
+    }
+
+    #endregion
 }
