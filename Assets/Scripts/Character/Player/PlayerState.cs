@@ -60,6 +60,7 @@ public class PlayerState : ScriptableObject, IState
     private void OnEnable()
     {
         stateBoolHash = Animator.StringToHash(animBoolName);
+        stateMachine.SwitchState(typeof(PlayerIdleState));
     }
 
     public void Initialize(Player _player,PlayerStateMachine _stateMachine,PlayerInput _input)

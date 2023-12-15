@@ -62,8 +62,11 @@ public class Player : Entity
 
     void Die()
     {
+        GameManager.GameState = GameState.Respawn;
         PoolManager.Release(DeathVFX, transform.position);
         this.gameObject.SetActive(false);
+
+        EventCenter.TriggerEvent(EventNames.Respawn);
     }
 
     #endregion

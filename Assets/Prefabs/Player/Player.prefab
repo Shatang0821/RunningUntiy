@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4740063049765470291}
   - component: {fileID: 1083541509368115021}
   - component: {fileID: 918260544339518341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Movement Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -870,7 +870,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4895,7 +4895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1432504751037474936}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4930,7 +4930,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1429759935652420237}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4963,7 +4963,7 @@ GameObject:
   - component: {fileID: 5711631626300364512}
   - component: {fileID: 8674703657866781318}
   - component: {fileID: 8910692072133888185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Jump Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9849,7 +9849,7 @@ GameObject:
   - component: {fileID: 300430444919207766}
   - component: {fileID: 5359231073483928267}
   - component: {fileID: 789348014064234585}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9865,7 +9865,7 @@ Transform:
   m_GameObject: {fileID: 5191519637855638736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9955,7 +9955,7 @@ GameObject:
   - component: {fileID: 1406155271461351994}
   - component: {fileID: 6108822775902704487}
   - component: {fileID: 8008614026099380538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fall Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14841,7 +14841,7 @@ GameObject:
   - component: {fileID: 624011075959723176}
   - component: {fileID: 6712759195562646523}
   - component: {fileID: 9020302918161014511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Touch Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19729,7 +19729,7 @@ GameObject:
   - component: {fileID: 2736604479249140909}
   - component: {fileID: 4410657518137579253}
   - component: {fileID: 1515572960323196347}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -19745,7 +19745,7 @@ Transform:
   m_GameObject: {fileID: 7599041377771758214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.111738, y: -2.9412785, z: 0.8713808}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -19836,8 +19836,13 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  movementParticle: {fileID: 1083541509368115021}
+  fallParticle: {fileID: 6108822775902704487}
+  jumpParticle: {fileID: 8674703657866781318}
+  touchParticle: {fileID: 6712759195562646523}
   jumpInputBufferTime: 0.1
   dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
+  DeathVFX: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
 --- !u!114 &1515572960323196347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19869,7 +19874,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5912330358720104540}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
