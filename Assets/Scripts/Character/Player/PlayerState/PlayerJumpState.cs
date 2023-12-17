@@ -24,6 +24,9 @@ public class PlayerJumpState : PlayerAirState
         base.LogicUpdate();
         if(rb.velocity.y<=0)
             stateMachine.SwitchState(typeof(PlayerFallState));
+        if (Jump && player.IsWallDetected())
+            stateMachine.SwitchState(typeof(PlayerWallJumpState));
+
     }
 
     public override void PhysicUpdate()

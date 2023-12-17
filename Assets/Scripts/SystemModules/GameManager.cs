@@ -11,8 +11,14 @@ public class GameManager : PersistentSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        if(GameState == GameState.Initialize)
+        
+    }
+
+    private void Update()
+    {
+        if (GameState == GameState.Initialize)
         {
+            GameState = GameState.Respawn;
             EventCenter.TriggerEvent(EventNames.Respawn);
         }
     }
