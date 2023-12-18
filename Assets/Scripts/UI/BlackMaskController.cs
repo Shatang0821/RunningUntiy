@@ -52,7 +52,7 @@ public class BlackMaskController : Singleton<BlackMaskController>
         material.SetVector("_Center", new Vector2(canvasPos.x, canvasPos.y));
 
         // 半径が0から始まり、徐々に増加していきます。
-        for (float r = 0; r < 2000; r += 10)
+        for (float r = 0; r < 2000; r += 50)
         {
             // Shaderの_Radiusパラメータを更新します。
             material.SetFloat("_Radius", r);
