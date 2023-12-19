@@ -497,6 +497,8 @@ MonoBehaviour:
   VFX:
   - prefab: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
     size: 1
+  - prefab: {fileID: 3670634905856286882, guid: c6693fcdbd44d61498b0447c471ee020, type: 3}
+    size: 1
 --- !u!4 &309154638
 Transform:
   m_ObjectHideFlags: 0
@@ -2424,6 +2426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1696807521}
   spawnPos: {fileID: 917958234}
+  appearVFX: {fileID: 3670634905856286882, guid: c6693fcdbd44d61498b0447c471ee020, type: 3}
 --- !u!4 &1386266392
 Transform:
   m_ObjectHideFlags: 0

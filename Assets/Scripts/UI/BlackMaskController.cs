@@ -19,52 +19,51 @@ public class BlackMaskController : Singleton<BlackMaskController>
     }
 
 
-
-    private void OnEnable()
-    {
-        EventCenter.Subscribe(EventNames.Respawn, ShowMask);
-
-    }
-
-    private void OnDisable()
-    {
-        EventCenter.Unsubscribe(EventNames.Respawn, ShowMask);
-    }
-
-    void ShowMask()
-    {
-        StartCoroutine(ScaleInOut());
-    }
-
     // ScaleInOutコルーチンは、マスクの半径を徐々に拡大していく
-    IEnumerator ScaleInOut()
+    public IEnumerator ScaleInOut(Vector3 worldCenter, float delay)
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delay);
         image.enabled = true;
-        // プレイヤーの世界座標をスクリーン座標に変換します。
-        Vector3 playerScreenPos = uiCamera.WorldToScreenPoint(player.transform.position);
 
-        // スクリーン座標をCanvasのローカル座標に変換します。
-        Vector2 canvasPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), playerScreenPos, uiCamera, out canvasPos);
+        // 将世界坐标转换为屏幕坐标
+        Vector3 screenCenter = uiCamera.WorldToScreenPoint(worldCenter);
 
-        // Shaderの_Centerパラメータを設定します。
-        material.SetVector("_Center", new Vector2(canvasPos.x, canvasPos.y));
+        // 将屏幕坐标转换为Canvas坐标
+        Vector2 canvasCenter;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), screenCenter, uiCamera, out canvasCenter);
 
-        // 半径が0から始まり、徐々に増加していきます。
-        for (float r = 0; r < 2000; r += 50)
+        // 使用转换后的Canvas坐标作为Shader的_Center参数
+        material.SetVector("_Center", new Vector2(canvasCenter.x, canvasCenter.y));
+
+        // 定义半径的开始值和结束值
+        float startRadius = 0f;
+        float endRadius = 2000f;
+
+        // 定义扩大半径所需的总时间（例如2秒）
+        float duration = 0.5f;
+
+        // 用于跟踪过渡进度的计时器
+        float elapsedTime = 0f;
+
+        while (elapsedTime < duration)
         {
-            // Shaderの_Radiusパラメータを更新します。
-            material.SetFloat("_Radius", r);
-            // 次のフレームまで待機します。
+            // 计算当前时间下的半径值
+            float currentRadius = Mathf.Lerp(startRadius, endRadius, elapsedTime / duration);
+
+            // 更新Shader的_Radius参数
+            material.SetFloat("_Radius", currentRadius);
+
+            // 等待下一帧，并更新经过的时间
             yield return null;
+            elapsedTime += Time.deltaTime;
         }
+
+        // 确保最后半径设置为最终值
+        material.SetFloat("_Radius", endRadius);
 
         // 半径の拡大が完了したら、GameObjectを非表示にします。
         image.enabled = false;
 
-        GameManager.GameState = GameState.Playing;
 
-        EventCenter.TriggerEvent(EventNames.Playing);
     }
 }

@@ -8,6 +8,10 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     [SerializeField] Transform spawnPos;
 
+    [SerializeField] GameObject appearVFX;
+
+    private bool firstSpawn = true;
+
     private void OnEnable()
     {
         EventCenter.Subscribe(EventNames.Respawn,SpawnPlayer);
@@ -29,8 +33,25 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
     IEnumerator SpawnCoroutine()
     {
         player.transform.position = spawnPos.position;
+        
         yield return new WaitForSeconds(0.5f);
+        if (firstSpawn)
+        {
+            yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 0));
+            firstSpawn = false;
+        }
+        else
+        {
+            yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(Vector3.zero, 0));
+        }
+        PoolManager.Release(appearVFX, player.transform.position);
+
+        yield return new WaitForSeconds(0.2f);
         player.SetActive(true);
+
+        GameManager.GameState = GameState.Playing;
+
+        EventCenter.TriggerEvent(EventNames.Playing);
 
     }
 }
