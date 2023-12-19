@@ -8,7 +8,7 @@ public class PlayerLandState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Land");
+        //Debug.Log("Land");
     }
 
     public override void Exit()

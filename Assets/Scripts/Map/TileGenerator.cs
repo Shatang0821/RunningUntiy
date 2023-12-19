@@ -21,7 +21,11 @@ public class TileGenerator : MonoBehaviour
             {
                 Vector3 worldPosition = tilemap.CellToWorld(localPlace);
                 // 
-                PoolManager.Release(prefab, worldPosition += spawnPos);
+                GameObject spawnedObject = PoolManager.Release(prefab, worldPosition += spawnPos);
+
+                //ê≥ÇµÇ¢à íuÇ…âÒì]Ç≥ÇπÇÈ
+                Matrix4x4 tileMatrix = tilemap.GetTransformMatrix(localPlace);
+                spawnedObject.transform.rotation = tileMatrix.rotation;
             }
         }
 

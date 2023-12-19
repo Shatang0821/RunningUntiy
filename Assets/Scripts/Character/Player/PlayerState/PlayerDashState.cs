@@ -16,7 +16,7 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
 
-        Debug.Log("dash");
+        //Debug.Log("dash");
 
         CheckDir();
 

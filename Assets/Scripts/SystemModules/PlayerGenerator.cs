@@ -37,12 +37,14 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
         yield return new WaitForSeconds(0.5f);
         if (firstSpawn)
         {
-            yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 0));
+            StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 0));
+            yield return new WaitForSeconds(0.2f);
             firstSpawn = false;
         }
         else
         {
-            yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(Vector3.zero, 0));
+            StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 0));
+            yield return new WaitForSeconds(0.2f);
         }
         PoolManager.Release(appearVFX, player.transform.position);
 

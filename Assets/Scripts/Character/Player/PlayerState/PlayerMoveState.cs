@@ -15,7 +15,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Move");
+        //Debug.Log("Move");
         targetVelocityX = xInput * moveSpeed;
     }
 

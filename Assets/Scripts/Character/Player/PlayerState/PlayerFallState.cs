@@ -6,7 +6,7 @@ public class PlayerFallState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Fall");
+        //Debug.Log("Fall");
     }
 
     public override void Exit()

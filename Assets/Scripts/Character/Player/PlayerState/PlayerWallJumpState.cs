@@ -9,7 +9,7 @@ public class PlayerWallJumpState : PlayerAirState
     [SerializeField] private Vector2 jumpVelocity;
     public override void Enter()
     {
-        Debug.Log("PlayerWallJump");
+        //Debug.Log("PlayerWallJump");
         base.Enter();
         stateTimer = jumpDuration;
         player.Flip();

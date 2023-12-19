@@ -57,6 +57,7 @@ public class Player : Entity
         if (collision.collider.tag == "Traps")
         {
             Die();
+            Debug.Log("Die");
         }
     }
 
