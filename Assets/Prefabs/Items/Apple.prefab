@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4622758663184459462}
   - component: {fileID: 7192661974965784094}
   - component: {fileID: 6884576005336004629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Apple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -620255849
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 2132991516, guid: ab7716e770462534588d07698d6eadca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

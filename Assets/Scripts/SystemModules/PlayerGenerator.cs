@@ -43,7 +43,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
         }
         else
         {
-            StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 0));
+            StartCoroutine(BlackMaskController.Instance.ScaleInOut(Vector3.zero, 0));
             yield return new WaitForSeconds(0.2f);
         }
         PoolManager.Release(appearVFX, player.transform.position);
