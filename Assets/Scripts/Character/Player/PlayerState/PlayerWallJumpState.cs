@@ -13,7 +13,7 @@ public class PlayerWallJumpState : PlayerAirState
         base.Enter();
         stateTimer = jumpDuration;
         player.Flip();
-        player.SetVelocity(jumpVelocity, xInput);
+        player.SetVelocity(jumpVelocity, 0);
     }
 
     public override void Exit()
@@ -30,6 +30,6 @@ public class PlayerWallJumpState : PlayerAirState
 
     public override void PhysicUpdate()
     {
-        player.SetVelocityX(jumpVelocity.x * player.facingDir,xInput);
+        player.SetVelocityX(jumpVelocity.x * player.facingDir,0);
     }
 }

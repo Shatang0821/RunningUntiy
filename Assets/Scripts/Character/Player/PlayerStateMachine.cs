@@ -25,4 +25,9 @@ public class PlayerStateMachine : StateMachine
     {
         SwitchOn(stateTable[typeof(PlayerIdleState)]);
     }
+
+    private void OnEnable()
+    {
+        SwitchOn(stateTable[typeof(PlayerIdleState)]);
+    }
 }

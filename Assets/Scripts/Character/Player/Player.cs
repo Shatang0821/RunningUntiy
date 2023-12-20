@@ -18,7 +18,7 @@ public class Player : Entity
 
     //ジャンプ関連 キーを押したらtrueになる
     [HideInInspector]
-    public bool HasJumpInputBuffer { get; set; }
+    public bool HasJumpInputBuffer{ get; set; }
 
     public GameObject dashGhost;
 
@@ -33,6 +33,11 @@ public class Player : Entity
     {
         base.Awake();
         waitJumpInputBufferTime = new WaitForSeconds(jumpInputBufferTime);
+    }
+
+    private void OnDisable()
+    {
+        HasJumpInputBuffer = false;
     }
 
     public void SetJumpInputBufferTimer()

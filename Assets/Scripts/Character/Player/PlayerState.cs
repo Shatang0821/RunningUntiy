@@ -62,6 +62,7 @@ public class PlayerState : ScriptableObject, IState
         stateBoolHash = Animator.StringToHash(animBoolName);
     }
 
+
     public void Initialize(Player _player,PlayerStateMachine _stateMachine,PlayerInput _input)
     {
         this.player = _player;

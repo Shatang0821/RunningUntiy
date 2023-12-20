@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/Fall", fileName = "PlayerState_Fall")]
 public class PlayerFallState : PlayerAirState
 {
+    [SerializeField] float maxFallSpeed;
     public override void Enter()
     {
         base.Enter();
@@ -31,5 +32,8 @@ public class PlayerFallState : PlayerAirState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        // óéâ∫ë¨ìxÇêßå¿
+        float newFallSpeed = Mathf.Clamp(rb.velocity.y, maxFallSpeed, float.MaxValue);
+        rb.velocity = new Vector2(rb.velocity.x, newFallSpeed);
     }
 }

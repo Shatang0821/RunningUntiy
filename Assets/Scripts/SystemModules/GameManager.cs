@@ -11,6 +11,7 @@ public class GameManager : PersistentSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
+        Application.targetFrameRate = 144;
         
     }
 

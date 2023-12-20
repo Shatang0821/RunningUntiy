@@ -19,51 +19,114 @@ public class BlackMaskController : Singleton<BlackMaskController>
     }
 
 
-    // ScaleInOutコルーチンは、マスクの半径を徐々に拡大していく
-    public IEnumerator ScaleInOut(Vector3 worldCenter, float delay)
+    /// <summary>
+    /// カメラ中心でマスクを徐々に拡大
+    /// </summary>
+    /// <param name="startRadius">初期半径</param>
+    /// <param name="delay">初期から拡大開始までの待ち時間</param>
+    /// <returns></returns>
+    public IEnumerator ScaleInOut(float startRadius,float delay)
     {
-        yield return new WaitForSeconds(delay);
         image.enabled = true;
 
-        // 将世界坐标转换为屏幕坐标
-        Vector3 screenCenter = uiCamera.WorldToScreenPoint(worldCenter);
+        // カメラが移動しても中心を保持するために、毎フレーム中心座標を更新する
+        Vector3 screenCenter = uiCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
 
-        // 将屏幕坐标转换为Canvas坐标
-        Vector2 canvasCenter;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(GetComponent<RectTransform>(), screenCenter, uiCamera, out canvasCenter);
+        // RectTransform を取得
+        RectTransform rectTransform = GetComponent<RectTransform>();
 
-        // 使用转换后的Canvas坐标作为Shader的_Center参数
-        material.SetVector("_Center", new Vector2(canvasCenter.x, canvasCenter.y));
-
-        // 定义半径的开始值和结束值
-        float startRadius = 0f;
+        // 定義半径の開始値と終了値
         float endRadius = 2000f;
 
-        // 定义扩大半径所需的总时间（例如2秒）
+        // 拡大にかかる時間
         float duration = 0.5f;
 
-        // 用于跟踪过渡进度的计时器
+        // カウンタ
         float elapsedTime = 0f;
+
+        // 初期値を設定する
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenCenter, uiCamera, out Vector2 canvasCenter);
+        material.SetVector("_Center", new Vector4(canvasCenter.x, canvasCenter.y, 0, 0));
+        material.SetFloat("_Radius", startRadius);
+        yield return new WaitForSeconds(delay);
 
         while (elapsedTime < duration)
         {
-            // 计算当前时间下的半径值
+            
+
+            // 現在の時間での半径の値を計算する
             float currentRadius = Mathf.Lerp(startRadius, endRadius, elapsedTime / duration);
 
-            // 更新Shader的_Radius参数
+            // シェーダーの_Radiusパラメータを更新する
             material.SetFloat("_Radius", currentRadius);
 
-            // 等待下一帧，并更新经过的时间
+            // 次のフレームまで待機し、経過時間を更新する
             yield return null;
             elapsedTime += Time.deltaTime;
         }
 
-        // 确保最后半径设置为最终值
+        // 最終的な半径の値を設定する
         material.SetFloat("_Radius", endRadius);
 
-        // 半径の拡大が完了したら、GameObjectを非表示にします。
+        // 半径の拡大が完了したら、GameObjectを非表示にする
         image.enabled = false;
-
-
     }
+
+    /// <summary>
+    /// 指定座標を中心でマスクを徐々に拡大
+    /// </summary>
+    /// <param name="position">指定中心座標</param>
+    /// <param name="startRadius">初期半径</param>
+    /// <param name="delay">初期から拡大開始までの待ち時間</param>
+    /// <returns></returns>
+    public IEnumerator ScaleInOut(Vector3 position, float startRadius, float delay)
+    {
+        image.enabled = true;
+
+        // RectTransform を取得
+        RectTransform rectTransform = GetComponent<RectTransform>();
+
+        // 定義半径の終了値
+        float endRadius = 2000f;
+
+        // 拡大にかかる時間
+        float duration = 0.5f;
+
+        // カウンタ
+        float elapsedTime = 0f;
+
+
+        // カメラのビューポートを考慮してプレイヤーの位置をスクリーン座標に変換する
+        Vector3 screenCenter = uiCamera.WorldToScreenPoint(position);
+
+        // スクリーン座標からキャンバス内のローカル座標に変換する
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenCenter, uiCamera, out Vector2 canvasCenter);
+        material.SetVector("_Center", new Vector4(canvasCenter.x, canvasCenter.y, 0, 0));
+        // 初期値を設定する
+        material.SetFloat("_Radius", startRadius);
+        
+        yield return new WaitForSeconds(delay);
+
+        while (elapsedTime < duration)
+        {
+            
+
+            // 現在の時間での半径の値を計算する
+            float currentRadius = Mathf.Lerp(startRadius, endRadius, elapsedTime / duration);
+
+            // シェーダーの_Radiusパラメータを更新する
+            material.SetFloat("_Radius", currentRadius);
+
+            // 次のフレームまで待機し、経過時間を更新する
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+
+        // 最終的な半径の値を設定する
+        material.SetFloat("_Radius", endRadius);
+
+        // 半径の拡大が完了したら、GameObjectを非表示にする
+        image.enabled = false;
+    }
+
 }
