@@ -8618,6 +8618,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 918260544339518341, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 918260544339518341, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1842207917
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083541509368115021, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5456815166376228667, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.28
@@ -8664,7 +8676,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7599041377771758214, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008614026099380538, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008614026099380538, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1842207917
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910692072133888185, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8910692072133888185, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1842207917
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020302918161014511, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020302918161014511, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9020302918161014511, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1842207917
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
