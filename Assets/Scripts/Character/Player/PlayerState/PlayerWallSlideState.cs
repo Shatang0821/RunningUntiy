@@ -12,7 +12,7 @@ public class PlayerWallSlideState : PlayerState
         base.Enter();
         //Debug.Log("Wall");
         player.SetUseGravity(gravity);
-        player.SetVelocity(Vector2.zero, xInput);
+        player.SetVelocity(Vector2.zero);
     }
 
     public override void Exit()

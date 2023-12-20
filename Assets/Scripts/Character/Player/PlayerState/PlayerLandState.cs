@@ -9,6 +9,7 @@ public class PlayerLandState : PlayerState
     {
         base.Enter();
         //Debug.Log("Land");
+        dashTrigger = false;
     }
 
     public override void Exit()

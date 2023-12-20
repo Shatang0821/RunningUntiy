@@ -20,6 +20,7 @@ public class Player : Entity
     [HideInInspector]
     public bool HasJumpInputBuffer{ get; set; }
 
+    //ƒ_ƒbƒVƒ…‰e
     public GameObject dashGhost;
 
     [HideInInspector]

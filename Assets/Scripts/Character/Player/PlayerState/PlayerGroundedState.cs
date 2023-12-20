@@ -59,11 +59,11 @@ public class PlayerGroundedState : PlayerState
         {
             float lerpFactor = (float)currentFrame / totalFrames;
             float currentVelocityX = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpFactor);
-            player.SetVelocityX(currentVelocityX,xInput);
+            player.SetVelocityX(currentVelocityX);
         }
         else
         {
-            player.SetVelocityX(targetSpeed,xInput);
+            player.SetVelocityX(targetSpeed );
         }
     }
 }

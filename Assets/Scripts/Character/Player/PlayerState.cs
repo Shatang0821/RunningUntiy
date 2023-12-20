@@ -85,6 +85,7 @@ public class PlayerState : ScriptableObject, IState
     {
         stateTimer -= Time.deltaTime;
         player.anim.SetFloat("yVelocity", rb.velocity.y);
+        player.FlipController(xInput);
         CheckForDashInput();
 
     }

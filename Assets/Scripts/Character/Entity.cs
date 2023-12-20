@@ -40,20 +40,18 @@ public class Entity : MonoBehaviour
     #region Velocity
     public void ZeroVelocity() => rb.velocity = Vector2.zero;
 
-    public void SetVelocity(Vector2 velocity,float _xDir)
+    public void SetVelocity(Vector2 velocity)
     {
         rb.velocity = velocity;
-        FlipController(_xDir);
     }
 
     /// <summary>
     /// Xë¨ìxê›íË
     /// </summary>
     /// <param name="velocityX">Xë¨ìx</param>
-    public void SetVelocityX(float velocityX, float _xDir)
+    public void SetVelocityX(float velocityX)
     {
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
-        FlipController(_xDir);
     }
 
     /// <summary>
