@@ -8,7 +8,7 @@ public class PlayerIdleState : PlayerGroundedState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("Idle");
+        Debug.Log("Idle");
     }
 
     public override void Exit()

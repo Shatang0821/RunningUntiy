@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 [CreateAssetMenu(menuName = "Player Input", fileName = "Player Input")]
 public class PlayerInput : ScriptableObject
@@ -15,6 +17,10 @@ public class PlayerInput : ScriptableObject
     public bool StopJump => inputActions.GamePlay.Jump.WasReleasedThisFrame();
 
     public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();
+
+    public bool Move => AxisX != 0f;
+
+    public float AxisX => Axis.x;
 
     private void OnEnable()
     {

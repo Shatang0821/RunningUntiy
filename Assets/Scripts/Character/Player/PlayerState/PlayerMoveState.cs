@@ -10,13 +10,12 @@ public class PlayerMoveState : PlayerGroundedState
     [SerializeField] private float moveSpeed;
     [SerializeField] private int accelerationFrames = 6;//加速フレーム
     float counter;
-    float targetVelocityX;
+    float TargetVelocityX => xInput * moveSpeed;
 
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("Move");
-        targetVelocityX = xInput * moveSpeed;
+        
     }
 
     public override void Exit()
@@ -27,7 +26,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (xInput == 0)
+        if (!input.Move)
             stateMachine.SwitchState(typeof(PlayerIdleState));
         counter += Time.deltaTime;
     }
@@ -35,7 +34,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        ChangeVelocity(targetVelocityX, currentFrame, accelerationFrames);
+        ChangeVelocity(TargetVelocityX, currentFrame, accelerationFrames);
 
         if(counter > 0.1)
         {
