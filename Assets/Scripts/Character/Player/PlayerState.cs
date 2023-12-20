@@ -83,9 +83,10 @@ public class PlayerState : ScriptableObject, IState
 
     public virtual void LogicUpdate()
     {
+
         stateTimer -= Time.deltaTime;
         player.anim.SetFloat("yVelocity", rb.velocity.y);
-        player.FlipController(xInput);
+
         CheckForDashInput();
 
     }

@@ -19,6 +19,7 @@ public class PlayerAirState : PlayerState
 
     public override void LogicUpdate()  
     {
+
         base.LogicUpdate();
 
     }

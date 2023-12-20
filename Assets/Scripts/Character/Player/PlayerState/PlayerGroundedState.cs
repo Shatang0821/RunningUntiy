@@ -22,6 +22,8 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        player.FlipController(xInput);
+
         if (Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
 

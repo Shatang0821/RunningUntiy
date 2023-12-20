@@ -21,6 +21,8 @@ public class PlayerJumpState : PlayerAirState
 
     public override void LogicUpdate()
     {
+        player.FlipController(xInput);
+
         base.LogicUpdate();
         if(rb.velocity.y<=0)
             stateMachine.SwitchState(typeof(PlayerFallState));

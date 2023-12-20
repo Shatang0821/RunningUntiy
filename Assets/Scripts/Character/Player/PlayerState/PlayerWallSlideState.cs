@@ -9,6 +9,7 @@ public class PlayerWallSlideState : PlayerState
     [SerializeField] float gravity;
     public override void Enter()
     {
+        
         base.Enter();
         //Debug.Log("Wall");
         player.SetUseGravity(gravity);

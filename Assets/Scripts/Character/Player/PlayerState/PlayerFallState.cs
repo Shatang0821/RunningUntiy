@@ -17,6 +17,8 @@ public class PlayerFallState : PlayerAirState
 
     public override void LogicUpdate()
     {
+        player.FlipController(xInput);
+
         base.LogicUpdate();
         if (player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerLandState));
