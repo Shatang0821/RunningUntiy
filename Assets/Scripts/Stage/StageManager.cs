@@ -16,7 +16,7 @@ public class StageManager : Singleton<StageManager>
 
     public void ChangeCamera(int index)
     {
-        Debug.Log("Change");
+        //Debug.Log("Change");
         mainCamera.transform.position = cameraPos[index].transform.position;
     }
 }

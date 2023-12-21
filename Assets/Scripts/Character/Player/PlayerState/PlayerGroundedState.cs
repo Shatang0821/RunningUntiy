@@ -37,6 +37,8 @@ public class PlayerGroundedState : PlayerState
                 return;
             }
         }
+        if (player.IsWallDetected() && Climb)
+            stateMachine.SwitchState(typeof(PlayerClimbState));
             
         if (!player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));

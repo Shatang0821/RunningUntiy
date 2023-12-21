@@ -26,7 +26,7 @@ public class PlayerMoveState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (!input.Move)
+        if (xInput == 0)
             stateMachine.SwitchState(typeof(PlayerIdleState));
         counter += Time.deltaTime;
     }

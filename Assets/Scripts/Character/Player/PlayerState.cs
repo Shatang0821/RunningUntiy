@@ -53,8 +53,13 @@ public class PlayerState : ScriptableObject, IState
     }
 
     protected bool Jump => input.Jump;
-    protected bool Dash => input.Dash;
+
     protected bool StopJump => input.StopJump;
+
+    protected bool Dash => input.Dash;
+
+    protected bool Climb => input.Climb;
+    protected 
     #endregion
 
     private void OnEnable()

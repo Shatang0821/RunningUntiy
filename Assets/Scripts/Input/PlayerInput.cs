@@ -18,9 +18,7 @@ public class PlayerInput : ScriptableObject
 
     public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();
 
-    public bool Move => AxisX != 0f;
-
-    public float AxisX => Axis.x;
+    public bool Climb => inputActions.GamePlay.Climb.IsPressed();
 
     private void OnEnable()
     {

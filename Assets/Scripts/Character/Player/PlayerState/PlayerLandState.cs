@@ -8,7 +8,7 @@ public class PlayerLandState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("Land");
+        Debug.Log("Land");
         dashTrigger = false;
     }
 
@@ -25,6 +25,8 @@ public class PlayerLandState : PlayerState
             stateMachine.SwitchState(typeof(PlayerJumpState));
             return;
         }
+        if(!player.IsGroundDetected())
+            stateMachine.SwitchState(typeof(PlayerFallState));
         if(xInput ==0 )
             stateMachine.SwitchState(typeof(PlayerIdleState));
         if (xInput != 0 && player.IsGroundDetected())
