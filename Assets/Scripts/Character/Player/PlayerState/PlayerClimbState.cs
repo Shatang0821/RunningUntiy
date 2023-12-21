@@ -18,6 +18,8 @@ public class PlayerClimbState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.SetUseGravity(0.1f);
+        player.SetVelocityY(0);
     }
 
     public override void LogicUpdate()
@@ -25,6 +27,11 @@ public class PlayerClimbState : PlayerState
         base.LogicUpdate();
         if(!Climb)
             stateMachine.SwitchState(typeof(PlayerIdleState));
+        if (player.IsWallDetected() && xInput == player.facingDir && !Climb)
+            stateMachine.SwitchState(typeof(PlayerWallSlideState));
+        if (Jump && player.IsWallDetected())
+            stateMachine.SwitchState(typeof(PlayerWallJumpState));
+
     }
 
     public override void PhysicUpdate()

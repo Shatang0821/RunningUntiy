@@ -12,7 +12,7 @@ public class PlayerWallJumpState : PlayerAirState
         //Debug.Log("PlayerWallJump");
         base.Enter();
         stateTimer = jumpDuration;
-        player.Flip();
+        //player.Flip();
         player.SetVelocity(jumpVelocity);
     }
 

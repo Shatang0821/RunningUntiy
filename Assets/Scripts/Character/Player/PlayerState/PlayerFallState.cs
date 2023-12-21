@@ -27,7 +27,14 @@ public class PlayerFallState : PlayerAirState
         if (player.IsWallDetected()&&xInput ==player.facingDir)
             stateMachine.SwitchState(typeof(PlayerWallSlideState));
         if(Jump && player.IsWallDetected())
+        {
+            player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
+        }
+
+        if(player.IsWallDetected() && Climb)
+            stateMachine.SwitchState(typeof (PlayerClimbState));    
+            
             
     }
 

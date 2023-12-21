@@ -30,7 +30,12 @@ public class PlayerWallSlideState : PlayerState
         if(xInput == (player.facingDir * -1) || xInput == 0 || !player.IsWallDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
         if (Jump && player.IsWallDetected())
+        {
+            player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
+        }
+        if(Climb)
+            stateMachine.SwitchState(typeof(PlayerClimbState));
     }
 
     public override void PhysicUpdate()

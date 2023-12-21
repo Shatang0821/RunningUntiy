@@ -28,6 +28,7 @@ public class Player : Entity
 
     [Header("==== DEATH ====")]
     public GameObject DeathVFX;
+    private bool isDeaded;
 
 
     protected override void Awake()
@@ -36,6 +37,10 @@ public class Player : Entity
         waitJumpInputBufferTime = new WaitForSeconds(jumpInputBufferTime);
     }
 
+    private void OnEnable()
+    {
+        isDeaded = false;
+    }
     private void OnDisable()
     {
         HasJumpInputBuffer = false;
@@ -62,8 +67,14 @@ public class Player : Entity
     {
         if (collision.collider.tag == "Traps")
         {
-            Die();
-            Debug.Log("Die");
+            if(!isDeaded)
+            {
+                Die();
+                isDeaded = true;
+                Debug.Log("Die");
+            }
+            
+           
         }
     }
 

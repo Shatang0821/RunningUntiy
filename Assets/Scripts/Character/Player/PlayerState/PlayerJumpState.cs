@@ -27,7 +27,11 @@ public class PlayerJumpState : PlayerAirState
         if(rb.velocity.y<=0)
             stateMachine.SwitchState(typeof(PlayerFallState));
         if (Jump && player.IsWallDetected())
+        {
+            player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
+        }
+           
 
     }
 
