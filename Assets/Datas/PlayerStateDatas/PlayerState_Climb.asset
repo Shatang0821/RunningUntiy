@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34479334c4789754ca43320b8a945828, type: 3}
   m_Name: PlayerState_Climb
   m_EditorClassIdentifier: 
-  animBoolName: WallSlide
+  animBoolName: Climb
   gravity: 0
+  climbSpeed: 2
