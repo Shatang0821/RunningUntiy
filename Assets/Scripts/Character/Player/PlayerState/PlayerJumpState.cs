@@ -12,6 +12,8 @@ public class PlayerJumpState : PlayerAirState
         base.Enter();
         //Debug.Log("Jump");
         player.SetVelocityY(JumpForce);
+
+        player.jumpParticle.Play();
     }
 
     public override void Exit()

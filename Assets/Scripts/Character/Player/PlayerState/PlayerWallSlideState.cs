@@ -14,6 +14,8 @@ public class PlayerWallSlideState : PlayerState
         //Debug.Log("Wall");
         player.SetUseGravity(gravity);
         player.SetVelocity(Vector2.zero);
+
+        player.touchParticle.Play();
     }
 
     public override void Exit()

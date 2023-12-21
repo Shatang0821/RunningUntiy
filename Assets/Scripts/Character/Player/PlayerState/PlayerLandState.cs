@@ -10,6 +10,7 @@ public class PlayerLandState : PlayerState
         base.Enter();
         //Debug.Log("Land");
         dashTrigger = false;
+        player.fallParticle.Play();
     }
 
     public override void Exit()

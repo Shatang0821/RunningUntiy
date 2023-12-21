@@ -14,6 +14,8 @@ public class PlayerClimbState : PlayerState
     {
         base.Enter();
         player.SetUseGravity(gravity);
+
+        player.touchParticle.Play();
     }
 
     public override void Exit()
@@ -47,13 +49,13 @@ public class PlayerClimbState : PlayerState
         }
         if (!player.IsWallDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
-            
 
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        player.SetVelocityY(yInput * climbSpeed);
+        if(player.IsWallDetected())
+            player.SetVelocityY(yInput * climbSpeed);
     }
 }

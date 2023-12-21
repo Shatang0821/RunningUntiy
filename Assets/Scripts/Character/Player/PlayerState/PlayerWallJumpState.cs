@@ -14,6 +14,8 @@ public class PlayerWallJumpState : PlayerAirState
         stateTimer = jumpDuration;
         //player.Flip();
         player.SetVelocity(jumpVelocity);
+
+        player.jumpParticle.Play();
     }
 
     public override void Exit()
