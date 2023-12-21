@@ -7,15 +7,7 @@ public class StateMachine : MonoBehaviour
 
     protected Dictionary<System.Type, IState> stateTable;
 
-    void OnGUI()
-    {
-        Rect rect = new Rect(200, 150, 200, 200);
-        string message = currentState.ToString();
-        GUIStyle style = new GUIStyle();
-        style.fontSize = 50;
-        style.fontStyle = FontStyle.Bold;
-        GUI.Label(rect, message, style);
-    }
+
     private void Update()
     {
         currentState.LogicUpdate();

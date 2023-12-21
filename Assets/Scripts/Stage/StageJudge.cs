@@ -7,7 +7,7 @@ public class StageJudge : MonoBehaviour
     [SerializeField] int stageIndex;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StageManager.Instance.ChangeCamera(stageIndex);
+        CameraController.Instance.ChangeCamera(stageIndex);
         PlayerGenerator.Instance.SetSpawnPos(stageIndex);
     }
 

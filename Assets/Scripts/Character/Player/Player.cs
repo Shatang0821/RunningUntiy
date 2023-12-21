@@ -29,8 +29,15 @@ public class Player : Entity
     [Header("==== DEATH ====")]
     public GameObject DeathVFX;
     private bool isDeaded;
-
-
+    void OnGUI()
+    {
+        Rect rect = new Rect(200, 150, 200, 200);
+        string message = facingDir.ToString();
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 50;
+        style.fontStyle = FontStyle.Bold;
+        GUI.Label(rect, message, style);
+    }
     protected override void Awake()
     {
         base.Awake();

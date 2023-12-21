@@ -24,6 +24,8 @@ public class PlayerDashState : PlayerState
 
         stateTimer = dashDuration;
 
+        CameraController.Instance.CameraShake(0.1f, 0.1f);
+
     }
 
     public override void Exit()
@@ -69,14 +71,17 @@ public class PlayerDashState : PlayerState
     void CheckDir()
     {
         dashDir = DirectionInput().normalized;
-
-        if (dashDir == Vector2.zero)
-            dashDir = new Vector2(player.facingDir,0);
-        //Debug.Log(dashDir);
+        Debug.Log(dashDir);
     }
 
     Vector2 DirectionInput()
     {
+        // 先检查输入是否为零
+        if (input.Axis.x == 0 && input.Axis.y == 0)
+        {
+            return new Vector2(player.facingDir, 0);
+        }
+
         float angleInRadians = Mathf.Atan2(input.Axis.y, input.Axis.x);
         float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
 
@@ -121,6 +126,6 @@ public class PlayerDashState : PlayerState
             return new Vector2(1, -1); // 右下
         }
         else
-            return Vector2.zero; // 移动なし
+            return Vector2.zero;
     }
 }

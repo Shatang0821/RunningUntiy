@@ -8,6 +8,7 @@ public class PlayerStateMachine : StateMachine
     Player player;
 
     [SerializeField] PlayerInput input;
+
     private void Awake()
     {
         player = GetComponent<Player>();
