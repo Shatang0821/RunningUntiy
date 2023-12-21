@@ -8,7 +8,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         currentFrame = 0;
-        coyoteTime = 0.1f;
+        coyoteTime = 0.08f;
         //地面に戻るとダッシュリセット
         dashTrigger = false;
         base.Enter();
