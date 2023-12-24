@@ -5,57 +5,73 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/Dash", fileName = "PlayerState_Dash")]
 public class PlayerDashState : PlayerState
 {
-    /*
-     壁中ダッシュできない
-     */
-    [SerializeField] private float dashDuration;
-    [SerializeField] private float dashSpeed;
-    [SerializeField] private Vector2 dashDir;
-    private float releaseTimer = 0.02f;
+    [Header("Dash Info")]
+    [SerializeField] private float dashDuration;  // ダッシュの持続時間
+    [SerializeField] private float dashSpeed;     // ダッシュ時のスピード
+    [SerializeField] private Vector2 dashDir;     // ダッシュ方向
+
+    [Header("Dash Effect")]
+    [SerializeField] private float dashEffectInterval = 0.02f; // ダッシュエフェクトの発生間隔
+    private float releaseTimer; // 次のエフェクト生成までのタイマー
     public override void Enter()
     {
         base.Enter();
 
-        //Debug.Log("dash");
+        releaseTimer = dashEffectInterval;
 
-        CheckDir();
+        // ダッシュ方向をチェックする
+        dashDir = DirectionInput().normalized;
 
         dashTrigger = true;
 
+        // ダッシュ時間を設定
         stateTimer = dashDuration;
 
-        CameraController.Instance.CameraShake(0.1f, 0.1f);
+        // カメラを揺らす
+        CameraController.Instance.CameraShake(0.06f, 0.1f);
 
     }
 
     public override void Exit()
     {
         base.Exit();
-        player.SetVelocity(new Vector2(0, 0));
+
+        // プレイヤーの速度をリセット
+        player.SetVelocity(Vector2.zero);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // ダッシュ時間が終了した場合の処理
         if (stateTimer < 0)
         {
-            if(!player.IsGroundDetected())
+            // 地面にいない場合、落下状態に移行
+            if (!player.IsGroundDetected())
                 stateMachine.SwitchState(typeof(PlayerFallState));
+            // 地面にいる場合
             if (player.IsGroundDetected())
-                stateMachine.SwitchState(typeof(PlayerIdleState));
+            {
+                //移動入力がなければアイドル状態に移行
+                if (xInput == 0)
+                    stateMachine.SwitchState(typeof(PlayerIdleState));
+                else
+                    //あれば移動状態
+                    stateMachine.SwitchState(typeof(PlayerMoveState));
+            }
         }
 
-        // 添加一个计时器控制 PoolManager.Release 的调用频率
+        // ダッシュエフェクトを生成するためのタイマー
         if (releaseTimer <= 0)
         {
             float alpha = 1 - (stateTimer % 6 / dashDuration);
-            alpha = Mathf.Clamp(alpha, 0, 1); // 确保 alpha 值在 0 到 1 之间
+            alpha = Mathf.Clamp(alpha, 0, 1); // alpha 値を 0 から 1 の間に保持
             PoolManager.Release(player.dashGhost, player.transform.position,player.transform.rotation, player.sprite, alpha);
-            releaseTimer = 0.02f; // 重置计时器为 0.03 秒
+            releaseTimer = dashEffectInterval; // タイマーをリセット
         }
         else
         {
-            releaseTimer -= Time.deltaTime; // 更新计时器
+            releaseTimer -= Time.deltaTime; // タイマーを更新
         }
 
 
@@ -65,33 +81,33 @@ public class PlayerDashState : PlayerState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        // ダッシュ方向に速度を設定
         player.SetVelocity(dashSpeed * dashDir);
     }
 
-    void CheckDir()
-    {
-        dashDir = DirectionInput().normalized;
-        Debug.Log(dashDir);
-    }
-
+    /// <summary>
+    /// 入力によってダッシュ方向を設定する
+    /// コントローラのためである
+    /// </summary>
+    /// <returns>ダッシュ方向</returns>
     Vector2 DirectionInput()
     {
-        // 先检查输入是否为零
+        // 入力がゼロかどうかをチェック
         if (input.Axis.x == 0 && input.Axis.y == 0)
         {
             return new Vector2(player.facingDir, 0);
         }
 
+        // 入力から角度を計算
         float angleInRadians = Mathf.Atan2(input.Axis.y, input.Axis.x);
         float angleInDegrees = angleInRadians * Mathf.Rad2Deg;
 
-        // 如果角度为负数，将其转换为 0 到 360 度的范围
+        // 角度が負の場合、360度の範囲に変換
         if (angleInDegrees < 0)
         {
             angleInDegrees += 360;
         }
 
-        Debug.Log(angleInDegrees);
         // 角度で方向判断する
         if (angleInDegrees >= 337.5 || angleInDegrees < 22.5)
         {

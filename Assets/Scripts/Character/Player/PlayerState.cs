@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 
+// プレイヤーの各状態の基底クラス
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/PlayerState", fileName = "PlayerState")]
 public class PlayerState : ScriptableObject, IState
 {
-    protected PlayerStateMachine stateMachine;
-    protected Player player;
+    protected PlayerStateMachine stateMachine; // 状態マシン
+    protected Player player;                  // プレイヤーの参照
 
-    protected Rigidbody2D rb;
-
-    
+    protected Rigidbody2D rb;                 // リジッドボディの参照
 
     #region Animator
-    [SerializeField] private string animBoolName;
-    protected int stateBoolHash;
+    [SerializeField] private string animBoolName; // アニメーターのブール名
+    protected int stateBoolHash;                  // アニメーターのハッシュ値
     #endregion
 
     #region State
-    protected float stateTimer;
+    protected float stateTimer;             // 状態のタイマー
 
-    protected bool triggerCalled;
+    protected bool triggerCalled;           // トリガーが呼ばれたかどうか
 
-    //Dash制限
+    // ダッシュ制限
     protected static bool dashTrigger;
 
+    // 重力の基準値
+    protected static float gravityBase = 0.1f;
     #endregion
 
     #region Input
-    protected PlayerInput input;
+    protected PlayerInput input;            // プレイヤーの入力
+
+    // X軸の入力
     protected float xInput
     {
         get
@@ -39,6 +42,8 @@ public class PlayerState : ScriptableObject, IState
                 return 0;
         }
     }
+
+    // Y軸の入力
     protected float yInput
     {
         get
@@ -52,55 +57,54 @@ public class PlayerState : ScriptableObject, IState
         }
     }
 
-    protected bool Jump => input.Jump;
-
-    protected bool StopJump => input.StopJump;
-
-    protected bool Dash => input.Dash;
-
-    protected bool Climb => input.Climb;
-    protected 
+    protected bool Jump => input.Jump;      // ジャンプ入力
+    protected bool StopJump => input.StopJump; // ジャンプ停止入力
+    protected bool Dash => input.Dash;      // ダッシュ入力
+    protected bool Climb => input.Climb;    // 登る入力
     #endregion
 
     private void OnEnable()
     {
-        stateBoolHash = Animator.StringToHash(animBoolName);
+        stateBoolHash = Animator.StringToHash(animBoolName); // アニメーターハッシュの初期化
     }
 
-
-    public void Initialize(Player _player,PlayerStateMachine _stateMachine,PlayerInput _input)
+    // 初期化処理
+    public void Initialize(Player _player, PlayerStateMachine _stateMachine, PlayerInput _input)
     {
         this.player = _player;
         this.stateMachine = _stateMachine;
         this.input = _input;
     }
 
+    // 状態に入った時の処理
     public virtual void Enter()
     {
-        player.anim.SetBool(stateBoolHash, true);
-        rb = player.rb;
+        player.anim.SetBool(stateBoolHash, true); // アニメーターの状態を更新
+        rb = player.rb;                           // リジッドボディの参照を取得
     }
 
+    // 状態から出る時の処理
     public virtual void Exit()
     {
-        player.anim.SetBool(stateBoolHash, false);
+        player.anim.SetBool(stateBoolHash, false); // アニメーターの状態を更新
     }
 
+    // ロジックアップデート（毎フレームの更新処理）
     public virtual void LogicUpdate()
     {
+        stateTimer -= Time.deltaTime;             // 状態タイマーの更新
+        player.anim.SetFloat("yVelocity", rb.velocity.y); // Y軸の速度をアニメーターに設定
 
-        stateTimer -= Time.deltaTime;
-        player.anim.SetFloat("yVelocity", rb.velocity.y);
-
-        CheckForDashInput();
-
+        CheckForDashInput();                      // ダッシュ入力のチェック
     }
 
+    // 物理アップデート（物理演算の更新処理）
     public virtual void PhysicUpdate()
     {
-        //wallJumpこれを使わない
+        // 物理演算に関する追加の処理（必要に応じて）
     }
 
+    // ダッシュ入力のチェック処理
     private void CheckForDashInput()
     {
         if (dashTrigger)
@@ -108,9 +112,7 @@ public class PlayerState : ScriptableObject, IState
 
         if (Dash)
         {
-            stateMachine.SwitchState(typeof(PlayerDashState));
+            stateMachine.SwitchState(typeof(PlayerDashState)); // ダッシュ状態に切り替える
         }
-
     }
-  
 }

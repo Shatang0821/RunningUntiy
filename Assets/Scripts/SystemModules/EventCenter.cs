@@ -10,7 +10,7 @@ public static class EventNames
     /// <summary>
     /// 
     /// </summary>
-    public const string Respawn = "Respawn";
+    public const string SpawnPlayer = "Respawn";
 }
 
 /// <summary>

@@ -18,23 +18,17 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;       //チェック距離
     [SerializeField] protected LayerMask whatIsGround;        //レイヤー設定
 
+    /// <summary>
+    /// 向いている方向
+    /// </summary>
     public int facingDir { get; private set; } = 1;
+
     protected bool facingRight = true;
 
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-    }
-
-    protected virtual void Start()
-    {
-        
-    }
-
-    protected virtual void Update()
-    {   
-
     }
 
     #region Velocity

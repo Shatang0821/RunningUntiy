@@ -17,10 +17,20 @@ public class GameManager : PersistentSingleton<GameManager>
 
     private void Update()
     {
-        if (GameState == GameState.Initialize)
+        switch (gameState)
         {
-            GameState = GameState.Respawn;
-            EventCenter.TriggerEvent(EventNames.Respawn);
+            case GameState.Initialize:
+                GameState = GameState.Respawn;
+                EventCenter.TriggerEvent(EventNames.SpawnPlayer);
+                break;
+            case GameState.Playing:
+                break;
+            case GameState.Respawn:
+                break;
+            case GameState.Paused:
+                break;
+            default:
+                break;
         }
     }
 }

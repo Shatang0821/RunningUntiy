@@ -14,14 +14,16 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     private bool firstSpawn = true;
 
+
+
     private void OnEnable()
     {
-        EventCenter.Subscribe(EventNames.Respawn,SpawnPlayer);
+        EventCenter.Subscribe(EventNames.SpawnPlayer,SpawnPlayer);
     }
 
     private void OnDisable()
     {
-        EventCenter.Unsubscribe(EventNames.Respawn, SpawnPlayer);
+        EventCenter.Unsubscribe(EventNames.SpawnPlayer, SpawnPlayer);
     }
 
     private void SpawnPlayer()
@@ -52,6 +54,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
         yield return new WaitForSeconds(0.2f);
         player.SetActive(true);
+
 
         GameManager.GameState = GameState.Playing;
 

@@ -5,16 +5,19 @@ public class PlayerAirState : PlayerState
     [Header("AirMove info")]
     [SerializeField] float moveSpeed = 2f;
     [SerializeField] float gravity;
+
     public override void Enter()
     {
         base.Enter();
+        //d—Í‚Ìİ’è
         player.SetUseGravity(gravity);
     }
 
+    //d—Í‚ğŠî‚É–ß‚·
     public override void Exit()
     {
         base.Exit();
-        player.SetUseGravity(0.1f);
+        player.SetUseGravity(gravityBase);
     }
 
     public override void LogicUpdate()  
@@ -24,9 +27,11 @@ public class PlayerAirState : PlayerState
 
     }
 
+    
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        //‹ó’†‚Å‚àˆÚ“®‚Å‚«‚é‚æ‚¤‚É‚·‚é
         player.SetVelocityX(xInput * moveSpeed);
     }
 }

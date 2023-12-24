@@ -26,7 +26,7 @@ public class PlayerInput : ScriptableObject
 
         inputActions.Enable();
 
-        EventCenter.Subscribe(EventNames.Respawn, DisableAllInputs);
+        EventCenter.Subscribe(EventNames.SpawnPlayer, DisableAllInputs);
 
         EventCenter.Subscribe(EventNames.Playing, EnableGameplayInput);
     }
@@ -35,7 +35,7 @@ public class PlayerInput : ScriptableObject
     {
         DisableAllInputs();
 
-        EventCenter.Unsubscribe(EventNames.Respawn,DisableAllInputs);
+        EventCenter.Unsubscribe(EventNames.SpawnPlayer,DisableAllInputs);
 
         EventCenter.Unsubscribe(EventNames.Playing, EnableGameplayInput);
     }

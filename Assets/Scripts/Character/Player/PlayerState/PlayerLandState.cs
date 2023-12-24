@@ -8,8 +8,10 @@ public class PlayerLandState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //Debug.Log("Land");
+        
+        // ダッシュトリガーをリセット
         dashTrigger = false;
+
         player.fallParticle.Play();
     }
 
@@ -21,15 +23,22 @@ public class PlayerLandState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        // ジャンプ入力バッファがある場合、ジャンプ状態に切り替える
         if (player.HasJumpInputBuffer)
         {
             stateMachine.SwitchState(typeof(PlayerJumpState));
             return;
         }
-        if(!player.IsGroundDetected())
+
+        // 地面にいない場合、落下状態に切り替える
+        if (!player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
-        if(xInput ==0 )
+
+        // 入力がない場合、アイドル状態に切り替える
+        if (xInput ==0 )
             stateMachine.SwitchState(typeof(PlayerIdleState));
+
+        // 入力があり、かつ地面にいる場合、移動状態に切り替える
         if (xInput != 0 && player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerMoveState));
     }

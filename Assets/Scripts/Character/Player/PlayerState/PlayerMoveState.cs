@@ -6,11 +6,12 @@ using UnityEngine;
 public class PlayerMoveState : PlayerGroundedState
 {
 
-    [Header("Move info")]
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private int accelerationFrames = 6;//加速フレーム
-    float counter;
-    float TargetVelocityX => xInput * moveSpeed;
+    [Header("Move Info")]
+    [SerializeField] private float moveSpeed;              // 移動速度
+    [SerializeField] private int accelerationFrames = 6;   // 加速にかかるフレーム数
+    float counter;                                         // 移動パーティクルエフェクトのタイマー
+    float TargetVelocityX => xInput * moveSpeed;           // 目標のX軸上の速度
+
 
     public override void Enter()
     {
@@ -26,17 +27,24 @@ public class PlayerMoveState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        // 入力がなくなった場合、アイドル状態に切り替える
         if (xInput == 0)
             stateMachine.SwitchState(typeof(PlayerIdleState));
+
+        // 移動パーティクルエフェクトのタイマーを更新
         counter += Time.deltaTime;
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+
+        // 加速しながら目標速度に向けて速度を変更
         ChangeVelocity(TargetVelocityX, currentFrame, accelerationFrames);
 
-        if(counter > 0.1)
+        // 移動パーティクルエフェクトの再生間隔を制御
+        if (counter > 0.1)
         {
             player.movementParticle.Play();
             counter = 0;
