@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class BlackMaskController : Singleton<BlackMaskController>
 {
     Material material;
-    [SerializeField] GameObject player;
     [SerializeField] Camera uiCamera;
     Image image;
     protected override void Awake()
@@ -79,7 +78,7 @@ public class BlackMaskController : Singleton<BlackMaskController>
     /// <param name="startRadius">初期半径</param>
     /// <param name="delay">初期から拡大開始までの待ち時間</param>
     /// <returns></returns>
-    public IEnumerator ScaleInOut(Vector3 position, float startRadius, float delay)
+    public IEnumerator ScaleInOut(GameObject gameObject, float startRadius, float delay)
     {
         image.enabled = true;
 
@@ -95,17 +94,23 @@ public class BlackMaskController : Singleton<BlackMaskController>
         // カウンタ
         float elapsedTime = 0f;
 
-
-        // カメラのビューポートを考慮してプレイヤーの位置をスクリーン座標に変換する
-        Vector3 screenCenter = uiCamera.WorldToScreenPoint(position);
-
-        // スクリーン座標からキャンバス内のローカル座標に変換する
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenCenter, uiCamera, out Vector2 canvasCenter);
-        material.SetVector("_Center", new Vector4(canvasCenter.x, canvasCenter.y, 0, 0));
         // 初期値を設定する
         material.SetFloat("_Radius", startRadius);
-        
-        yield return new WaitForSeconds(delay);
+        while (elapsedTime < delay)
+        {
+            // カメラのビューポートを考慮してプレイヤーの位置をスクリーン座標に変換する
+            Vector3 screenCenter = uiCamera.WorldToScreenPoint(gameObject.transform.position);
+            // スクリーン座標からキャンバス内のローカル座標に変換する
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenCenter, uiCamera, out Vector2 canvasCenter);
+            material.SetVector("_Center", new Vector4(canvasCenter.x, canvasCenter.y, 0, 0));
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        //yield return new WaitForSeconds(delay);
+
+        elapsedTime = 0f;
 
         while (elapsedTime < duration)
         {

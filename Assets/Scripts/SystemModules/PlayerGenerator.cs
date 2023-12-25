@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerGenerator : Singleton<PlayerGenerator>
 {
+    [SerializeField] GameObject playerSprite;
+
     [SerializeField] GameObject player;
 
     [SerializeField] GameObject[] spawnPos;
@@ -36,24 +38,33 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     IEnumerator SpawnCoroutine()
     {
-        player.transform.position = spawnPos[spawnIndex].transform.position;
         
-        yield return new WaitForSeconds(0.5f);
+
         if (firstSpawn)
         {
-            StartCoroutine(BlackMaskController.Instance.ScaleInOut(player.transform.position, 145f, 0.5f));
-            yield return new WaitForSeconds(0.2f);
+            //StartCoroutine(BlackMaskController.Instance.ScaleInOut(playerSprite, 145f, 2f));
+            yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(playerSprite, 145f, 1f));
             firstSpawn = false;
+
+
+            player.transform.position = playerSprite.transform.position;
+            playerSprite.SetActive(false);
+            player.SetActive(true);
         }
         else
         {
+            player.transform.position = spawnPos[spawnIndex].transform.position;
+
             StartCoroutine(BlackMaskController.Instance.ScaleInOut(0,0));
             yield return new WaitForSeconds(0.2f);
-        }
-        PoolManager.Release(appearVFX, player.transform.position);
 
-        yield return new WaitForSeconds(0.2f);
-        player.SetActive(true);
+            PoolManager.Release(appearVFX, player.transform.position);
+
+            yield return new WaitForSeconds(0.2f);
+
+            player.SetActive(true);
+        }
+        
 
 
         GameManager.GameState = GameState.Playing;
