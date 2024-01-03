@@ -4854,7 +4854,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1842207917
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9806,7 +9806,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1842207917
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -9910,7 +9910,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1842207917
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -913308272, guid: d76d29aa7d2bcbc498a7187c487d248e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -14798,7 +14798,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1842207917
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -19684,7 +19684,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1842207917
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: -1
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -19752,6 +19752,7 @@ Transform:
   - {fileID: 300430444919207766}
   - {fileID: 1429759935652420237}
   - {fileID: 5912330358720104540}
+  - {fileID: 815430578186765564}
   - {fileID: 1432504751037474936}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19836,13 +19837,18 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  DeathVFX: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
   movementParticle: {fileID: 1083541509368115021}
   fallParticle: {fileID: 6108822775902704487}
   jumpParticle: {fileID: 8674703657866781318}
   touchParticle: {fileID: 6712759195562646523}
+  enemyCheck: {fileID: 815430578186765564}
+  attackRadius: 0.22
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 1024
   jumpInputBufferTime: 0.1
   dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
-  DeathVFX: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
 --- !u!114 &1515572960323196347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19892,6 +19898,37 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.253, y: -0.188, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5456815166376228667}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8101765727192148025
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 815430578186765564}
+  m_Layer: 6
+  m_Name: EnemyCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &815430578186765564
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101765727192148025}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.382, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

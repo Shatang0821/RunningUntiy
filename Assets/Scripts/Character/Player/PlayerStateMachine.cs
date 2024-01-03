@@ -19,7 +19,7 @@ public class PlayerStateMachine : StateMachine
         stateTable = new Dictionary<System.Type, IState>(states.Length);
 
         // 各状態を初期化し、状態テーブルに追加
-        foreach (PlayerState state in states)
+        foreach (var state in states)
         {
             state.Initialize(player, this, input); // 各状態の初期化
             stateTable.Add(state.GetType(), state); // 状態テーブルに状態を追加

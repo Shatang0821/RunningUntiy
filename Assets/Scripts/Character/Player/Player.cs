@@ -8,6 +8,11 @@ public class Player : Entity
     public ParticleSystem fallParticle;      // 落下時のパーティクル
     public ParticleSystem jumpParticle;      // ジャンプ時のパーティクル
     public ParticleSystem touchParticle;     // 接触時のパーティクル
+    [Header("Collision info")]
+    [SerializeField] public Transform enemyCheck;         //地面チェック
+    [SerializeField] public Vector2 attackDistance;          //攻撃できる距離
+    [SerializeField] public LayerMask whatIsEnemy;        //レイヤー設定
+
     [Space]
     public float jumpInputBufferTime = 0.5f; // ジャンプ入力のバッファ時間
 
@@ -24,9 +29,7 @@ public class Player : Entity
     [HideInInspector]
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite; // 現在のスプライト
 
-    [Header("==== DEATH ====")]
-    public GameObject DeathVFX; // 死亡時のエフェクト
-    private bool isDeaded; // 死亡状態を表すフラグ
+
 
     // GUIの表示（デバッグ用）
     void OnGUI()
@@ -75,31 +78,35 @@ public class Player : Entity
         HasJumpInputBuffer = false;
     }
 
-    #region 死亡処理
+    #region 衝突処理
+
+
+    protected override void OnDrawGizmos()
+    {
+        base.OnDrawGizmos();
+        Gizmos.DrawWireCube(enemyCheck.position, attackDistance);
+    }
 
     // 衝突時の処理
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Traps")
-        {
-            if (!isDeaded)
-            {
-                Die();
-                isDeaded = true;
-                Debug.Log("Die");
-            }
-        }
+        if (collision.collider.tag == "Traps" && !isDeaded) Die();
+        if (collision.collider.tag == "Enemy" && !isDeaded) Die();
     }
 
     // 死亡時の処理
-    void Die()
+    public override void Die()
     {
+        base.Die();
         GameManager.GameState = GameState.Respawn;
-        PoolManager.Release(DeathVFX, transform.position);
-        this.gameObject.SetActive(false);
-
         EventCenter.TriggerEvent(EventNames.SpawnPlayer);
+        isDeaded = true;
+        //Debug.Log("Die");
     }
 
+
+
     #endregion
+
+
 }

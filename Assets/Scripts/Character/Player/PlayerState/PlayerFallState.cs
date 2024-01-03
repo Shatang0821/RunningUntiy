@@ -51,8 +51,22 @@ public class PlayerFallState : PlayerAirState
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
+        KillEnemy();
+
         // 落下速度を制限する処理。速度が最大落下速度を超えないように調整
         float newFallSpeed = Mathf.Clamp(rb.velocity.y, maxFallSpeed, float.MaxValue);
         rb.velocity = new Vector2(rb.velocity.x, newFallSpeed);
+    }
+
+    private void KillEnemy()
+    {
+        Collider2D hit = Physics2D.OverlapBox(player.enemyCheck.position, player.attackDistance, 0, player.whatIsEnemy);
+        if (hit == null)
+            return;
+        Debug.Log("Hit");
+        //hit.gameObject.SetActive(false);
+        Enemy enemy = hit.GetComponent<Enemy>();
+        stateMachine.SwitchState(typeof(PlayerJumpState));
+        enemy.Die();
     }
 }

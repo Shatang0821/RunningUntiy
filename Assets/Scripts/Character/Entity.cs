@@ -18,12 +18,18 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float wallCheckDistance;       //チェック距離
     [SerializeField] protected LayerMask whatIsGround;        //レイヤー設定
 
+
+
     /// <summary>
     /// 向いている方向
     /// </summary>
     public int facingDir { get; private set; } = 1;
 
     protected bool facingRight = true;
+
+    [Header("==== DEATH ====")]
+    public GameObject DeathVFX; // 死亡時のエフェクト
+    protected bool isDeaded; // 死亡状態を表すフラグ
 
     protected virtual void Awake()
     {
@@ -70,11 +76,18 @@ public class Entity : MonoBehaviour
     /// <returns>true or false</returns>
     public virtual bool IsGroundDetected() => Physics2D.Raycast(groundCheck.position, Vector2.down, groundCheckDistance, whatIsGround);
 
+    /// <summary>
+    /// 壁チェック
+    /// </summary>
+    /// <returns>true or false</returns>
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, wallCheckDistance, whatIsGround);
+
+    
     protected virtual void OnDrawGizmos()
     {
         Gizmos.DrawLine(groundCheck.position, new Vector3(groundCheck.position.x, groundCheck.position.y - groundCheckDistance));
         Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y));
+        
     }
     #endregion
 
@@ -101,6 +114,14 @@ public class Entity : MonoBehaviour
         else if (_x < 0 && facingRight)
             Flip();
 
+    }
+    #endregion
+
+    #region Die
+    public virtual void Die()
+    {
+        PoolManager.Release(DeathVFX, transform.position);
+        this.gameObject.SetActive(false);
     }
     #endregion
 }

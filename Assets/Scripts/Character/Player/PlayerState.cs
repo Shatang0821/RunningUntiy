@@ -115,4 +115,6 @@ public class PlayerState : ScriptableObject, IState
             stateMachine.SwitchState(typeof(PlayerDashState)); // ダッシュ状態に切り替える
         }
     }
+
+
 }

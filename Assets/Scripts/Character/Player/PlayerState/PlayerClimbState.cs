@@ -33,7 +33,7 @@ public class PlayerClimbState : PlayerState
     {
         base.LogicUpdate();
 
-        Debug.Log(xInput);
+        //Debug.Log(xInput);
 
         SetFacingDir();
 

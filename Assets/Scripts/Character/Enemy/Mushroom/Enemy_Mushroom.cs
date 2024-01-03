@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelChangeAnimator : MonoBehaviour
+public class Enemy_Mushroom : Enemy
 {
     
 }
