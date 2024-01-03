@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 [CreateAssetMenu(menuName = "Player Input", fileName = "Player Input")]
 public class PlayerInput : ScriptableObject
