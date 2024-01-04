@@ -13,8 +13,23 @@ public class Enemy : Entity
     public float moveSpeed;
     public float idleTime;
 
+    public EnemyStateMachine stateMachine { get; private set; }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        stateMachine = new EnemyStateMachine();
+    }
 
+    private void Update()
+    {
+        stateMachine.currentState.LogicUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        stateMachine.currentState.PhysicUpdate();
+    }
     //public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, 50, whatIsPlayer);
 
     //protected override void OnDrawGizmos()

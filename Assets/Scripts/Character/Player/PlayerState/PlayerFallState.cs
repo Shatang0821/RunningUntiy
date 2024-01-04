@@ -63,7 +63,6 @@ public class PlayerFallState : PlayerAirState
         Collider2D hit = Physics2D.OverlapBox(player.enemyCheck.position, player.attackDistance, 0, player.whatIsEnemy);
         if (hit == null)
             return;
-        Debug.Log("Hit");
         //hit.gameObject.SetActive(false);
         Enemy enemy = hit.GetComponent<Enemy>();
         stateMachine.SwitchState(typeof(PlayerJumpState));

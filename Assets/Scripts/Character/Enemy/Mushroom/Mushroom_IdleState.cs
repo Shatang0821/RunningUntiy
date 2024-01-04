@@ -1,10 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/StateMachine/EnemyState/Mushroom/Idle", fileName = "Mushroom_Idle")]
-public class Mushroom_IdleState : EnemyState
+public class Mushroom_IdleState : Mushroom_GroundedState
 {
+    public Mushroom_IdleState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Mushroom _enemy) : base(_enemyBase, _stateMachine, _animBoolName,_enemy)
+    {
+    }
+
     public override void Enter()
     {
         base.Enter();
@@ -22,7 +23,7 @@ public class Mushroom_IdleState : EnemyState
     {
         base.LogicUpdate();
         if (stateTimer < 0f)
-            stateMachine.SwitchState(typeof(Mushroom_MoveState));
+            stateMachine.ChangeState(enemy.moveState);
         
     }
 

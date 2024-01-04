@@ -1,8 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Data/StateMachine/EnemyState/Mushroom/Move", fileName = "Mushroom_Move")]
-public class Mushroom_MoveState : EnemyState
+public class Mushroom_MoveState : Mushroom_GroundedState
 {
+    public Mushroom_MoveState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Mushroom _enemy) : base(_enemyBase, _stateMachine, _animBoolName, _enemy)
+    {
+    }
+
     public override void Enter()
     {
         base.Enter();
@@ -20,7 +23,7 @@ public class Mushroom_MoveState : EnemyState
         if (enemyBase.IsWallDetected() || !enemyBase.IsGroundDetected())
         {
             enemyBase.Flip();
-            stateMachine.SwitchState(typeof(Mushroom_IdleState));
+            stateMachine.ChangeState(enemy.idleState);
         }
             
 

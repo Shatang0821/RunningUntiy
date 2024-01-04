@@ -1,43 +1,39 @@
 using UnityEngine;
 
-public class EnemyState : ScriptableObject,IState
+public class EnemyState : IState
 {
     protected EnemyStateMachine stateMachine;// 状態マシン
     protected Enemy enemyBase;
-
     protected Rigidbody2D rb;
+
 
     #region Animator
     [SerializeField] private string animBoolName;
-    protected int stateBoolHash;
     #endregion
 
     #region State
     protected float stateTimer;
+    protected bool triggerCalled;
 
-    //protected bool triggerCaleed;
     #endregion
 
-    private void OnEnable()
-    {
-        stateBoolHash = Animator.StringToHash(animBoolName);
-    }
 
-    public void Initialize(Enemy _enemy,EnemyStateMachine _stateMachine)
+    public EnemyState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName)
     {
-        this.enemyBase = _enemy;
+        this.enemyBase = _enemyBase;
         this.stateMachine = _stateMachine;
+        this.animBoolName = _animBoolName;
     }
 
     public virtual void Enter()
     {
-        enemyBase.anim.SetBool(stateBoolHash, true); // アニメーターの状態を更新
+        enemyBase.anim.SetBool(animBoolName, true); // アニメーターの状態を更新
         rb = enemyBase.rb;
     }
 
     public virtual void Exit()
     {
-        enemyBase.anim.SetBool(stateBoolHash, false); // アニメーターの状態を更新
+        enemyBase.anim.SetBool(animBoolName, false); // アニメーターの状態を更新
     }
 
     public virtual void LogicUpdate()
@@ -48,5 +44,10 @@ public class EnemyState : ScriptableObject,IState
     public virtual void PhysicUpdate()
     {
         //NONE
+    }
+
+    public virtual void AnimationFinishTrigger()
+    {
+        triggerCalled = true;
     }
 }

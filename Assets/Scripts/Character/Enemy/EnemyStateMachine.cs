@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : StateMachine
+public class EnemyStateMachine
 {
-    [SerializeField] EnemyState[] states;
+    public EnemyState currentState { get; private set; }
 
-    Enemy enemy;
-
-    private void Awake()
+    public void Initialize(EnemyState _startState)
     {
-        enemy = GetComponent<Enemy>();
+        currentState = _startState;
+        currentState.Enter();
+    }
 
-        stateTable = new Dictionary<System.Type, IState>(states.Length);
-
-        foreach(var state in states)
-        {
-            state.Initialize(enemy, this);
-            stateTable.Add(state.GetType(), state);
-        }
+    public void ChangeState(EnemyState _newState)
+    {
+        currentState.Exit();
+        currentState = _newState;
+        currentState.Enter();
     }
 }

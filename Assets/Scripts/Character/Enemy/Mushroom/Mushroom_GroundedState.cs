@@ -1,9 +1,7 @@
-using UnityEngine;
-
-public class Mushroom_HitState : EnemyState
+public class Mushroom_GroundedState : EnemyState
 {
     protected Enemy_Mushroom enemy;
-    public Mushroom_HitState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName, Enemy_Mushroom _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
+    public Mushroom_GroundedState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBoolName,Enemy_Mushroom _enemy) : base(_enemyBase, _stateMachine, _animBoolName)
     {
         this.enemy = _enemy;
     }
@@ -11,7 +9,6 @@ public class Mushroom_HitState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Hit");
     }
 
     public override void Exit()
@@ -22,6 +19,8 @@ public class Mushroom_HitState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (enemy.deathTrigger == true)
+            stateMachine.ChangeState(enemy.hitState);
     }
 
     public override void PhysicUpdate()
