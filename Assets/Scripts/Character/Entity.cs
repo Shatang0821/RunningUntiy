@@ -34,6 +34,10 @@ public class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
+        if(anim == null)
+        {
+            Debug.Log(this.name + "anim is null");
+        }
         rb = GetComponent<Rigidbody2D>();
     }
 
