@@ -42,6 +42,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     private void SpawnPlayer()
     {
+        GameManager.GameState = GameState.Respawn;
         if (player != nullÅ@&& spawnPlayer)
         {
             StartCoroutine(SpawnCoroutine());

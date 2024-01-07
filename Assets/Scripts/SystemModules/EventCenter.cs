@@ -7,10 +7,22 @@ public static class EventNames
 
     public const string Playing = "Playing";
 
-    /// <summary>
-    /// 
-    /// </summary>
     public const string SpawnPlayer = "Respawn";
+
+}
+
+public static class ButtonNames
+{
+    public const string buttonStart = "StartButton";
+
+    public const string buttonOptions = "OptionButton";
+
+    public const string buttonQuit = "QuitButton";
+}
+
+public static class InputNames
+{
+    public const string disableAllInput = "disableInput";
 }
 
 /// <summary>

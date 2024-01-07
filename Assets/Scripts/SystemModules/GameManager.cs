@@ -41,4 +41,5 @@ public enum GameState
     Playing,
     Respawn,
     Paused,
+    MainMenu
 }
