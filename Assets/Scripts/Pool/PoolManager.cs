@@ -9,6 +9,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] Pool[] dashGhost;
     [SerializeField] Pool[] tiles;
     [SerializeField] Pool[] VFX;
+    [SerializeField] Pool[] enmies;
 
     // 各プレハブとそれに関連するオブジェクトプールを関連付けるための辞書。
     static Dictionary<GameObject, Pool> dictionary;
@@ -19,6 +20,7 @@ public class PoolManager : MonoBehaviour
         Initialize(dashGhost);
         Initialize(tiles);
         Initialize(VFX);
+        Initialize(enmies);
     }
 
     // UNITY_EDITORディレクティブは、Unityエディタ環境内でのみコードを実行するためのもの。
@@ -30,6 +32,7 @@ public class PoolManager : MonoBehaviour
         CheckPoolSize(dashGhost);
         CheckPoolSize(tiles);
         CheckPoolSize(VFX);
+        CheckPoolSize(enmies);
     }
 #endif
 

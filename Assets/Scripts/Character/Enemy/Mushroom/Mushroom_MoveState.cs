@@ -15,6 +15,7 @@ public class Mushroom_MoveState : Mushroom_GroundedState
     public override void Exit()
     {
         base.Exit();
+        enemyBase.SetVelocityX(0);
     }
 
     public override void LogicUpdate()

@@ -72,9 +72,8 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
             StartCoroutine(BlackMaskController.Instance.ScaleInOut(0,0));
 
             PoolManager.Release(appearVFX, player.transform.position);
-
             yield return waitForEffect;
-
+            
             player.SetActive(true);
         }
         
