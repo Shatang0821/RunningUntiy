@@ -9,6 +9,8 @@ public class Entity : MonoBehaviour
 
     public Rigidbody2D rb { get; private set; }
 
+    public Collider2D cd { get; private set; }
+
     #endregion
 
     [Header("Collision info")]
@@ -39,6 +41,7 @@ public class Entity : MonoBehaviour
             Debug.Log(this.name + "anim is null");
         }
         rb = GetComponent<Rigidbody2D>();
+        cd = GetComponent<Collider2D>();
     }
 
     #region Velocity

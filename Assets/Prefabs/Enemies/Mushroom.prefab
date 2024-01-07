@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 561265804103279191}
   - component: {fileID: 5169235397177319091}
   - component: {fileID: 7971043573035902651}
+  - component: {fileID: 2121669997978600182}
   m_Layer: 10
   m_Name: Animator
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4580957053044464965}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -137,6 +138,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2121669997978600182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580957053044464965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dd1ca9083ae5d4fbed676626d67a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8692433714502873568
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +193,6 @@ GameObject:
   - component: {fileID: 1011999183947105353}
   - component: {fileID: 5098098091925030099}
   - component: {fileID: 8298176573106052288}
-  - component: {fileID: 7880056004331551499}
   m_Layer: 10
   m_Name: Mushroom
   m_TagString: Enemy
@@ -290,18 +302,6 @@ MonoBehaviour:
   DeathVFX: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
   moveSpeed: 2
   idleTime: 1
---- !u!114 &7880056004331551499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9160959959062931693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba3382e5b29520a458674d6fdefaaf3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  states:
-  - {fileID: 11400000, guid: be87e2e7b9faa2a49a2ebb734fe1745b, type: 2}
-  - {fileID: 11400000, guid: 3bdc409a4a11cfc40b91a53b080f1488, type: 2}
+  deathTrigger: 0
+  forceMagnitude: 10
+  gravityScale: 5

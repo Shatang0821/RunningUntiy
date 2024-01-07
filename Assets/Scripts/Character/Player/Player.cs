@@ -98,6 +98,9 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
+        // ƒJƒƒ‰‚ğ—h‚ç‚·
+        CameraController.Instance.CameraShake(0.06f, 0.1f);
+
         GameManager.GameState = GameState.Respawn;
         EventCenter.TriggerEvent(EventNames.SpawnPlayer);
         isDeaded = true;

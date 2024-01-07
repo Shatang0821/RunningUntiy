@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Mushroom_HitState : EnemyState
 {
@@ -11,8 +11,13 @@ public class Mushroom_HitState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Hit");
+        // カメラを揺らす
+        CameraController.Instance.CameraShake(0.06f, 0.1f);
+
+        enemy.LaunchAndDisable();
     }
+
+    
 
     public override void Exit()
     {
@@ -22,10 +27,14 @@ public class Mushroom_HitState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(triggerCalled == true)
+            enemy.gameObject.SetActive(false);
     }
 
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
     }
+
+
 }

@@ -5,7 +5,7 @@ public class EnemyState : IState
     protected EnemyStateMachine stateMachine;// 状態マシン
     protected Enemy enemyBase;
     protected Rigidbody2D rb;
-
+    protected Collider2D cd;
 
     #region Animator
     [SerializeField] private string animBoolName;
@@ -29,6 +29,7 @@ public class EnemyState : IState
     {
         enemyBase.anim.SetBool(animBoolName, true); // アニメーターの状態を更新
         rb = enemyBase.rb;
+        cd = enemyBase.cd;
     }
 
     public virtual void Exit()

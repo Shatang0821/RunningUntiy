@@ -12,7 +12,7 @@ public class Enemy_Mushroom : Enemy
     public Mushroom_HitState hitState { get; private set; }
     #endregion
 
-    public bool deathTrigger;
+
 
     protected override void Awake()
     {
@@ -28,14 +28,11 @@ public class Enemy_Mushroom : Enemy
         stateMachine.Initialize(idleState);
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
-        deathTrigger = false;
+        base.OnEnable();
+
         stateMachine.Initialize(idleState);
     }
 
-    public override void Die()
-    {
-        deathTrigger = true;
-    }
 }
