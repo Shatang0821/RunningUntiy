@@ -15,10 +15,17 @@ public class MainMenuUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Subscribe(ButtonNames.buttonStart, OnButtonStartClicked);
-        EventCenter.Subscribe(ButtonNames.buttonOptions, OnButtonOptionsClicked);
-        EventCenter.Subscribe(ButtonNames.buttonQuit, OnButtonQuitClicked);
+        EventCenter.Subscribe(ButtonNames.startButton, OnStartButtonClicked);
+        EventCenter.Subscribe(ButtonNames.optionButton, OnOptionButtonClicked);
+        EventCenter.Subscribe(ButtonNames.quitButton, OnQuitButtonClicked);
 
+    }
+
+    private void OnDisable()
+    {
+        EventCenter.Unsubscribe(ButtonNames.startButton, OnStartButtonClicked);
+        EventCenter.Unsubscribe(ButtonNames.optionButton, OnOptionButtonClicked);
+        EventCenter.Unsubscribe(ButtonNames.quitButton, OnQuitButtonClicked);
     }
 
     private void Start()
@@ -30,12 +37,12 @@ public class MainMenuUIController : MonoBehaviour
     /// <summary>
     /// メニュー画面を消して、ゲームシーンに遷移
     /// </summary>
-    void OnButtonStartClicked()
+    private void OnStartButtonClicked()
     {
         SceneLoader.Instance.LoadGamePlayScene();
     }
 
-    void OnButtonOptionsClicked()
+    private void OnOptionButtonClicked()
     {
         //UIInput.Instance.SelectUI(buttonOptions);
     }
@@ -43,7 +50,7 @@ public class MainMenuUIController : MonoBehaviour
     /// <summary>
     /// ゲームを終了
     /// </summary>
-    void OnButtonQuitClicked()
+    private void OnQuitButtonClicked()
     {
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
