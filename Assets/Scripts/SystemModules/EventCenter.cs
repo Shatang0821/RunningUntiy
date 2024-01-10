@@ -13,16 +13,22 @@ public static class EventNames
 
 public static class ButtonNames
 {
-    public const string buttonStart = "StartButton";
+    public const string startButton = "StartButton";
 
-    public const string buttonOptions = "OptionButton";
+    public const string optionButton = "OptionButton";
 
-    public const string buttonQuit = "QuitButton";
+    public const string quitButton = "QuitButton";
+
+    public const string resumeButton = "ResumeButton";
+
+    public const string mainMenuButton = "MainMenuButton";
 }
 
 public static class InputNames
 {
     public const string disableAllInput = "disableInput";
+    public const string onPause = "pause";
+    public const string unPause = "unPause";
 }
 
 /// <summary>

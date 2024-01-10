@@ -69,7 +69,7 @@ public class PlayerClimbState : PlayerState
         if (!player.IsWallDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
 
-        if(!player.IsWallDetected()&& yInput != 0)
+        if(!player.IsWallDetected()&& yInput > 0)
             stateMachine.SwitchState(typeof(PlayerJumpState));
     }
 

@@ -22,20 +22,43 @@ public class PlayerInput : ScriptableObject
 
         inputActions.Enable();
 
+        inputActions.GamePlay.Pause.performed += context => OnPause(context);
+        inputActions.PauseMenu.Unpause.performed += context => UnPause(context);
+
         EventCenter.Subscribe(EventNames.SpawnPlayer, DisableAllInputs);
 
         EventCenter.Subscribe(EventNames.Playing, EnableGameplayInput);
 
+        EventCenter.Subscribe(InputNames.onPause, EnablePauseMenuInput);
+
+        EventCenter.Subscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
+
+        EventCenter.Subscribe(ButtonNames.resumeButton, EnableGameplayInput);
+
+        EventCenter.Subscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
+
         EventCenter.Subscribe(InputNames.disableAllInput, DisableAllInputs);
+
+
     }
 
     private void OnDisable()
     {
         DisableAllInputs();
 
+        inputActions.GamePlay.Pause.performed -= context => OnPause(context);
+
         EventCenter.Unsubscribe(EventNames.SpawnPlayer,DisableAllInputs);
 
         EventCenter.Unsubscribe(EventNames.Playing, EnableGameplayInput);
+
+        EventCenter.Unsubscribe(InputNames.onPause, EnablePauseMenuInput);
+
+        EventCenter.Unsubscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
+
+        EventCenter.Unsubscribe(ButtonNames.resumeButton, EnableGameplayInput);
+
+        EventCenter.Unsubscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
 
         EventCenter.Unsubscribe(InputNames.disableAllInput, DisableAllInputs);
     }
@@ -68,7 +91,47 @@ public class PlayerInput : ScriptableObject
     private void DisableAllInputs() => inputActions.Disable();
 
     /// <summary>
+    /// 入力をProcessEventsInDynamicUpdateに変える
+    /// </summary>
+    //public void SwitchToDynamicUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+    public void SwitchToDynamicUpdateMode()
+    {
+        Debug.Log(InputSystem.settings.updateMode.ToString());
+        InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
+        Debug.Log(InputSystem.settings.updateMode.ToString());
+    }
+    /// <summary>
+    /// 入力をProcessEventsInFixedUpdateに変える
+    /// </summary>
+    //public void SwitchToFixedUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
+    public void SwitchToFixedUpdateMode()
+    {
+        Debug.Log(InputSystem.settings.updateMode.ToString());
+        InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
+        Debug.Log(InputSystem.settings.updateMode.ToString());
+    }
+    /// <summary>
     /// ゲーム内でキャラクターを操作する時に入力を有効化するメソッド。
     /// </summary>
     private void EnableGameplayInput() => SwitchActionMap(inputActions.GamePlay, false);
+
+    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,true);
+
+    private void OnPause(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            EventCenter.TriggerEvent(InputNames.onPause);
+
+        }
+    }
+
+    private void UnPause(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            EventCenter.TriggerEvent(InputNames.unPause);
+            Debug.Log("unPause");
+        }
+    }
 }
