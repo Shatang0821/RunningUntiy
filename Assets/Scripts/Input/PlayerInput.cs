@@ -33,9 +33,9 @@ public class PlayerInput : ScriptableObject
 
         EventCenter.Subscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
 
-        EventCenter.Subscribe(InputNames.unPause, EnableGameplayInput);
+        EventCenter.Subscribe(ButtonNames.resumeButton, EnableGameplayInput);
 
-        EventCenter.Subscribe(InputNames.unPause, SwitchToFixedUpdateMode);
+        EventCenter.Subscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
 
         EventCenter.Subscribe(InputNames.disableAllInput, DisableAllInputs);
 
@@ -56,9 +56,9 @@ public class PlayerInput : ScriptableObject
 
         EventCenter.Unsubscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
 
-        EventCenter.Unsubscribe(InputNames.unPause, EnableGameplayInput);
+        EventCenter.Unsubscribe(ButtonNames.resumeButton, EnableGameplayInput);
 
-        EventCenter.Unsubscribe(InputNames.unPause, SwitchToFixedUpdateMode);
+        EventCenter.Unsubscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
 
         EventCenter.Unsubscribe(InputNames.disableAllInput, DisableAllInputs);
     }
@@ -115,7 +115,7 @@ public class PlayerInput : ScriptableObject
     /// </summary>
     private void EnableGameplayInput() => SwitchActionMap(inputActions.GamePlay, false);
 
-    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,false);
+    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,true);
 
     private void OnPause(InputAction.CallbackContext context)
     {

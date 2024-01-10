@@ -957,6 +957,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2029508503}
     m_Modifications:
+    - target: {fileID: -926524785889989866, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1311914831854813528, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
       propertyPath: m_Name
       value: OptionsButton
@@ -3036,6 +3040,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2029508503}
     m_Modifications:
+    - target: {fileID: -926524785889989866, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1311914831854813528, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
       propertyPath: m_Name
       value: ResumeButton
@@ -5870,6 +5878,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2029508503}
     m_Modifications:
+    - target: {fileID: -926524785889989866, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
+      propertyPath: m_UpdateMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1311914831854813528, guid: b883cd6f05cf6934782b4f8c0a4557a3, type: 3}
       propertyPath: m_Name
       value: MainMenuButton

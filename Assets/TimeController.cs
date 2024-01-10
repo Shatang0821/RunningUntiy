@@ -7,13 +7,13 @@ public class TimeController : MonoBehaviour
     private void OnEnable()
     {
         EventCenter.Subscribe(InputNames.onPause, Pause);
-        EventCenter.Subscribe(InputNames.unPause, UnPause);
+        EventCenter.Subscribe(ButtonNames.resumeButton, UnPause);
     }
 
     private void OnDisable()
     {
         EventCenter.Unsubscribe(InputNames.onPause, Pause);
-        EventCenter.Unsubscribe(InputNames.unPause, UnPause);
+        EventCenter.Unsubscribe(ButtonNames.resumeButton, UnPause);
     }
 
     /// <summary>
