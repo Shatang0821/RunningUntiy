@@ -4,70 +4,86 @@ using UnityEngine;
 
 public class SpikedBall : MonoBehaviour
 {
-    public Transform centerPoint;
-    public float radius = 5f;
-    public float speed = 1f;
-    public float startAngle = 0f;
-    public float endAngle = 180f;
-    public float lerpSpeed = 0.1f; // 補間の速度
+    [SerializeField] private Transform centerPoint; // 円運動の中心
+    [SerializeField] private GameObject chainPrefab; // チェインのプレハブ
+    [SerializeField] private GameObject ballPrefab; // スパイクボールのプレハブ
+
+    [SerializeField] private List<GameObject> chains;
+
+    [SerializeField] private int numberOfChains;
+                     //private float baseRadius = 0.5f; // 基本となる半径
+    [SerializeField] private float chainSpacing = 0.5f; // チェイン間の距離
+
+    [SerializeField] private float speed = 1f; // 円運動の速度
+    [SerializeField] private float startAngle = 0f;
+    [SerializeField] private float endAngle = 180f;
+
     private float currentAngle = 0f;
     private bool movingForward = true; // 移動方向を追跡するフラグ
 
     private void Start()
     {
         currentAngle = 0;
+
+        SetInitPos();
     }
 
     void Update()
     {
-        // 現在の移動方向に基づいて角度を更新
-        if (movingForward)
-        {
-            currentAngle += speed * Time.deltaTime;
-        }
-        else
-        {
-            currentAngle -= speed * Time.deltaTime;
-        }
+        CircularMotion();
+    }
 
-        // 角度を始点と終点の間に制限
+    private void SetInitPos()
+    {
+        // 初期角度をラジアンに変換します
+        float angle = startAngle * Mathf.Deg2Rad;
+
+        for (int i = 0; i < chains.Count; i++)
+        {
+            // チェインごとの半径を計算します
+            float chainRadius = chainSpacing * i;
+
+            // チェインの位置を計算します
+            Vector3 chainPosition = centerPoint.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * chainRadius;
+
+            // チェインの位置を設定します
+            chains[i].transform.position = chainPosition;
+        }
+        // ボールの位置を設定します。ボールはすべてのチェインの末尾に配置されます
+        var lastPostion = new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * (chainSpacing * chains.Count);
+        ballPrefab.transform.position = centerPoint.position + lastPostion;
+    }
+
+    private void CircularMotion()
+    {
+        currentAngle += (movingForward ? speed : -speed) * Time.deltaTime;
         currentAngle = Mathf.Clamp(currentAngle, startAngle, endAngle);
 
-        // 新しい位置を計算
-        Vector2 newPosition = centerPoint.position - new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0) * radius;
+        for (int i = 0; i < chains.Count; i++)
+        {
+            float chainRadius = chainSpacing * i;
 
-        // オブジェクトの位置を更新
-        transform.position = newPosition;
+            Vector3 chainPosition = centerPoint.position + new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0) * chainRadius;
+            
+            chains[i].transform.position = chainPosition;
+        }
 
-        // 始点または終点に達したら方向を切り替え
+        var lastPostion = new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0) * (chainSpacing * chains.Count);
+        ballPrefab.transform.position = centerPoint.position + lastPostion;
+
         if (currentAngle <= startAngle || currentAngle >= endAngle)
         {
             movingForward = !movingForward;
         }
     }
 
-    //void OnDrawGizmos()
-    //{
-    //    if (centerPoint == null)
-    //        return;
 
-    //    Gizmos.color = Color.red; // ギズモの色を設定
 
-    //    Vector3 start = centerPoint.position + new Vector3(Mathf.Cos(startAngle * Mathf.Deg2Rad), Mathf.Sin(startAngle * Mathf.Deg2Rad), 0) * radius;
-    //    Vector3 end = centerPoint.position + new Vector3(Mathf.Cos(endAngle * Mathf.Deg2Rad), Mathf.Sin(endAngle * Mathf.Deg2Rad), 0) * radius;
-
-    //    // 始点から終点までの軌道を描画
-    //    float step = 0.1f;
-    //    for (float angle = startAngle; angle <= endAngle; angle += step)
-    //    {
-    //        Vector3 previous = centerPoint.position - new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0) * radius;
-    //        Vector3 next = centerPoint.position - new Vector3(Mathf.Cos((angle + step) * Mathf.Deg2Rad), Mathf.Sin((angle + step) * Mathf.Deg2Rad), 0) * radius;
-
-    //        Gizmos.DrawLine(previous, next);
-    //    }
-
-    //    // 始点と終点を強調
-    //    Gizmos.DrawSphere(start, 0.2f);
-    //    Gizmos.DrawSphere(end, 0.2f);
-    //}
+    public void AddChain()
+    {
+        //チェインを作る
+        GameObject newChain = Instantiate(chainPrefab, this.transform);
+        //newChain.transform.localPosition = new Vector3(0, -chainSpacing * chains.Count, 0);
+        chains.Add(newChain);
+    }
 }
