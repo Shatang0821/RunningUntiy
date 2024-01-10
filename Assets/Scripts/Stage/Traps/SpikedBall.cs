@@ -46,28 +46,28 @@ public class SpikedBall : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
-    {
-        if (centerPoint == null)
-            return;
+    //void OnDrawGizmos()
+    //{
+    //    if (centerPoint == null)
+    //        return;
 
-        Gizmos.color = Color.red; // ギズモの色を設定
+    //    Gizmos.color = Color.red; // ギズモの色を設定
 
-        Vector3 start = centerPoint.position + new Vector3(Mathf.Cos(startAngle * Mathf.Deg2Rad), Mathf.Sin(startAngle * Mathf.Deg2Rad), 0) * radius;
-        Vector3 end = centerPoint.position + new Vector3(Mathf.Cos(endAngle * Mathf.Deg2Rad), Mathf.Sin(endAngle * Mathf.Deg2Rad), 0) * radius;
+    //    Vector3 start = centerPoint.position + new Vector3(Mathf.Cos(startAngle * Mathf.Deg2Rad), Mathf.Sin(startAngle * Mathf.Deg2Rad), 0) * radius;
+    //    Vector3 end = centerPoint.position + new Vector3(Mathf.Cos(endAngle * Mathf.Deg2Rad), Mathf.Sin(endAngle * Mathf.Deg2Rad), 0) * radius;
 
-        // 始点から終点までの軌道を描画
-        float step = 0.1f;
-        for (float angle = startAngle; angle <= endAngle; angle += step)
-        {
-            Vector3 previous = centerPoint.position - new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0) * radius;
-            Vector3 next = centerPoint.position - new Vector3(Mathf.Cos((angle + step) * Mathf.Deg2Rad), Mathf.Sin((angle + step) * Mathf.Deg2Rad), 0) * radius;
+    //    // 始点から終点までの軌道を描画
+    //    float step = 0.1f;
+    //    for (float angle = startAngle; angle <= endAngle; angle += step)
+    //    {
+    //        Vector3 previous = centerPoint.position - new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad), 0) * radius;
+    //        Vector3 next = centerPoint.position - new Vector3(Mathf.Cos((angle + step) * Mathf.Deg2Rad), Mathf.Sin((angle + step) * Mathf.Deg2Rad), 0) * radius;
 
-            Gizmos.DrawLine(previous, next);
-        }
+    //        Gizmos.DrawLine(previous, next);
+    //    }
 
-        // 始点と終点を強調
-        Gizmos.DrawSphere(start, 0.2f);
-        Gizmos.DrawSphere(end, 0.2f);
-    }
+    //    // 始点と終点を強調
+    //    Gizmos.DrawSphere(start, 0.2f);
+    //    Gizmos.DrawSphere(end, 0.2f);
+    //}
 }

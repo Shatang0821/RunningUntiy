@@ -38,7 +38,7 @@ public class CameraController : Singleton<CameraController>
         mainCamera.transform.position = cameraPos[index].transform.position;
 
         // ˆÚ“®‚ªI‚í‚Á‚½‚±‚Æ‚ğ¦‚·‚½‚ß‚É‘Ò‹@
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
 
     }
 

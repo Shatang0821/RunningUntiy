@@ -33,6 +33,7 @@ public class TileGenerator : MonoBehaviour
                 Debug.Log("in the generator");
                 Vector3 worldPosition = tilemap.CellToWorld(localPlace);
                 // 
+
                 GameObject spawnedObject = PoolManager.Release(prefab, worldPosition += spawnPos);
 
                 //ê≥ÇµÇ¢à íuÇ…âÒì]Ç≥ÇπÇÈ
