@@ -9,7 +9,7 @@ public class Mushroom_MoveState : Mushroom_GroundedState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Move");
+        //Debug.Log("Move");
     }
 
     public override void Exit()

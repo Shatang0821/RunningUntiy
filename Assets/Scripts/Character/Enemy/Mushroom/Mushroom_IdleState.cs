@@ -11,7 +11,7 @@ public class Mushroom_IdleState : Mushroom_GroundedState
         base.Enter();
         stateTimer = enemyBase.idleTime;
 
-        Debug.Log("Idle");
+        //Debug.Log("Idle");
     }
 
     public override void Exit()

@@ -9,6 +9,7 @@ public class StageManager : MonoBehaviour
     private GameObject currentStage;
     private int currentIndex = 0;
     [SerializeField] bool isUseManager;
+
     private void Start()
     {
         if(isUseManager)
@@ -18,12 +19,15 @@ public class StageManager : MonoBehaviour
     private void Initialize()
     {
         SetStages();
-        // 現在のステージをアクティブにする
-        currentStage.SetActive(true);
-        stages[1].SetActive(true);
-  
+        
     }
-    
+
+    private void Update()
+    {
+
+    }
+
+
     /// <summary>
     /// 子オブジェクトにあるステージをリストに追加
     /// </summary>
@@ -32,7 +36,7 @@ public class StageManager : MonoBehaviour
         foreach(Transform child in transform) 
         { 
             stages.Add(child.gameObject);
-            child.gameObject.SetActive(false);
+            //child.gameObject.SetActive(false);
         }
         currentStage = stages[currentIndex];
     }
