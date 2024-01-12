@@ -6,6 +6,7 @@ public class PlayerJumpState : PlayerAirState
 {
     [Header("Jump info")]
     [SerializeField] private float JumpForce= 5;    // ジャンプ力
+    [SerializeField] private float jumpTime = 0.3f;
 
     public override void Enter()
     {
@@ -16,6 +17,8 @@ public class PlayerJumpState : PlayerAirState
 
         // ジャンプ時のパーティクルエフェクトを再生
         player.jumpParticle.Play();
+
+        stateTimer = jumpTime;
     }
 
     public override void Exit()
@@ -35,13 +38,13 @@ public class PlayerJumpState : PlayerAirState
             stateMachine.SwitchState(typeof(PlayerFallState));
 
         // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
-        if (Jump && player.IsWallDetected())
+        if ((player.HasJumpInputBuffer || Jump) && player.IsWallDetected() && stateTimer <0)
         {
             //向きを反転してから
             player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
         }
-           
+
 
     }
 

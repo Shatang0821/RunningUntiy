@@ -19815,8 +19815,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.011762619, y: -0.11367679}
-  m_Size: {x: 0.47647476, y: 0.73908067}
+  m_Offset: {x: 0.011762619, y: -0.09706539}
+  m_Size: {x: 0.47647476, y: 0.7058579}
   m_Direction: 0
 --- !u!114 &4410657518137579253
 MonoBehaviour:
@@ -19833,7 +19833,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1429759935652420237}
   groundCheckDistance: 0.09
   wallCheck: {fileID: 5912330358720104540}
-  wallCheckDistance: 0.03
+  wallCheckDistance: 0.05
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
@@ -19843,7 +19843,7 @@ MonoBehaviour:
   jumpParticle: {fileID: 8674703657866781318}
   touchParticle: {fileID: 6712759195562646523}
   enemyCheck: {fileID: 815430578186765564}
-  attackRadius: 0.22
+  attackDistance: {x: 0.4, y: 0.56}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
@@ -19871,6 +19871,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 70b36f8269bb803419ef6359a732ab19, type: 2}
   - {fileID: 11400000, guid: 8375411232128bd499adae552222a1b5, type: 2}
   - {fileID: 11400000, guid: c9b8f1129004cef499a5bc4e4f9b040d, type: 2}
+  - {fileID: 11400000, guid: 58c719804704cb54b968c2e9f591f81a, type: 2}
   input: {fileID: 11400000, guid: f320cd6610f61d14081ad57a28747d07, type: 2}
 --- !u!1 &7926411463840503482
 GameObject:
@@ -19928,7 +19929,7 @@ Transform:
   m_GameObject: {fileID: 8101765727192148025}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.382, z: 0}
+  m_LocalPosition: {x: 0.013, y: -0.469, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

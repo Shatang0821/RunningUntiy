@@ -81,6 +81,7 @@ public class PlayerState : ScriptableObject, IState
     {
         player.anim.SetBool(stateBoolHash, true); // アニメーターの状態を更新
         rb = player.rb;                           // リジッドボディの参照を取得
+        Debug.Log(stateMachine.currentState);
     }
 
     // 状態から出る時の処理

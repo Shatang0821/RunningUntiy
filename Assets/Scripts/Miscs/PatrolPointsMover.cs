@@ -8,7 +8,8 @@ public class PatrolPointsMover : MonoBehaviour
     [SerializeField] public List<Transform> points;
     [SerializeField] private float moveSpeed;
     private int pointIndex = 0;
-    
+
+    private bool isGoingForward = true; //ポイントに向かって前進しているかを追跡
     private void Start()
     {
         if(points.Count > 0)
@@ -29,7 +30,29 @@ public class PatrolPointsMover : MonoBehaviour
                 yield return null;
             }
 
-            pointIndex = (pointIndex + 1) % points.Count;
+            // 更新: ポイントインデックスを更新するロジック
+            if (isGoingForward)
+            {
+                if (pointIndex >= points.Count - 1)
+                {
+                    isGoingForward = false;
+                }
+                else
+                {
+                    pointIndex++;
+                }
+            }
+            else
+            {
+                if (pointIndex <= 0)
+                {
+                    isGoingForward = true;
+                }
+                else
+                {
+                    pointIndex--;
+                }
+            }
         }
     }
 

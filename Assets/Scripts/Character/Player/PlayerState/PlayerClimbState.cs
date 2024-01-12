@@ -69,8 +69,9 @@ public class PlayerClimbState : PlayerState
         if (!player.IsWallDetected())
             stateMachine.SwitchState(typeof(PlayerFallState));
 
-        if(!player.IsWallDetected()&& yInput > 0)
-            stateMachine.SwitchState(typeof(PlayerJumpState));
+        if (!player.IsWallDetected() && yInput > 0 && !Jump)
+            stateMachine.SwitchState(typeof(PlayerClimbLeapState));
+            
     }
 
 
@@ -103,11 +104,11 @@ public class PlayerClimbState : PlayerState
         float angleInDegrees = Mathf.Atan2(input.Axis.y, input.Axis.x) * Mathf.Rad2Deg;
         if (angleInDegrees < 0) angleInDegrees += 360;
 
-        if (angleInDegrees >= 135 && angleInDegrees < 225)
+        if (angleInDegrees >= 120 && angleInDegrees < 240)
         {
             return -1;
         }
-        else if (angleInDegrees >= 315 || angleInDegrees < 45)
+        else if (angleInDegrees >= 300 || angleInDegrees < 60)
         {
             return 1;
         }

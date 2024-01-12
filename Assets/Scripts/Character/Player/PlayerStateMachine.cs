@@ -10,6 +10,17 @@ public class PlayerStateMachine : StateMachine
 
     [SerializeField] PlayerInput input; // プレイヤーの入力
 
+    //GUIの表示（デバッグ用）
+    void OnGUI()
+    {
+        Rect rect = new Rect(200, 150, 200, 200);
+        string message = currentState.ToString();
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 50;
+        style.fontStyle = FontStyle.Bold;
+        GUI.Label(rect, message, style);
+    }
+
     // 起動時の初期化処理
     private void Awake()
     {
