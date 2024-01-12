@@ -11,9 +11,9 @@ public class PatrolPointsMover : MonoBehaviour
     
     private void Start()
     {
-        transform.position = points[0].position;
         if(points.Count > 0)
         {
+            transform.position = points[0].position;
             StartCoroutine(nameof(MoveToPoints));
         }
     }
