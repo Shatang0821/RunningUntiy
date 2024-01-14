@@ -21,13 +21,25 @@ public class CameraController : Singleton<CameraController>
 
     private IEnumerator ChangeCameraPosCoroutine(Vector3 cameraPos)
     {
+        Time.timeScale = 0;
+        EventCenter.TriggerEvent(InputNames.DynamicInput);
         //Debug.Log(cameraPos);
         while (this.transform.position != cameraPos)
         {
-            //Debug.Log("move");
-            this.transform.position = Vector3.MoveTowards(this.transform.position, cameraPos, cameraSpeed * Time.deltaTime);
-            yield return null;
+            if (GameManager.GameState == GameState.Playing)
+            {
+                //Debug.Log("move");
+                this.transform.position = Vector3.MoveTowards(this.transform.position, cameraPos, cameraSpeed * Time.unscaledDeltaTime);
+                yield return new WaitForSecondsRealtime(0.02f);
+            }
+            else
+            {
+                yield return null;
+            }
+            
         }
+        Time.timeScale = 1;
+        EventCenter.TriggerEvent(InputNames.FixedInput);
     }
 
     #region カメラシェーク

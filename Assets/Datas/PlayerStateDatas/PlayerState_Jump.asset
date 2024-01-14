@@ -15,5 +15,5 @@ MonoBehaviour:
   animBoolName: Jump
   moveSpeed: 5
   gravity: 3
-  JumpForce: 10
+  jumpForce: 10
   jumpTime: 0.15

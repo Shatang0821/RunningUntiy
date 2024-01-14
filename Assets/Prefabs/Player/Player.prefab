@@ -19735,7 +19735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5456815166376228667
 Transform:
   m_ObjectHideFlags: 0
@@ -19849,6 +19849,7 @@ MonoBehaviour:
     m_Bits: 1024
   jumpInputBufferTime: 0.1
   dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
+  jumpForce: 0
 --- !u!114 &1515572960323196347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19872,6 +19873,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8375411232128bd499adae552222a1b5, type: 2}
   - {fileID: 11400000, guid: c9b8f1129004cef499a5bc4e4f9b040d, type: 2}
   - {fileID: 11400000, guid: 58c719804704cb54b968c2e9f591f81a, type: 2}
+  - {fileID: 11400000, guid: 11ebe3b0c5f258a4dbe3ccda96907819, type: 2}
   input: {fileID: 11400000, guid: f320cd6610f61d14081ad57a28747d07, type: 2}
 --- !u!1 &7926411463840503482
 GameObject:

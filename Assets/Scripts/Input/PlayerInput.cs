@@ -31,7 +31,7 @@ public class PlayerInput : ScriptableObject
 
         EventCenter.Subscribe(InputNames.onPause, EnablePauseMenuInput);
 
-        EventCenter.Subscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
+        EventCenter.Subscribe(InputNames.DynamicInput, SwitchToDynamicUpdateMode);
 
         EventCenter.Subscribe(ButtonNames.resumeButton, EnableGameplayInput);
 
@@ -54,7 +54,7 @@ public class PlayerInput : ScriptableObject
 
         EventCenter.Unsubscribe(InputNames.onPause, EnablePauseMenuInput);
 
-        EventCenter.Unsubscribe(InputNames.onPause, SwitchToDynamicUpdateMode);
+        EventCenter.Unsubscribe(InputNames.DynamicInput, SwitchToDynamicUpdateMode);
 
         EventCenter.Unsubscribe(ButtonNames.resumeButton, EnableGameplayInput);
 

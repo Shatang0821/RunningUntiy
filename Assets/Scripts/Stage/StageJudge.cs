@@ -8,6 +8,7 @@ public class StageJudge : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("On");
+
         CameraController.Instance.ChangeCameraPos(this.transform);
         PlayerGenerator.Instance.SetSpawnPos(stageIndex);
     }

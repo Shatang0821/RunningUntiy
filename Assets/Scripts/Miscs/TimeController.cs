@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
+    float currentScale;
     private void OnEnable()
     {
         EventCenter.Subscribe(InputNames.onPause, Pause);
@@ -21,7 +22,9 @@ public class TimeController : MonoBehaviour
     /// </summary>
     public void Pause()
     {
+        currentScale = Time.timeScale;
         Time.timeScale = 0f;
+        EventCenter.TriggerEvent(InputNames.DynamicInput);
     }
 
     /// <summary>
@@ -29,6 +32,8 @@ public class TimeController : MonoBehaviour
     /// </summary>
     public void UnPause()
     {
-        Time.timeScale = 1;
+        Time.timeScale = currentScale;
+
     }
+
 }

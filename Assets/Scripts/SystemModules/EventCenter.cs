@@ -8,7 +8,6 @@ public static class EventNames
     public const string Playing = "Playing";
 
     public const string SpawnPlayer = "Respawn";
-
 }
 
 public static class ButtonNames
@@ -29,6 +28,10 @@ public static class InputNames
     public const string disableAllInput = "disableInput";
     public const string onPause = "pause";
     public const string unPause = "unPause";
+
+    public const string DynamicInput = "DynamicInput";
+
+    public const string FixedInput = "FixedInput";
 }
 
 /// <summary>

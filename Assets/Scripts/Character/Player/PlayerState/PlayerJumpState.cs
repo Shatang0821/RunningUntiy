@@ -5,14 +5,12 @@ using UnityEngine;
 public class PlayerJumpState : PlayerAirState
 {
     [Header("Jump info")]
-    //[SerializeField] 
-    private float jumpForce;    // ジャンプ力
+    [SerializeField] private float jumpForce;    // ジャンプ力
     [SerializeField] private float jumpTime = 0.3f;
 
     public override void Enter()
     {
         base.Enter();
-        jumpForce = player.jumpForce;
         // プレイヤーにジャンプ力を適用
         player.SetVelocityY(jumpForce);
 
