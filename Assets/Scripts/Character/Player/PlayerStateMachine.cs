@@ -50,4 +50,10 @@ public class PlayerStateMachine : StateMachine
         // 初期状態（アイドル状態）に切り替え
         SwitchOn(stateTable[typeof(PlayerIdleState)]);
     }
+
+    public void ForceJumpStateChange()
+    {
+        player.SetVelocityY(50);
+        SwitchState(stateTable[typeof(PlayerJumpState)]);
+    }
 }

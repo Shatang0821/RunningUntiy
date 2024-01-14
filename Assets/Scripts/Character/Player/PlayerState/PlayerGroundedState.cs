@@ -2,14 +2,11 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    private float coyoteTime;　  // コヨーテタイム（地面から離れた後にまだジャンプできる猶予時間）
     protected int currentFrame;　// 現在のフレーム数
 
     public override void Enter()
     {
         currentFrame = 0;
-
-        coyoteTime = 0.08f; // コヨーテタイムを設定
 
         // ダッシュトリガーをリセット
         dashTrigger = false;
@@ -35,25 +32,11 @@ public class PlayerGroundedState : PlayerState
 
         // 地面を検出していない場合の処理
         if (!player.IsGroundDetected())
-        {
-            // コヨーテタイム内であればジャンプ可能
-            if (coyoteTime > 0)
-            {
-                coyoteTime -= Time.deltaTime;
-                if (Jump)
-                    stateMachine.SwitchState(typeof(PlayerJumpState));
-                return;
-            }
-        }
+            stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
 
         // 壁に接触していて、登る入力がある場合、登り状態に切り替える
         if (player.IsWallDetected() && Climb)
             stateMachine.SwitchState(typeof(PlayerClimbState));
-
-        // 地面にいない場合、落下状態に切り替える
-        if (!player.IsGroundDetected())
-            stateMachine.SwitchState(typeof(PlayerFallState));
-
     }
 
     public override void PhysicUpdate()

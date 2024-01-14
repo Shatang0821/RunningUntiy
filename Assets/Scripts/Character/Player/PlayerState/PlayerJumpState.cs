@@ -5,15 +5,16 @@ using UnityEngine;
 public class PlayerJumpState : PlayerAirState
 {
     [Header("Jump info")]
-    [SerializeField] private float JumpForce= 5;    // ジャンプ力
+    //[SerializeField] 
+    private float jumpForce;    // ジャンプ力
     [SerializeField] private float jumpTime = 0.3f;
 
     public override void Enter()
     {
         base.Enter();
-
+        jumpForce = player.jumpForce;
         // プレイヤーにジャンプ力を適用
-        player.SetVelocityY(JumpForce);
+        player.SetVelocityY(jumpForce);
 
         // ジャンプ時のパーティクルエフェクトを再生
         player.jumpParticle.Play();

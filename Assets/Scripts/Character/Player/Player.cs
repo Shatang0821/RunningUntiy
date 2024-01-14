@@ -29,7 +29,7 @@ public class Player : Entity
     [HideInInspector]
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite; // 現在のスプライト
 
-
+    public float jumpForce;
 
     // GUIの表示（デバッグ用）
     //void OnGUI()
