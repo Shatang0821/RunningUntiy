@@ -18,7 +18,6 @@ public class Trampoline : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             animator.SetTrigger("Jump");
-            Debug.Log("InCollider");
             PlayerStateMachine playerStateMachine = collision.gameObject.GetComponent<PlayerStateMachine>();
             if (playerStateMachine != null)
             {

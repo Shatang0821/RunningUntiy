@@ -8,8 +8,6 @@ public class PlayerGroundedState : PlayerState
     {
         currentFrame = 0;
 
-        // ダッシュトリガーをリセット
-        dashTrigger = false;
 
         base.Enter();
     }

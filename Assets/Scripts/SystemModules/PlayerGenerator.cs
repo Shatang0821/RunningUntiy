@@ -9,7 +9,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     [SerializeField] GameObject player;
 
-    [SerializeField] GameObject[] spawnPos;
+    [SerializeField] Transform spawnPos;    //生成場合
 
     [SerializeField] GameObject appearVFX;
 
@@ -66,13 +66,16 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
         }
         else
         {
-            //アニメーションを待つ
+            //死亡アニメーションを待つ
             yield return waitForEffect;
-            player.transform.position = spawnPos[spawnIndex].transform.position;
+            player.transform.position = spawnPos.position;
 
             StartCoroutine(BlackMaskController.Instance.ScaleInOut(1,0.1f));
+            //マスクの途中でエフェクトを生成させる
+            yield return waitForEffect;
 
             PoolManager.Release(appearVFX, player.transform.position);
+            //生成アニメーションを待つ
             yield return waitForEffect;
             
             player.SetActive(true);
@@ -86,5 +89,9 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     }
 
-    public void SetSpawnPos(int index) => spawnIndex = (index < 0) ? 0 : index;
+    public void SetSpawnPos(Transform transform)
+    {
+        spawnPos = transform;
+    }
+
 }

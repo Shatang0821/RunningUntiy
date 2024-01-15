@@ -42,7 +42,6 @@ public class PlayerDashState : PlayerState
 
     public override void LogicUpdate()
     {
-        Debug.Log("InDash");
         base.LogicUpdate();
         // ダッシュ時間が終了した場合の処理
         if (stateTimer < 0)

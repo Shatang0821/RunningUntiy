@@ -8,9 +8,6 @@ public class PlayerLandState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        
-        // ダッシュトリガーをリセット
-        dashTrigger = false;
 
         player.fallParticle.Play();
     }
