@@ -58,7 +58,7 @@ public class PlayerState : ScriptableObject, IState
     }
 
     protected bool Jump => input.Jump;      // ジャンプ入力
-    protected bool StopJump => input.StopJump; // ジャンプ停止入力
+    //protected bool StopJump => input.StopJump; // ジャンプ停止入力
     protected bool Dash => input.Dash;      // ダッシュ入力
     protected bool Climb => input.Climb;    // 登る入力
     #endregion

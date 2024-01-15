@@ -22,7 +22,7 @@ public class CameraController : Singleton<CameraController>
     private IEnumerator ChangeCameraPosCoroutine(Vector3 cameraPos)
     {
         Time.timeScale = 0;
-        EventCenter.TriggerEvent(InputNames.DynamicInput);
+        EventCenter.TriggerEvent(InputEvents.DynamicInput);
         //Debug.Log(cameraPos);
         while (this.transform.position != cameraPos)
         {
@@ -39,7 +39,7 @@ public class CameraController : Singleton<CameraController>
             
         }
         Time.timeScale = 1;
-        EventCenter.TriggerEvent(InputNames.FixedInput);
+        EventCenter.TriggerEvent(InputEvents.FixedInput);
     }
 
     #region カメラシェーク
@@ -53,7 +53,7 @@ public class CameraController : Singleton<CameraController>
     private IEnumerator DoCameraShake(float intensity, float duration)
     {
         float elapsed = 0.0f;
-
+        EventCenter.TriggerEvent(InputEvents.GamepadVibration);
         while (elapsed < duration)
         {
             float x = Random.Range(-intensity, intensity);
@@ -64,6 +64,7 @@ public class CameraController : Singleton<CameraController>
             elapsed += Time.deltaTime;
             yield return null;
         }
+        EventCenter.TriggerEvent(InputEvents.StopGamepadVibration);
 
         mainCamera.transform.position = originalPos;
     }

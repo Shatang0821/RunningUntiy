@@ -54,7 +54,7 @@ public class Player : Entity
     {
         isDeaded = false;
 
-        EventCenter.Subscribe(EventNames.SetCustomJumpForce, SetCustomJumpForce);
+        EventCenter.Subscribe(StateEvents.SetCustomJumpForce, SetCustomJumpForce);
 
     }
 
@@ -63,7 +63,7 @@ public class Player : Entity
     {
         HasJumpInputBuffer = false;
 
-        EventCenter.Unsubscribe(EventNames.SetCustomJumpForce, SetCustomJumpForce);
+        EventCenter.Unsubscribe(StateEvents.SetCustomJumpForce, SetCustomJumpForce);
     }
 
     // ジャンプ入力バッファのタイマーを設定する処理
@@ -116,7 +116,7 @@ public class Player : Entity
         CameraController.Instance.CameraShake(0.06f, 0.1f);
 
         GameManager.GameState = GameState.Respawn;
-        EventCenter.TriggerEvent(EventNames.SpawnPlayer);
+        EventCenter.TriggerEvent(StateEvents.SpawnPlayer);
         isDeaded = true;
         //Debug.Log("Die");
     }

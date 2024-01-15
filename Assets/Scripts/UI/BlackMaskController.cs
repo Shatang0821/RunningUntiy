@@ -17,12 +17,15 @@ public class BlackMaskController : Singleton<BlackMaskController>
         base.Awake();
         image = GetComponent<Image>();
         material = image.material;
-
         image.enabled = false;
+
+        // 初期値を設定する
+        material.SetFloat("_Radius", 0);
     }
 
     public IEnumerator ScaleInOut(float startRadius, float delay, GameObject gameObject = null)
     {
+        uiCamera = FindObjectOfType<Camera>();
         image.enabled = true;
 
         // RectTransform を取得
@@ -38,13 +41,13 @@ public class BlackMaskController : Singleton<BlackMaskController>
             Vector3 screenCenter;
             if (gameObject != null)
             {
-                Debug.Log("gameobject");
+                //Debug.Log("gameobject");
                 // gameObjectがnullでない場合、そのオブジェクトのスクリーン座標を使用
                 screenCenter = uiCamera.WorldToScreenPoint(gameObject.transform.position);
             }
             else
             {
-                Debug.Log("center");
+                //Debug.Log("center");
                 // nullの場合、カメラのビューポートの中心を使用
                 screenCenter = uiCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
             }

@@ -20,17 +20,17 @@ public class TileGenerator : MonoBehaviour
     /// </summary>
     protected void Generator()
     {
-        Debug.Log("in the method");
+        //Debug.Log("in the method");
         foreach (var pos in tilemap.cellBounds.allPositionsWithin)
         {
             
             Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
             if (!tilemap.HasTile(localPlace)) continue;
-            Debug.Log("in the Loop");
+            //Debug.Log("in the Loop");
             TileBase tile = tilemap.GetTile(localPlace);
             if (tile != null && tile == tileBase) // 
             {
-                Debug.Log("in the generator");
+                //Debug.Log("in the generator");
                 Vector3 worldPosition = tilemap.CellToWorld(localPlace);
 
                 GameObject spawnedObject = Instantiate(prefab, worldPosition + spawnPos, Quaternion.identity, this.transform);

@@ -24,25 +24,34 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     private bool firstSpawn = true;
 
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         waitForEffect = new WaitForSeconds(deathEffectDelay);
     }
 
+    private IEnumerator Start()
+    {
+        yield return GameManager.GameState == GameState.Respawn;
+        SpawnPlayer();
+    }
 
     private void OnEnable()
     {
-        EventCenter.Subscribe(EventNames.SpawnPlayer,SpawnPlayer);
+        EventCenter.Subscribe(StateEvents.SpawnPlayer,SpawnPlayer);
     }
 
     private void OnDisable()
     {
-        EventCenter.Unsubscribe(EventNames.SpawnPlayer, SpawnPlayer);
+        EventCenter.Unsubscribe(StateEvents.SpawnPlayer, SpawnPlayer);
     }
-
+    
+    /// <summary>
+    /// プレイヤーを生成する
+    /// </summary>
     private void SpawnPlayer()
     {
-        GameManager.GameState = GameState.Respawn;
+        //GameManager.GameState = GameState.Respawn;
         if (player != null　&& spawnPlayer)
         {
             StartCoroutine(SpawnCoroutine());
@@ -51,8 +60,6 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
 
     IEnumerator SpawnCoroutine()
     {
-        
-
         if (firstSpawn)
         {
             //StartCoroutine(BlackMaskController.Instance.ScaleInOut(playerSprite, 145f, 2f));
@@ -81,12 +88,10 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
             player.SetActive(true);
         }
         
-
-
         GameManager.GameState = GameState.Playing;
 
-        EventCenter.TriggerEvent(EventNames.Playing);
-
+        //ゲーム入力を有効化にする
+        EventCenter.TriggerEvent(InputEvents.EnableGameInput);
     }
 
     public void SetSpawnPos(Transform transform)

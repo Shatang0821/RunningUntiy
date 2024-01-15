@@ -1,40 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-public static class EventNames
-{
-    public const string Initialize = "Init";
 
-    public const string Playing = "Playing";
-
-    public const string SpawnPlayer = "Respawn";
-
-    public const string SetCustomJumpForce = "SetCustomJumpForce";
-}
-
-public static class ButtonNames
-{
-    public const string startButton = "StartButton";
-
-    public const string optionButton = "OptionButton";
-
-    public const string quitButton = "QuitButton";
-
-    public const string resumeButton = "ResumeButton";
-
-    public const string mainMenuButton = "MainMenuButton";
-}
-
-public static class InputNames
-{
-    public const string disableAllInput = "disableInput";
-    public const string onPause = "pause";
-    public const string unPause = "unPause";
-
-    public const string DynamicInput = "DynamicInput";
-
-    public const string FixedInput = "FixedInput";
-}
 
 /// <summary>
 /// イベント処理中心

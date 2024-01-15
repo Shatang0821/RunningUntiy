@@ -15,17 +15,17 @@ public class MainMenuUIController : MonoBehaviour
 
     private void OnEnable()
     {
-        EventCenter.Subscribe(ButtonNames.startButton, OnStartButtonClicked);
-        EventCenter.Subscribe(ButtonNames.optionButton, OnOptionButtonClicked);
-        EventCenter.Subscribe(ButtonNames.quitButton, OnQuitButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.startButton, OnStartButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.quitButton, OnQuitButtonClicked);
 
     }
 
     private void OnDisable()
     {
-        EventCenter.Unsubscribe(ButtonNames.startButton, OnStartButtonClicked);
-        EventCenter.Unsubscribe(ButtonNames.optionButton, OnOptionButtonClicked);
-        EventCenter.Unsubscribe(ButtonNames.quitButton, OnQuitButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.startButton, OnStartButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.quitButton, OnQuitButtonClicked);
     }
 
     private void Start()

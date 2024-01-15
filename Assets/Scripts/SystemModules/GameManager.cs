@@ -20,8 +20,6 @@ public class GameManager : PersistentSingleton<GameManager>
         switch (gameState)
         {
             case GameState.Initialize:
-                GameState = GameState.Respawn;
-                EventCenter.TriggerEvent(EventNames.SpawnPlayer);
                 break;
             case GameState.Playing:
                 break;

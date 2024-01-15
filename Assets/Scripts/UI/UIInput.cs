@@ -18,12 +18,12 @@ public class UIInput : Singleton<UIInput>
 
     private void OnEnable()
     {
-        EventCenter.Subscribe(InputNames.disableAllInput, DisableUIInputs);
+        EventCenter.Subscribe(InputEvents.disableAllInput, DisableUIInputs);
     }
 
     private void OnDisable()
     {
-        EventCenter.Unsubscribe(InputNames.disableAllInput, DisableUIInputs);
+        EventCenter.Unsubscribe(InputEvents.disableAllInput, DisableUIInputs);
     }
 
     /// <summary>

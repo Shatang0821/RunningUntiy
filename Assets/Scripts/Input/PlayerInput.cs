@@ -9,36 +9,40 @@ public class PlayerInput : ScriptableObject
     public Vector2 Axis =>inputActions.GamePlay.Axis.ReadValue<Vector2>();
 
 
-    public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();
-    public bool StopJump => inputActions.GamePlay.Jump.WasReleasedThisFrame();
+    public bool Jump => inputActions.GamePlay.Jump.WasPerformedThisFrame();         //ジャンプキーが押されたとき
+    //public bool StopJump => inputActions.GamePlay.Jump.WasReleasedThisFrame();    //ジャンプが離れたとき
 
-    public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();
+    public bool Dash => inputActions.GamePlay.Dash.WasPerformedThisFrame();         //ダッシュキーが押されたとき
 
-    public bool Climb => inputActions.GamePlay.Climb.IsPressed();
+    public bool Climb => inputActions.GamePlay.Climb.IsPressed();                   //登るキーが押し続けている間
+
+    private Gamepad gamepad;
 
     private void OnEnable()
     {
         inputActions = new InputActions();
 
+        gamepad = Gamepad.current;
+
         inputActions.Enable();
 
+        //キーイベントのサブスクライブ
         inputActions.GamePlay.Pause.performed += context => OnPause(context);
         inputActions.PauseMenu.Unpause.performed += context => UnPause(context);
 
-        EventCenter.Subscribe(EventNames.SpawnPlayer, DisableAllInputs);
+        //EventCenter.Subscribe(StateEvents.SpawnPlayer, DisableAllInputs);
 
-        EventCenter.Subscribe(EventNames.Playing, EnableGameplayInput);
+        //EventCenter.Subscribe(StateEvents.Playing, EnableGameplayInput);
 
-        EventCenter.Subscribe(InputNames.onPause, EnablePauseMenuInput);
+        EventCenter.Subscribe(InputEvents.EnableGameInput, EnableGameplayInput);
+        EventCenter.Subscribe(InputEvents.EnablePauseMenuInput, EnablePauseMenuInput);
 
-        EventCenter.Subscribe(InputNames.DynamicInput, SwitchToDynamicUpdateMode);
+        EventCenter.Subscribe(InputEvents.DynamicInput, SwitchToDynamicUpdateMode);
 
-        EventCenter.Subscribe(ButtonNames.resumeButton, EnableGameplayInput);
+        EventCenter.Subscribe(InputEvents.disableAllInput, DisableAllInputs);
 
-        EventCenter.Subscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
-
-        EventCenter.Subscribe(InputNames.disableAllInput, DisableAllInputs);
-
+        EventCenter.Subscribe(InputEvents.GamepadVibration, VibrateGamepad);
+        EventCenter.Subscribe(InputEvents.StopGamepadVibration, StopVibrateGamepad);
 
     }
 
@@ -47,22 +51,27 @@ public class PlayerInput : ScriptableObject
         DisableAllInputs();
 
         inputActions.GamePlay.Pause.performed -= context => OnPause(context);
+        inputActions.PauseMenu.Unpause.performed -= context => UnPause(context);
 
-        EventCenter.Unsubscribe(EventNames.SpawnPlayer,DisableAllInputs);
+        EventCenter.Unsubscribe(StateEvents.SpawnPlayer,DisableAllInputs);
 
-        EventCenter.Unsubscribe(EventNames.Playing, EnableGameplayInput);
+        EventCenter.Unsubscribe(StateEvents.Playing, EnableGameplayInput);
 
-        EventCenter.Unsubscribe(InputNames.onPause, EnablePauseMenuInput);
+        EventCenter.Unsubscribe(InputEvents.EnableGameInput, EnableGameplayInput);
+        EventCenter.Unsubscribe(InputEvents.EnablePauseMenuInput, EnablePauseMenuInput);
 
-        EventCenter.Unsubscribe(InputNames.DynamicInput, SwitchToDynamicUpdateMode);
+        EventCenter.Unsubscribe(InputEvents.DynamicInput, SwitchToDynamicUpdateMode);
 
-        EventCenter.Unsubscribe(ButtonNames.resumeButton, EnableGameplayInput);
+        EventCenter.Unsubscribe(InputEvents.disableAllInput, DisableAllInputs);
 
-        EventCenter.Unsubscribe(ButtonNames.resumeButton, SwitchToFixedUpdateMode);
+        EventCenter.Unsubscribe(InputEvents.GamepadVibration, VibrateGamepad);
+        EventCenter.Unsubscribe(InputEvents.StopGamepadVibration, StopVibrateGamepad);
 
-        EventCenter.Unsubscribe(InputNames.disableAllInput, DisableAllInputs);
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
+    #region InputSettings
     /// <summary>
     /// 有効actionmapを変わり
     /// </summary>
@@ -115,14 +124,18 @@ public class PlayerInput : ScriptableObject
     /// </summary>
     private void EnableGameplayInput() => SwitchActionMap(inputActions.GamePlay, false);
 
+    /// <summary>
+    /// UI入力マップに切り替える
+    /// </summary>
     private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,true);
 
+    #endregion
+    #region Pause
     private void OnPause(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
-            EventCenter.TriggerEvent(InputNames.onPause);
-
+            OnPause();
         }
     }
 
@@ -130,8 +143,43 @@ public class PlayerInput : ScriptableObject
     {
         if(context.performed)
         {
-            EventCenter.TriggerEvent(InputNames.unPause);
-            Debug.Log("unPause");
+            UnPause();
         }
     }
+
+    /// <summary>
+    /// 一時停止中するために必要な処理
+    /// </summary>
+    private void OnPause()
+    {
+        EventCenter.TriggerEvent(InputEvents.EnablePauseMenuInput);   //InputMapをUIInputに変える
+        EventCenter.TriggerEvent(TimeEvents.StopTime);          //TimeScaleを0にする
+        EventCenter.TriggerEvent(UIEvents.ShowMenuBar);         //メニューを表示させる
+    }
+
+    private void UnPause()
+    {
+        EventCenter.TriggerEvent(InputEvents.EnableGameInput);
+        EventCenter.TriggerEvent(TimeEvents.startTime);
+        EventCenter.TriggerEvent(UIEvents.HideMenuBar);
+    }
+    #endregion
+
+    #region GamePad
+
+    private void VibrateGamepad()
+    {
+        if (gamepad == null)
+            return;
+        gamepad.SetMotorSpeeds(1, 1);
+    }
+
+    private void StopVibrateGamepad()
+    {
+        if (gamepad == null)
+            return;
+        gamepad.SetMotorSpeeds(0, 0);
+    }
+
+    #endregion
 }

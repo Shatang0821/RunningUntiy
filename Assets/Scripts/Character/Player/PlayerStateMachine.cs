@@ -56,7 +56,7 @@ public class PlayerStateMachine : StateMachine
     /// </summary>
     public void ForceJumpStateChange(float force)
     {
-        EventCenter.TriggerEvent(EventNames.SetCustomJumpForce, force);
+        EventCenter.TriggerEvent(StateEvents.SetCustomJumpForce, force);
         SwitchState(stateTable[typeof(PlayerCustomJumpState)]);
     }
 }

@@ -18,45 +18,50 @@ public class GamePlayUIController : MonoBehaviour
     GameState currentState;
     private void OnEnable()
     {
-        EventCenter.Subscribe(InputNames.onPause, Pause);
-        EventCenter.Subscribe(InputNames.unPause, UnPause);
+        EventCenter.Subscribe(UIEvents.ShowMenuBar, Pause);
+        EventCenter.Subscribe(UIEvents.HideMenuBar, UnPause);
 
-        EventCenter.Subscribe(ButtonNames.resumeButton, OnResumeButtonClicked);
-        EventCenter.Subscribe(ButtonNames.optionButton, OnOptionButtonClicked);
-        EventCenter.Subscribe(ButtonNames.mainMenuButton, OnMainMenuButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
+        EventCenter.Subscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
     }
 
     private void OnDisable()
     {
-        EventCenter.Unsubscribe(InputNames.onPause, Pause);
-        EventCenter.Unsubscribe(InputNames.unPause, UnPause);
+        EventCenter.Unsubscribe(UIEvents.ShowMenuBar, Pause);
+        EventCenter.Unsubscribe(UIEvents.HideMenuBar, UnPause);
 
-        EventCenter.Unsubscribe(ButtonNames.resumeButton, OnResumeButtonClicked);
-        EventCenter.Unsubscribe(ButtonNames.optionButton, OnOptionButtonClicked);
-        EventCenter.Unsubscribe(ButtonNames.mainMenuButton, OnMainMenuButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
+        EventCenter.Unsubscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
     }
 
+    /// <summary>
+    /// ポーズメニューの表示
+    /// </summary>
     private void Pause()
     {
         menusCanvas.enabled = true;
-        currentState = GameManager.GameState;
-        GameManager.GameState = GameState.Paused;
+        //currentState = GameManager.GameState;
+
+        //GameManager.GameState = GameState.Paused;
 
         UIInput.Instance.SelectUI(resumeButton);
     }
 
     private void UnPause()
     {
-        resumeButton.Select();
-        resumeButton.animator.SetTrigger(buttonPressedParameterID);//resumeButtonの押されたアニメーションをスタートさせる
+        menusCanvas.enabled = false;
+        //GameManager.GameState = currentState;
+        //resumeButton.Select();
+        //resumeButton.animator.SetTrigger(buttonPressedParameterID);//resumeButtonの押されたアニメーションをスタートさせる
     }
 
     private void OnResumeButtonClicked()
     {
-        EventCenter.TriggerEvent(InputNames.unPause);
-
-        menusCanvas.enabled = false;
-        GameManager.GameState = currentState;
+        EventCenter.TriggerEvent(InputEvents.EnableGameInput);
+        EventCenter.TriggerEvent(TimeEvents.startTime);
+        EventCenter.TriggerEvent(UIEvents.HideMenuBar);
     }
 
     private void OnOptionButtonClicked()

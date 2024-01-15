@@ -28,7 +28,7 @@ public class PlayerDashState : PlayerState
         stateTimer = dashDuration;
 
         // カメラを揺らす
-        CameraController.Instance.CameraShake(0.06f, 0.1f);
+        CameraController.Instance.CameraShake(0.1f, 0.1f);
 
     }
 
