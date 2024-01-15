@@ -8,6 +8,8 @@ public static class EventNames
     public const string Playing = "Playing";
 
     public const string SpawnPlayer = "Respawn";
+
+    public const string SetCustomJumpForce = "SetCustomJumpForce";
 }
 
 public static class ButtonNames

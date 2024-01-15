@@ -1,18 +1,58 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCustomJumpState : MonoBehaviour
+[CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/CustomJump", fileName = "PlayerState_CustomJump")]
+public class PlayerCustomJumpState : PlayerAirState
 {
-    // Start is called before the first frame update
-    void Start()
+    [Header("Jump info")]
+    [SerializeField] private float jumpTime = 0.3f;
+    private float jumpForce;    // ジャンプ力
+    
+
+    public override void Enter()
     {
-        
+        base.Enter();
+
+        jumpForce = player.customJumpForce;
+
+        // プレイヤーにジャンプ力を適用
+        player.SetVelocityY(jumpForce);
+
+        // ジャンプ時のパーティクルエフェクトを再生
+        player.jumpParticle.Play();
+
+        stateTimer = jumpTime;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        base.Exit();
     }
+
+    public override void LogicUpdate()
+    {
+        // 入力に基づいてプレイヤーの向きを制御
+        player.FlipController(xInput);
+
+        base.LogicUpdate();
+
+        // 上昇が終わり、下降を始めたら落下状態に切り替える
+        if (rb.velocity.y <= 0)
+            stateMachine.SwitchState(typeof(PlayerFallState));
+
+        // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
+        if ((player.HasJumpInputBuffer || Jump) && player.IsWallDetected() && stateTimer < 0)
+        {
+            //向きを反転してから
+            player.Flip();
+            stateMachine.SwitchState(typeof(PlayerWallJumpState));
+        }
+
+
+    }
+
+    public override void PhysicUpdate()
+    {
+        base.PhysicUpdate();
+    }
+
 }

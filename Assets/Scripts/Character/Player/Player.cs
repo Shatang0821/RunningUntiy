@@ -26,6 +26,8 @@ public class Player : Entity
     // ダッシュ影
     public GameObject dashGhost;
 
+    //カスタムジャンプ力
+    public float customJumpForce { get; private set; }
     [HideInInspector]
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite; // 現在のスプライト
 
@@ -51,12 +53,17 @@ public class Player : Entity
     private void OnEnable()
     {
         isDeaded = false;
+
+        EventCenter.Subscribe(EventNames.SetCustomJumpForce, SetCustomJumpForce);
+
     }
 
     // 無効化時の処理
     private void OnDisable()
     {
         HasJumpInputBuffer = false;
+
+        EventCenter.Unsubscribe(EventNames.SetCustomJumpForce, SetCustomJumpForce);
     }
 
     // ジャンプ入力バッファのタイマーを設定する処理
@@ -74,6 +81,15 @@ public class Player : Entity
         yield return waitJumpInputBufferTime;
 
         HasJumpInputBuffer = false;
+    }
+
+    public void SetCustomJumpForce(object jumpForceObj)
+    {
+        if (jumpForceObj is float)
+        {
+            customJumpForce = (float)jumpForceObj;
+        }
+
     }
 
     #region 衝突処理

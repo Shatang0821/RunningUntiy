@@ -51,9 +51,12 @@ public class PlayerStateMachine : StateMachine
         SwitchOn(stateTable[typeof(PlayerIdleState)]);
     }
 
-    public void ForceJumpStateChange()
+    /// <summary>
+    /// カスタムジャンプステータスに強制的に変更
+    /// </summary>
+    public void ForceJumpStateChange(float force)
     {
-        player.SetVelocityY(50);
-        SwitchState(stateTable[typeof(PlayerJumpState)]);
+        EventCenter.TriggerEvent(EventNames.SetCustomJumpForce, force);
+        SwitchState(stateTable[typeof(PlayerCustomJumpState)]);
     }
 }
