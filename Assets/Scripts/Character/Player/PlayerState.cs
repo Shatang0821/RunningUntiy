@@ -88,15 +88,15 @@ public class PlayerState : ScriptableObject, IState
     public virtual void Exit()
     {
         player.anim.SetBool(stateBoolHash, false); // アニメーターの状態を更新
+        player.SetUseGravity(gravityBase);
     }
 
     // ロジックアップデート（毎フレームの更新処理）
     public virtual void LogicUpdate()
     {
+        CheckForDashInput();                      // ダッシュ入力のチェック
         stateTimer -= Time.deltaTime;             // 状態タイマーの更新
         player.anim.SetFloat("yVelocity", rb.velocity.y); // Y軸の速度をアニメーターに設定
-
-        CheckForDashInput();                      // ダッシュ入力のチェック
     }
 
     // 物理アップデート（物理演算の更新処理）
@@ -106,7 +106,7 @@ public class PlayerState : ScriptableObject, IState
     }
 
     // ダッシュ入力のチェック処理
-    private void CheckForDashInput()
+    void CheckForDashInput()
     {
         if (dashTrigger)
             return;

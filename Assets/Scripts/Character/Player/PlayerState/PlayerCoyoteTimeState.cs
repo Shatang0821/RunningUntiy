@@ -16,16 +16,16 @@ class PlayerCoyoteTimeState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        player.SetUseGravity(gravityBase);
     }
 
     public override void LogicUpdate()
     {
+        Debug.Log("IN Coyote");
         base.LogicUpdate();
         if (input.Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
 
-        if (stateTimer < 0)
+        if (stateTimer < 0 && !Dash)
             stateMachine.SwitchState(typeof(PlayerFallState));
     }
 

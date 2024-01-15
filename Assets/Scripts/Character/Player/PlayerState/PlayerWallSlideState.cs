@@ -26,7 +26,6 @@ public class PlayerWallSlideState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        player.SetUseGravity(gravityBase);
     }
 
     public override void LogicUpdate()

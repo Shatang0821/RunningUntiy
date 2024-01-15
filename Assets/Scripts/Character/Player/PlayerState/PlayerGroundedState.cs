@@ -30,10 +30,6 @@ public class PlayerGroundedState : PlayerState
         if (Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
 
-        // 地面を検出していない場合の処理
-        if (!player.IsGroundDetected())
-            stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
-
         // 壁に接触していて、登る入力がある場合、登り状態に切り替える
         if (player.IsWallDetected() && Climb)
             stateMachine.SwitchState(typeof(PlayerClimbState));

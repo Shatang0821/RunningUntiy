@@ -23,6 +23,9 @@ public class PlayerIdleState : PlayerGroundedState
         // 入力があり、かつ地面にいる場合、移動状態に切り替える
         if (xInput != 0 && player.IsGroundDetected())
             stateMachine.SwitchState(typeof(PlayerMoveState));
+
+        if(!player.IsGroundDetected())
+            stateMachine.SwitchState(typeof(PlayerFallState));
     }
 
     public override void PhysicUpdate()

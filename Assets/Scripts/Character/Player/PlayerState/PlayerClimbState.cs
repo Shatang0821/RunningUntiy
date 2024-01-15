@@ -24,7 +24,6 @@ public class PlayerClimbState : PlayerState
     public override void Exit()
     {
         base.Exit();
-        player.SetUseGravity(gravityBase);
         //速度をリセット
         player.SetVelocityY(0);
     }
@@ -36,10 +35,6 @@ public class PlayerClimbState : PlayerState
         //Debug.Log(xInput);
 
         SetFacingDir();
-
-
-
-
         // プレイヤーが登っていない場合、PlayerIdleState状態に切り替える。
         if (!Climb)
             stateMachine.SwitchState(typeof(PlayerIdleState));
