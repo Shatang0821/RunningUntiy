@@ -4669,7 +4669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83886acb787baf449b5aae699ce56989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSpeed: 50
+  cameraSpeed: 150
 --- !u!1 &2029508502
 GameObject:
   m_ObjectHideFlags: 0
@@ -4776,14 +4776,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1515572960323196347, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
-      propertyPath: states.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1515572960323196347, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
-      propertyPath: states.Array.data[11]
-      value: 
-      objectReference: {fileID: 11400000, guid: 3342b30a173c45d4db69fe0987797a35, type: 2}
     - target: {fileID: 5456815166376228667, guid: aed0c67ce1405fc4cb9452dda12b15f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.28

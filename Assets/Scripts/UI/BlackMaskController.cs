@@ -38,15 +38,17 @@ public class BlackMaskController : Singleton<BlackMaskController>
             Vector3 screenCenter;
             if (gameObject != null)
             {
+                Debug.Log("gameobject");
                 // gameObjectがnullでない場合、そのオブジェクトのスクリーン座標を使用
                 screenCenter = uiCamera.WorldToScreenPoint(gameObject.transform.position);
             }
             else
             {
+                Debug.Log("center");
                 // nullの場合、カメラのビューポートの中心を使用
                 screenCenter = uiCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f, 0f));
             }
-
+            
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenCenter, uiCamera, out Vector2 canvasCenter);
             material.SetVector("_Center", new Vector4(canvasCenter.x, canvasCenter.y, 0, 0));
 

@@ -70,7 +70,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
             yield return waitForEffect;
             player.transform.position = spawnPos[spawnIndex].transform.position;
 
-            StartCoroutine(BlackMaskController.Instance.ScaleInOut(0,0));
+            StartCoroutine(BlackMaskController.Instance.ScaleInOut(1,0.1f));
 
             PoolManager.Release(appearVFX, player.transform.position);
             yield return waitForEffect;

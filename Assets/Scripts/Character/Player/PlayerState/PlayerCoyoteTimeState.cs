@@ -20,7 +20,6 @@ class PlayerCoyoteTimeState : PlayerState
 
     public override void LogicUpdate()
     {
-        Debug.Log("IN Coyote");
         base.LogicUpdate();
         if (input.Jump)
             stateMachine.SwitchState(typeof(PlayerJumpState));
