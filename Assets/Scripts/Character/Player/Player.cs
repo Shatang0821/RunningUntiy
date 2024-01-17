@@ -26,6 +26,11 @@ public class Player : Entity
     // ダッシュ影
     public GameObject dashGhost;
 
+    /// <summary>
+    /// true の時はダッシュ可能
+    /// </summary>
+    public bool dashItemGet = false;
+
     //カスタムジャンプ力
     public float customJumpForce { get; private set; }
     [HideInInspector]

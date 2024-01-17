@@ -21,6 +21,7 @@ public class PlayerState : ScriptableObject, IState
 
     // ダッシュ制限
     protected static bool dashTrigger;
+    
 
     // 重力の基準値
     protected static float gravityBase = 0.1f;
@@ -83,8 +84,6 @@ public class PlayerState : ScriptableObject, IState
         rb = player.rb;                           // リジッドボディの参照を取得
         if (player.IsGroundDetected())
         {
-            // ダッシュトリガーをリセット
-            Debug.Log("dash");
             dashTrigger = false;
         }
             
@@ -116,12 +115,16 @@ public class PlayerState : ScriptableObject, IState
     // ダッシュ入力のチェック処理
     void CheckForDashInput()
     {
-        if (dashTrigger)
+        if (dashTrigger && !player.dashItemGet)
             return;
 
         if (Dash)
         {
             stateMachine.SwitchState(typeof(PlayerDashState)); // ダッシュ状態に切り替える
+            if (player.dashItemGet == true)
+            {
+                player.dashItemGet = false;
+            }
         }
     }
 
