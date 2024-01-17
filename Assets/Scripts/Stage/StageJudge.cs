@@ -26,10 +26,11 @@ public class StageJudge : MonoBehaviour
 
         CameraController.Instance.ChangeCameraPos(this.transform);
         PlayerGenerator.Instance.SetSpawnPos(respawnPos);
+        SetCurrentStage();
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void SetCurrentStage()
     {
-        //CameraController.Instance.ChangeCameraPos(this.transform.position);
+        StageManager.Instance.UpdateStageIndex(stageIndex);
     }
 }

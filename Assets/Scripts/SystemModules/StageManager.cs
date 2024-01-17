@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class StageManager : Singleton<StageManager>
 {
-    [SerializeField] private List<GameObject>stages = new List<GameObject>();
+    [SerializeField] private List<GameObject>stages = new List<GameObject>();   //ステージを保つリスト
 
-    private GameObject currentStage;
-
-    private int currentIndex = 0;
-
-    [SerializeField] bool isUseManager;
+    private int currentIndex = 0;               //現在のステージ
 
     /// <summary>
     /// StageManagerの初期化
@@ -29,11 +25,35 @@ public class StageManager : Singleton<StageManager>
         foreach(Transform child in transform) 
         { 
             stages.Add(child.gameObject);
-            //child.gameObject.SetActive(false);
+            child.gameObject.SetActive(false);
             yield return null;
         }
-        currentStage = stages[currentIndex];
+        //アクティブ化にするステージを更新する
+        UpdateStageIndex(currentIndex);
     }
 
+    /// <summary>
+    /// アクティブ化にするステージの更新
+    /// </summary>
+    /// <param name="index">現在のステージ番号</param>
+    public void UpdateStageIndex(int index)
+    {
+        currentIndex = index;
+
+        // 2個前のステージを非アクティブ化
+        if (currentIndex > 1)
+        {
+            stages[currentIndex - 2].SetActive(false);
+        }
+
+        // 現在のステージをアクティブ化
+        stages[currentIndex].SetActive(true);
+
+        // 後ろのステージをアクティブ化（もし存在すれば）
+        if (currentIndex < stages.Count - 1)
+        {
+            stages[currentIndex + 1].SetActive(true);
+        }
+    }
 
 }

@@ -22,6 +22,7 @@ public class CameraController : Singleton<CameraController>
     private IEnumerator ChangeCameraPosCoroutine(Vector3 cameraPos)
     {
         EventCenter.TriggerEvent(TimeEvents.StopTime);
+        EventCenter.TriggerEvent(InputEvents.StopGamepadVibration);
         //Debug.Log(cameraPos);
         while (this.transform.position != cameraPos)
         {
