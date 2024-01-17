@@ -21,8 +21,7 @@ public class CameraController : Singleton<CameraController>
 
     private IEnumerator ChangeCameraPosCoroutine(Vector3 cameraPos)
     {
-        Time.timeScale = 0;
-        EventCenter.TriggerEvent(InputEvents.DynamicInput);
+        EventCenter.TriggerEvent(TimeEvents.StopTime);
         //Debug.Log(cameraPos);
         while (this.transform.position != cameraPos)
         {
@@ -38,8 +37,7 @@ public class CameraController : Singleton<CameraController>
             }
             
         }
-        Time.timeScale = 1;
-        EventCenter.TriggerEvent(InputEvents.FixedInput);
+        EventCenter.TriggerEvent(TimeEvents.StartTime);
     }
 
     #region カメラシェーク

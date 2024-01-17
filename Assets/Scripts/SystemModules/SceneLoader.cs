@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +6,7 @@ public class SceneLoader : PersistentSingleton<SceneLoader>
 {
     const string GAMESCENE = "Stage1";
     const string MAIN_MENU = "TitleScene";
+    const string GAME_CLEAR = "ClearScene";
 
     void Load(string sceneName)
     {
@@ -41,6 +40,12 @@ public class SceneLoader : PersistentSingleton<SceneLoader>
     {
         StopAllCoroutines();
         StartCoroutine(LoadingCoroutine(MAIN_MENU));
+    }
+
+    public void LoadGameClearScene()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(GAME_CLEAR));
     }
 
 }

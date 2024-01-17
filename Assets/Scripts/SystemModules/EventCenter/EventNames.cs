@@ -6,6 +6,8 @@ public static class StateEvents
 
     public const string SpawnPlayer = "Respawn";
 
+    public const string GameClear = "GameClear";
+
     public const string SetCustomJumpForce = "SetCustomJumpForce";
 }
 
@@ -42,7 +44,7 @@ public static class TimeEvents
     public const string StopTime = "Set timesclae to 0";
 
     // ゲームの時間を再開するイベントを表す文字列
-    public const string startTime = "Set timesclae to return";
+    public const string StartTime = "Set timesclae to return";
 }
 
 public static class UIEvents

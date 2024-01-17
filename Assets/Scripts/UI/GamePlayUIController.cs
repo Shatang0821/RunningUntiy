@@ -13,7 +13,7 @@ public class GamePlayUIController : MonoBehaviour
 
     [SerializeField] Button mainMenuButton;         //メインメニューの戻るボタン
 
-    int buttonPressedParameterID = Animator.StringToHash("Pressed");//Pressedをハッシュ値の変更する
+    //int buttonPressedParameterID = Animator.StringToHash("Pressed");//Pressedをハッシュ値の変更する
 
     GameState currentState;
     private void OnEnable()
@@ -42,9 +42,6 @@ public class GamePlayUIController : MonoBehaviour
     private void Pause()
     {
         menusCanvas.enabled = true;
-        //currentState = GameManager.GameState;
-
-        //GameManager.GameState = GameState.Paused;
 
         UIInput.Instance.SelectUI(resumeButton);
     }
@@ -52,15 +49,12 @@ public class GamePlayUIController : MonoBehaviour
     private void UnPause()
     {
         menusCanvas.enabled = false;
-        //GameManager.GameState = currentState;
-        //resumeButton.Select();
-        //resumeButton.animator.SetTrigger(buttonPressedParameterID);//resumeButtonの押されたアニメーションをスタートさせる
     }
 
     private void OnResumeButtonClicked()
     {
         EventCenter.TriggerEvent(InputEvents.EnableGameInput);
-        EventCenter.TriggerEvent(TimeEvents.startTime);
+        EventCenter.TriggerEvent(TimeEvents.StartTime);
         EventCenter.TriggerEvent(UIEvents.HideMenuBar);
     }
 
@@ -71,6 +65,8 @@ public class GamePlayUIController : MonoBehaviour
 
     private void OnMainMenuButtonClicked()
     {
-
+        EventCenter.TriggerEvent(TimeEvents.StartTime);
+        EventCenter.TriggerEvent(InputEvents.FixedInput);
+        SceneLoader.Instance.LoadMainMenuScene();
     }
 }

@@ -10,13 +10,13 @@ public class TimeController : MonoBehaviour
     private void OnEnable()
     {
         EventCenter.Subscribe(TimeEvents.StopTime, Pause);
-        EventCenter.Subscribe(TimeEvents.startTime, UnPause);
+        EventCenter.Subscribe(TimeEvents.StartTime, UnPause);
     }
 
     private void OnDisable()
     {
         EventCenter.Unsubscribe(TimeEvents.StopTime, Pause);
-        EventCenter.Unsubscribe(TimeEvents.startTime, UnPause);
+        EventCenter.Unsubscribe(TimeEvents.StartTime, UnPause);
     }
 
     /// <summary>

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2089262449222151605}
   - component: {fileID: 7317611881195575973}
   - component: {fileID: 2785487170867054583}
+  - component: {fileID: 8569125354194982961}
   m_Layer: 0
   m_Name: Collected VFX
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -71,18 +72,18 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 864507427, guid: a6bc68150c2b43b479edadee27a841ea, type: 3}
-  m_Color: {r: 1, g: 0.42259923, b: 0.4110512, a: 1}
+  m_SortingLayerID: -620255849
+  m_SortingLayer: 3
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -765417164, guid: 6bfc300c81e298a4eb100c7b47975481, type: 3}
+  m_Color: {r: 0.9708586, g: 1, b: 0.32452828, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2785487170867054583
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 8460016689587713582}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 78521cb4e290e3e4599fbd9a68b71944, type: 2}
+  m_Controller: {fileID: 9100000, guid: 48b0f60ea18c90e44bdd4884dcc530f8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -106,3 +107,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8569125354194982961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8460016689587713582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91e6e2eb241aa014498fc687f99b7832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  autoStartCoroutine: 1
+  destroyGameObject: 0
+  lifetime: 0.5
