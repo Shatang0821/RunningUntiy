@@ -10,9 +10,13 @@ public class TileGenerator : MonoBehaviour
     [SerializeField] GameObject prefab;
     [SerializeField] Vector3 spawnPos;
 
-    protected virtual void OnEnable()
+    private void Awake()
     {
         Generator();
+    }
+    protected virtual void OnEnable()
+    {
+        
     }
 
     /// <summary>

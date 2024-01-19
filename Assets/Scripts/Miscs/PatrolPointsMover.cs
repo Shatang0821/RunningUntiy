@@ -11,6 +11,7 @@ public class PatrolPointsMover : MonoBehaviour
     private enum PatrolType
     {
         Loop,     // 1234, 1234...
+        Static,
         PingPong  // 1234321, 1234321...
     }
     [Header("Move Info")]
@@ -21,7 +22,13 @@ public class PatrolPointsMover : MonoBehaviour
     
     private int pointIndex = 0;
     private bool isGoingForward = true; //ポイントに向かって前進しているかを追跡
-
+    private void Awake()
+    {
+        if(points.Count == 0)
+        {
+            patrolType = PatrolType.Static;
+        }
+    }
     private void OnEnable()
     {
         if (points.Count > 0)
@@ -47,6 +54,7 @@ public class PatrolPointsMover : MonoBehaviour
             }
 
             UpdatePointIndex();
+            yield return null;
         }
     }
 
@@ -67,6 +75,9 @@ public class PatrolPointsMover : MonoBehaviour
                 {
                     isGoingForward = !isGoingForward; // 方向を反転
                 }
+
+                // pointIndex を更新
+                pointIndex += isGoingForward ? 1 : -1;
                 break;
         }
     }

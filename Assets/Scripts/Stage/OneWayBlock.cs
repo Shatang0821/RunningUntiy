@@ -20,14 +20,20 @@ public class OneWayBlock : MonoBehaviour
         }
         else
         {
-            childCollider.enabled = false;
+            childCollider.enabled = true;
         }
+    }
+
+    private void OnEnable()
+    {
+        childCollider.enabled = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
+            childCollider.enabled = false;
             PlayerStateMachine playerStateMachine = collision.gameObject.GetComponent<PlayerStateMachine>();
             if(playerStateMachine != null )
             {

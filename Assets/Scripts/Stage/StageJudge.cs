@@ -23,10 +23,12 @@ public class StageJudge : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log("On");
-
-        CameraController.Instance.ChangeCameraPos(this.transform);
-        PlayerGenerator.Instance.SetSpawnPos(respawnPos);
-        SetCurrentStage();
+        if(collision.gameObject.tag == "Player")
+        {
+            CameraController.Instance.ChangeCameraPos(this.transform);
+            PlayerGenerator.Instance.SetSpawnPos(respawnPos);
+            SetCurrentStage();
+        }
     }
 
     private void SetCurrentStage()
