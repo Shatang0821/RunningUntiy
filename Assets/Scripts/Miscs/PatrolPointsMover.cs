@@ -22,15 +22,19 @@ public class PatrolPointsMover : MonoBehaviour
     private int pointIndex = 0;
     private bool isGoingForward = true; //ポイントに向かって前進しているかを追跡
 
-    private void Start()
+    private void OnEnable()
     {
-        if(points.Count > 0)
+        if (points.Count > 0)
         {
             transform.position = points[0].position;
             StartCoroutine(nameof(MoveToPoints));
         }
     }
 
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
     private IEnumerator MoveToPoints()
     {
         while (this.isActiveAndEnabled)
