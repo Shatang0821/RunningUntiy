@@ -12,10 +12,9 @@ public class PlayerWallJumpState : PlayerAirState
     {
         //Debug.Log("PlayerWallJump");
         base.Enter();
-        Debug.Log(stateTimer);
+        AudioManager.Instance.PlaySFX(player.jumpSFX);
         // ƒWƒƒƒ“ƒv‚Ì‘±ŠÔ‚ğİ’è
         stateTimer = jumpDuration;
-        Debug.Log(stateTimer);
         // •Ç‚©‚ç—£‚ê‚é•ûŒü‚É‘¬“x‚ğİ’è
         player.SetVelocity(jumpVelocity);
 

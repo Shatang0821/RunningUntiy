@@ -11,6 +11,7 @@ public class PlayerJumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
+        AudioManager.Instance.PlaySFX(player.jumpSFX);
         // プレイヤーにジャンプ力を適用
         player.SetVelocityY(jumpForce);
 

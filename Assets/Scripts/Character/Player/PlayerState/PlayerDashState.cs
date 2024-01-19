@@ -16,7 +16,7 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-
+        AudioManager.Instance.PlaySFX(player.dashSFX);
         releaseTimer = dashEffectInterval;
 
         // ダッシュ方向をチェックする

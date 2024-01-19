@@ -6,7 +6,8 @@ public class Trampoline : MonoBehaviour
 {
     [Header("Jump Info")]
     [SerializeField] private float jumpForce;
-
+    [Header("Audio Info")]
+    [SerializeField] private AudioData jumpSFX;
     Animator animator;
 
     private void Awake()
@@ -18,6 +19,7 @@ public class Trampoline : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             animator.SetTrigger("Jump");
+            AudioManager.Instance.PlaySFX(jumpSFX);
             PlayerStateMachine playerStateMachine = collision.gameObject.GetComponent<PlayerStateMachine>();
             if (playerStateMachine != null)
             {
