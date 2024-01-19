@@ -19,6 +19,9 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
     [SerializeField] float deathEffectDelay;
     WaitForSeconds waitForEffect;
 
+    [Header("Audio Info")]
+    [SerializeField] private AudioData appear;
+
     /* ==  Spawn Info  ==*/
     private int spawnIndex;
 
@@ -82,6 +85,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
             yield return waitForEffect;
 
             PoolManager.Release(appearVFX, player.transform.position);
+            AudioManager.Instance.PlaySFX(appear);
             //生成アニメーションを待つ
             yield return waitForEffect;
             

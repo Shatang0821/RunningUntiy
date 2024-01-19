@@ -33,9 +33,10 @@ public class EndPointController : MonoBehaviour
             yield return null;
         }
         PoolManager.Release(collectVFX, transform.position);
-        this.gameObject.SetActive(false);
+        
         yield return new WaitForSeconds(0.5f);
         GameClear();
+        this.gameObject.SetActive(false);
     }
 
     private void GameClear()

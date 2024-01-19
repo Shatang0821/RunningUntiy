@@ -226,3 +226,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 18
+  jumpSFX:
+    audioClip: {fileID: 8300000, guid: cca3057b59f8fcd49adc2d55cdd8ac9e, type: 3}
+    volueme: 1

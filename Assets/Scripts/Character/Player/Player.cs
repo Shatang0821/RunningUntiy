@@ -12,6 +12,10 @@ public class Player : Entity
     [SerializeField] public Transform enemyCheck;         //地面チェック
     [SerializeField] public Vector2 attackDistance;          //攻撃できる距離
     [SerializeField] public LayerMask whatIsEnemy;        //レイヤー設定
+    [Header("Audio info")]
+    [SerializeField] public AudioData jumpSFX;
+    [SerializeField] public AudioData dashSFX;
+    [SerializeField] public AudioData hitSFX;
 
     [Space]
     public float jumpInputBufferTime = 0.5f; // ジャンプ入力のバッファ時間
@@ -117,6 +121,7 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
+        AudioManager.Instance.PlaySFX(hitSFX);
         // カメラを揺らす
         CameraController.Instance.CameraShake(0.06f, 0.1f);
 

@@ -16,4 +16,4 @@ MonoBehaviour:
   moveSpeed: 5
   gravity: 3
   jumpDuration: 0.3
-  jumpVelocity: {x: 4, y: 10}
+  jumpVelocity: {x: 5, y: 10}
