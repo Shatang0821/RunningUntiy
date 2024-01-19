@@ -29,7 +29,7 @@ public class EndPointController : MonoBehaviour
         while(Vector2.Distance(transform.position,player.position)>0.01f)
         {
             // エンドポイントの位置をゆっくりプレイヤーに追随させる
-            transform.position = Vector3.Lerp(transform.position, player.position, 5 * Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, player.position, 10 * Time.deltaTime);
             yield return null;
         }
         PoolManager.Release(collectVFX, transform.position);
