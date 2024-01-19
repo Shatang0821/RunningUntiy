@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,9 @@ public class GamePlayUIController : MonoBehaviour
     [Header("==== CANVAS ====")]
     [SerializeField] Canvas menusCanvas;
 
+    [Header("==== PANEL ====")]
+    [SerializeField] GameObject operationPanel;
+
     [Header("==== PLYAER INPUT ====")]
     [SerializeField] Button resumeButton;           //ゲームに戻るボタン
 
@@ -13,14 +17,19 @@ public class GamePlayUIController : MonoBehaviour
 
     [SerializeField] Button mainMenuButton;         //メインメニューの戻るボタン
 
-    //int buttonPressedParameterID = Animator.StringToHash("Pressed");//Pressedをハッシュ値の変更する
-
+    int buttonPressedParameterID = Animator.StringToHash("Pressed");//Pressedをハッシュ値の変更する
     GameState currentState;
+
+    private void Start()
+    {
+        operationPanel.SetActive(false);
+        menusCanvas.enabled = false;
+    }
     private void OnEnable()
     {
         EventCenter.Subscribe(UIEvents.ShowMenuBar, Pause);
-        EventCenter.Subscribe(UIEvents.HideMenuBar, UnPause);
 
+        EventCenter.Subscribe(UIEvents.UnPause, UnPause);
         EventCenter.Subscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
         EventCenter.Subscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Subscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
@@ -29,8 +38,8 @@ public class GamePlayUIController : MonoBehaviour
     private void OnDisable()
     {
         EventCenter.Unsubscribe(UIEvents.ShowMenuBar, Pause);
-        EventCenter.Unsubscribe(UIEvents.HideMenuBar, UnPause);
 
+        EventCenter.Unsubscribe(UIEvents.UnPause, UnPause);
         EventCenter.Unsubscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
@@ -48,19 +57,22 @@ public class GamePlayUIController : MonoBehaviour
 
     private void UnPause()
     {
-        menusCanvas.enabled = false;
+        UIInput.Instance.SelectUI(resumeButton);
+        resumeButton.animator.SetTrigger(buttonPressedParameterID);
     }
 
     private void OnResumeButtonClicked()
     {
         EventCenter.TriggerEvent(InputEvents.EnableGameInput);
         EventCenter.TriggerEvent(TimeEvents.StartTime);
-        EventCenter.TriggerEvent(UIEvents.HideMenuBar);
+        menusCanvas.enabled = false;
+        UIInput.Instance.DeselectUI();
     }
 
     private void OnOptionButtonClicked()
     {
-
+        operationPanel.SetActive(true);
+        UIInput.Instance.DisableUIInputs();
     }
 
     private void OnMainMenuButtonClicked()

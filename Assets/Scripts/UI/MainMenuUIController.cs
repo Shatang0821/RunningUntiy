@@ -8,6 +8,9 @@ public class MainMenuUIController : MonoBehaviour
     [Header("==== CANVAS ====")]
     [SerializeField] Canvas mainMenuCanvas;
 
+    [Header("==== PANEL ====")]
+    [SerializeField] GameObject operationPanel;
+
     [Header("==== BUTTONS ====")]
     [SerializeField] Button buttonStart;
     [SerializeField] Button buttonOptions;
@@ -32,6 +35,7 @@ public class MainMenuUIController : MonoBehaviour
     {
         GameManager.GameState = GameState.MainMenu;
         UIInput.Instance.SelectUI(buttonStart);
+        operationPanel.SetActive(false);
     }
 
     /// <summary>
@@ -45,6 +49,7 @@ public class MainMenuUIController : MonoBehaviour
     private void OnOptionButtonClicked()
     {
         //UIInput.Instance.SelectUI(buttonOptions);
+        operationPanel.SetActive(true);
     }
 
     /// <summary>

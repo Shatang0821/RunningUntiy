@@ -159,9 +159,7 @@ public class PlayerInput : ScriptableObject
 
     private void UnPause()
     {
-        EventCenter.TriggerEvent(InputEvents.EnableGameInput);
-        EventCenter.TriggerEvent(TimeEvents.StartTime);
-        EventCenter.TriggerEvent(UIEvents.HideMenuBar);
+        EventCenter.TriggerEvent(UIEvents.UnPause);
     }
     #endregion
 

@@ -53,4 +53,6 @@ public static class UIEvents
     public const string ShowMenuBar = "Show UI menu bar in game";
     //ゲームを一時停止中のメニューバーの非表示
     public const string HideMenuBar = "Hide UI Menu bar in game";
+
+    public const string UnPause = "ポーズ解除";
 }

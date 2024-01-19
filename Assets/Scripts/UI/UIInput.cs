@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.UI;
 
@@ -44,4 +45,23 @@ public class UIInput : Singleton<UIInput>
     {
         UIInputModule.enabled = false;
     }
+
+    public void EnableUIInputs()
+    {
+        UIInputModule.enabled = true;
+    }
+
+    /// <summary>
+    /// Deselect the currently selected UI element.
+    /// </summary>
+    public void DeselectUI()
+    {
+        // Clear the current selected UI element
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
+    }
+
+
 }
