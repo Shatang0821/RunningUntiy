@@ -121,7 +121,7 @@
                 {
                     "name": "WASD",
                     "id": "e4b53fe4-2976-4b1c-8eb6-24ce8d69aa4f",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -176,7 +176,7 @@
                 {
                     "name": "Arrows",
                     "id": "00b4a72f-706b-488b-9ef0-13a9b494b05a",
-                    "path": "2DVector",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
