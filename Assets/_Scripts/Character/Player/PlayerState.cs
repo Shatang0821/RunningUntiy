@@ -68,8 +68,6 @@ public class PlayerState : ScriptableObject, IState
         {
             dashTrigger = false;
         }
-            
-
         Debug.Log(stateMachine.currentState);
     }
 
@@ -83,7 +81,10 @@ public class PlayerState : ScriptableObject, IState
     // ロジックアップデート（毎フレームの更新処理）
     public virtual void LogicUpdate()
     {
-        CheckForDashInput();                      // ダッシュ入力のチェック
+        // ダッシュ入力のチェック
+        if (CheckForDashInput())
+            return;
+
         stateTimer -= Time.deltaTime;             // 状態タイマーの更新
         player.anim.SetFloat("yVelocity", rb.velocity.y); // Y軸の速度をアニメーターに設定
     }
@@ -95,10 +96,10 @@ public class PlayerState : ScriptableObject, IState
     }
 
     // ダッシュ入力のチェック処理
-    void CheckForDashInput()
+    bool CheckForDashInput()
     {
         if (dashTrigger && !player.dashItemGet)
-            return;
+            return false;
 
         if (Dash)
         {
@@ -107,7 +108,9 @@ public class PlayerState : ScriptableObject, IState
             {
                 player.dashItemGet = false;
             }
+            return true;
         }
+        return false;
     }
 
 

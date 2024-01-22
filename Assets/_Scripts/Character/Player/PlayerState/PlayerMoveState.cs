@@ -32,9 +32,7 @@ public class PlayerMoveState : PlayerGroundedState
         if (xInput == 0)
             stateMachine.SwitchState(typeof(PlayerIdleState));
 
-        // 地面を検出していない場合の処理
-        if (!player.IsGroundDetected() && !Dash)
-            stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
+
         // 移動パーティクルエフェクトのタイマーを更新
         counter += Time.deltaTime;
     }

@@ -78,12 +78,12 @@ public class PlayerInput : ScriptableObject
     /// コントローラのためである
     /// </summary>
     /// <returns>ダッシュ方向</returns>
-    Vector2 DirectionInput(float x,float y)
+    Vector2 DirectionInput(float x, float y)
     {
         // 入力がゼロかどうかをチェック
         if (x == 0 && y == 0)
         {
-            return new Vector2(0, 0);
+            return Vector2.zero;
         }
 
         // 入力から角度を計算
@@ -96,42 +96,28 @@ public class PlayerInput : ScriptableObject
             angleInDegrees += 360;
         }
 
-        // 角度で方向判断する
-        if (angleInDegrees >= 337.5 || angleInDegrees < 22.5)
+        // 角度で方向を判断する
+        switch ((int)angleInDegrees)
         {
-            return new Vector2(1, 0); // 右
+            case int n when (n >= 337.5 || n < 22.5):
+                return Vector2.right; // 右
+            case int n when (n >= 22.5 && n < 67.5):
+                return new Vector2(1, 1); // 右上
+            case int n when (n >= 67.5 && n < 112.5):
+                return Vector2.up; // 上
+            case int n when (n >= 112.5 && n < 157.5):
+                return new Vector2(-1, 1); // 左上
+            case int n when (n >= 157.5 && n < 202.5):
+                return Vector2.left; // 左
+            case int n when (n >= 202.5 && n < 247.5):
+                return new Vector2(-1, -1); // 左下
+            case int n when (n >= 247.5 && n < 292.5):
+                return Vector2.down; // 下
+            default:
+                return new Vector2(1, -1); // 右下
         }
-        else if (angleInDegrees >= 22.5 && angleInDegrees < 67.5)
-        {
-            return new Vector2(1, 1); // 右上
-        }
-        else if (angleInDegrees >= 67.5 && angleInDegrees < 112.5)
-        {
-            return new Vector2(0, 1); // 上
-        }
-        else if (angleInDegrees >= 112.5 && angleInDegrees < 157.5)
-        {
-            return new Vector2(-1, 1); // 左上
-        }
-        else if (angleInDegrees >= 157.5 && angleInDegrees < 202.5)
-        {
-            return new Vector2(-1, 0); // 左
-        }
-        else if (angleInDegrees >= 202.5 && angleInDegrees < 247.5)
-        {
-            return new Vector2(-1, -1); // 左下
-        }
-        else if (angleInDegrees >= 247.5 && angleInDegrees < 292.5)
-        {
-            return new Vector2(0, -1); // 下
-        }
-        else if (angleInDegrees >= 292.5 && angleInDegrees < 337.5)
-        {
-            return new Vector2(1, -1); // 右下
-        }
-        else
-            return Vector2.zero;
     }
+
     #endregion
 
     #region InputSettings

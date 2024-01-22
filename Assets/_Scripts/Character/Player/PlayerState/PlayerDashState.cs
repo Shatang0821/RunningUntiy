@@ -9,7 +9,7 @@ public class PlayerDashState : PlayerState
     [SerializeField] private float dashDuration;  // ダッシュの持続時間
     [SerializeField] private float dashSpeed;     // ダッシュ時のスピード
     [SerializeField] private Vector2 dashDir;     // ダッシュ方向
-
+    private Vector2 facDashDir => new Vector2(player.facingDir, 0); //向く方向にダッシュ
     [Header("Dash Effect")]
     [SerializeField] private float dashEffectInterval = 0.02f; // ダッシュエフェクトの発生間隔
     private float releaseTimer; // 次のエフェクト生成までのタイマー
@@ -81,7 +81,8 @@ public class PlayerDashState : PlayerState
     {
         base.PhysicUpdate();
         // ダッシュ方向に速度を設定
-        player.SetVelocity(dashSpeed * dirInput.normalized);
+        var dashDir = (dirInput == Vector2.zero) ? facDashDir : dirInput.normalized;
+        player.SetVelocity(dashSpeed * dashDir);
     }
 
     /// <summary>

@@ -23,10 +23,17 @@ public class PlayerGroundedState : PlayerState
 
         // 入力に基づいてプレイヤーの向きを制御
         player.FlipController(xInput);
-
         // ジャンプ入力がある場合、ジャンプ状態に切り替える
         if (Jump)
+        {
             stateMachine.SwitchState(typeof(PlayerJumpState));
+            return;
+        }
+            
+
+        // 地面を検出していない場合の処理
+        if (!player.IsGroundDetected() && !Dash)
+            stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
 
         // 壁に接触していて、登る入力がある場合、登り状態に切り替える
         if (player.IsWallDetected() && Climb)
