@@ -19,19 +19,14 @@ public class EndPointController : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             player = collision.gameObject.GetComponent<Transform>();
-            StartCoroutine(nameof(MoveToPlayer));
+            StartCoroutine(nameof(WaitForAnimation));
             animator.SetTrigger("Get");
         }
     }
 
-    IEnumerator MoveToPlayer()
+    IEnumerator WaitForAnimation()
     {
-        while(Vector2.Distance(transform.position,player.position)>0.01f)
-        {
-            // エンドポイントの位置をゆっくりプレイヤーに追随させる
-            transform.position = Vector3.Lerp(transform.position, player.position, 10 * Time.deltaTime);
-            yield return null;
-        }
+        yield return new WaitForSeconds(1.5f);
         PoolManager.Release(collectVFX, transform.position);
         
         yield return new WaitForSeconds(0.5f);

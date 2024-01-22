@@ -67,9 +67,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _Radius: 2000
+    - _Radius: 145
     m_Colors:
-    - _Center: {r: -870.17126, g: -267.26987, b: 0, a: 0}
+    - _Center: {r: 0, g: -493.79456, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MaskColor: {r: 0, g: 0, b: 0, a: 1}
