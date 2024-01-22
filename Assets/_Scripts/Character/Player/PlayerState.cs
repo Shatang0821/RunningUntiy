@@ -23,9 +23,6 @@ public class PlayerState : ScriptableObject, IState
     protected float stateTimer;             // 状態のタイマー
 
     protected bool triggerCalled;           // トリガーが呼ばれたかどうか
-
-    // ダッシュ制限
-    protected static bool dashTrigger;
     
     // 重力の基準値
     protected const float GRAVITY_BASE = 0.1f;
@@ -71,7 +68,7 @@ public class PlayerState : ScriptableObject, IState
         rb = player.rb;                           // リジッドボディの参照を取得
         if (player.IsGroundDetected())
         {
-            dashTrigger = false;
+            EventCenter.TriggerEvent(StateEvents.SetDashTrigger, true);
         }
         Debug.Log(stateMachine.currentState);
     }
@@ -102,16 +99,12 @@ public class PlayerState : ScriptableObject, IState
     // ダッシュ入力のチェック処理
     bool CheckForDashInput()
     {
-        if (dashTrigger && !playerAction.dashItemGet)
+        if (!playerAction.dashTrigger)
             return false;
 
         if (Dash)
         {
             stateMachine.SwitchState(typeof(PlayerDashState)); // ダッシュ状態に切り替える
-            if (playerAction.dashItemGet == true)
-            {
-                playerAction.dashItemGet = false;
-            }
             return true;
         }
         return false;

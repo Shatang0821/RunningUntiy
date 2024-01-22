@@ -106,7 +106,7 @@ public class Pool
         {
             spriteRenderer.sprite = sprite;
             Color color = spriteRenderer.color;
-            color.a = alpha; // 设置透明度
+            color.a = alpha; // 透明度設定
             spriteRenderer.color = color;
         }
         else

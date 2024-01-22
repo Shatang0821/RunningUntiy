@@ -22,6 +22,18 @@ public class StageSelectUIController : MonoBehaviour
         UIInput.Instance.SelectUI(stages[0]);
     }
 
+    private void OnEnable()
+    {
+        EventCenter.Subscribe(stages[0].name, LoadTutorial);
+        EventCenter.Subscribe(stages[1].name, LoadStage1);
+    }
+
+    private void OnDisable()
+    {
+        EventCenter.Unsubscribe(stages[0].name, LoadTutorial);
+        EventCenter.Unsubscribe(stages[1].name, LoadStage1);
+    }
+
     private void Update()
     {
         // ゲームパッドのBボタンをチェック
@@ -40,19 +52,15 @@ public class StageSelectUIController : MonoBehaviour
     private void LoadMainMenu()
     {
         SceneLoader.Instance.LoadMainMenuScene();
-        UIInput.Instance.DisableUIInputs();
     }
 
     public void LoadStage1()
     {
         SceneLoader.Instance.LoadStage1Scene();
-        UIInput.Instance.DisableUIInputs();
     }
 
     public void LoadTutorial()
     {
-        Debug.LogWarning("Loading");
         SceneLoader.Instance.LoadTutorialScene();
-        UIInput.Instance.DisableUIInputs();
     }
 }

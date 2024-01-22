@@ -15,21 +15,26 @@ public class PlayerAction : MonoBehaviour
 
     #region DASH
     public GameObject dashGhost;
-    public bool dashItemGet = false;
+    public bool dashTrigger { get; private set; } // ƒ_ƒbƒVƒ…§ŒÀ
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+    public GameObject dashMask;
+    private SpriteRenderer dashMaskSprite;
     #endregion
     public void Initialize()
     {
         waitJumpInputBufferTime = new WaitForSeconds(jumpInputBufferTime);
+        dashMaskSprite = dashMask.GetComponent<SpriteRenderer>();
     }
     private void OnEnable()
     {
         EventCenter.Subscribe(StateEvents.SetCustomJumpForce, SetCustomJumpForce);
+        EventCenter.Subscribe(StateEvents.SetDashTrigger, SetDashTrigger);
     }
     private void OnDisable()
     {
         HasJumpInputBuffer = false;
         EventCenter.Unsubscribe(StateEvents.SetCustomJumpForce, SetCustomJumpForce);
+        EventCenter.Unsubscribe(StateEvents.SetDashTrigger, SetDashTrigger);
     }
 
     #region JUMP METHOD
@@ -53,6 +58,33 @@ public class PlayerAction : MonoBehaviour
         {
             customJumpForce = (float)jumpForceObj;
         }
+    }
+    #endregion
+
+    #region DASH METHOD
+    private void SetDashTrigger(object canDash)
+    {
+        if(canDash is bool) 
+        {
+            dashTrigger = (bool)canDash;
+            SetDashMaskAlpha((bool)canDash);
+        }
+    }
+
+    private void SetDashMaskAlpha(bool canDash)
+    {
+        Color color = dashMaskSprite.color;
+        if (canDash)
+        {
+            color.a = 0f;
+            dashMaskSprite.color = color;
+        }
+        else
+        {
+            color.a = 1f;
+            dashMaskSprite.color = color;
+        }
+        
     }
     #endregion
 }

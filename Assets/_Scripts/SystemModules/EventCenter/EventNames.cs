@@ -9,6 +9,8 @@ public static class StateEvents
     public const string GameClear = "GameClear";
 
     public const string SetCustomJumpForce = "SetCustomJumpForce";
+
+    public const string SetDashTrigger = "SetDashTrigger";
 }
 
 public static class ButtonEvents

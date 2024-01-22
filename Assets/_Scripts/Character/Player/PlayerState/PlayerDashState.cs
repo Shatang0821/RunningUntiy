@@ -19,7 +19,7 @@ public class PlayerDashState : PlayerState
         AudioManager.Instance.PlaySFX(playerAudioController.dashSFX);
         releaseTimer = dashEffectInterval;
 
-        dashTrigger = true;
+        EventCenter.TriggerEvent(StateEvents.SetDashTrigger, false);
 
         // ダッシュ時間を設定
         stateTimer = dashDuration;

@@ -14905,7 +14905,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.03767538, a: 0.54509807}
+  m_Color: {r: 1, g: 0.28235292, b: 0.28235292, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -19974,7 +19974,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpInputBufferTime: 0.1
   dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
-  dashItemGet: 0
+  dashMask: {fileID: 6907355251130053844}
 --- !u!114 &4074208165816760995
 MonoBehaviour:
   m_ObjectHideFlags: 0
