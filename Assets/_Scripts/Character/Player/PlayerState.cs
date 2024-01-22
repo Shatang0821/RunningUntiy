@@ -6,7 +6,7 @@ public class PlayerState : ScriptableObject, IState
 {
     protected PlayerStateMachine stateMachine; // 状態マシン
     protected Player player;                  // プレイヤーの参照
-    protected PlayerJump playerJump;
+    protected PlayerAction playerAction;
 
 
     protected Rigidbody2D rb;                 // リジッドボディの参照
@@ -56,7 +56,7 @@ public class PlayerState : ScriptableObject, IState
         this.stateMachine = _stateMachine;
         this.input = _input;
 
-        this.playerJump = _player.PlayerJump;
+        this.playerAction = _player.PlayerJump;
     }
 
     // 状態に入った時の処理
@@ -84,7 +84,6 @@ public class PlayerState : ScriptableObject, IState
         // ダッシュ入力のチェック
         if (CheckForDashInput())
             return;
-
         stateTimer -= Time.deltaTime;             // 状態タイマーの更新
         player.anim.SetFloat("yVelocity", rb.velocity.y); // Y軸の速度をアニメーターに設定
     }

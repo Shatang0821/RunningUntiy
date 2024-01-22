@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public PlayerJump PlayerJump;
+    public PlayerAction PlayerJump;
 
     [Header("==== PARTICLE ====")]
     public ParticleSystem movementParticle;
@@ -29,7 +29,7 @@ public class Player : Entity
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
     private void Initialize()
     {
-        PlayerJump = GetComponent<PlayerJump>();
+        PlayerJump = GetComponent<PlayerAction>();
     }
     // ライフサイクルメソッド
     protected override void Awake()

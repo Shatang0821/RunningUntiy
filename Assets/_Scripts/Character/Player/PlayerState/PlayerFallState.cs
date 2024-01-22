@@ -27,7 +27,7 @@ public class PlayerFallState : PlayerAirState
             stateMachine.SwitchState(typeof(PlayerLandState));
         // ジャンプ入力がある場合、ジャンプバッファタイマーを設定
         if (Jump && !player.IsWallDetected())
-            playerJump.SetJumpInputBufferTimer();
+            playerAction.SetJumpInputBufferTimer();
 
         // 壁に接触していて、入力方向がプレイヤーの向いている方向と一致する場合、壁滑り状態に切り替える
         if (player.IsWallDetected() && xInput ==player.facingDir)

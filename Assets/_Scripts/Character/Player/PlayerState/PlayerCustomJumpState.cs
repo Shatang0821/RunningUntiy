@@ -12,7 +12,7 @@ public class PlayerCustomJumpState : PlayerAirState
     {
         base.Enter();
 
-        jumpForce = playerJump.customJumpForce;
+        jumpForce = playerAction.customJumpForce;
 
         // プレイヤーにジャンプ力を適用
         player.SetVelocityY(jumpForce);
@@ -40,7 +40,7 @@ public class PlayerCustomJumpState : PlayerAirState
             stateMachine.SwitchState(typeof(PlayerFallState));
 
         // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
-        if ((playerJump.HasJumpInputBuffer || Jump) && player.IsWallDetected() && stateTimer < 0)
+        if ((playerAction.HasJumpInputBuffer || Jump) && player.IsWallDetected() && stateTimer < 0)
         {
             //向きを反転してから
             player.Flip();

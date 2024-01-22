@@ -21,7 +21,7 @@ public class PlayerLandState : PlayerState
     {
         base.LogicUpdate();
         // ジャンプ入力バッファがある場合、ジャンプ状態に切り替える
-        if (playerJump.HasJumpInputBuffer)
+        if (playerAction.HasJumpInputBuffer)
         {
             stateMachine.SwitchState(typeof(PlayerJumpState));
             return;
