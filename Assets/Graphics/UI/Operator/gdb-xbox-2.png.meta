@@ -773,6 +773,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Arrow_Left
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 437
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 4, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a78bade415eba69468768509a8c2446a
+      internalID: 1026705415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Arrow_Right
+      rect:
+        serializedVersion: 2
+        x: 146
+        y: 437
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 4, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3f284e7d2bf332941aa670d56d1323a3
+      internalID: 1176138454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -801,6 +843,8 @@ TextureImporter:
       A_Y_2: -1314202612
       A_Y_3: -640128634
       A_button: 356441854
+      Arrow_Left: 1026705415
+      Arrow_Right: 1176138454
       B_button: 374139325
       LStick_0: -621789913
       LStick_L: -219157896
