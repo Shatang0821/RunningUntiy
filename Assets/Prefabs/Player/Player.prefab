@@ -19814,7 +19814,9 @@ GameObject:
   - component: {fileID: 2736604479249140909}
   - component: {fileID: 4410657518137579253}
   - component: {fileID: 1515572960323196347}
-  - component: {fileID: 2853948220100469306}
+  - component: {fileID: 6531179240657514508}
+  - component: {fileID: 4074208165816760995}
+  - component: {fileID: 8522939234999417502}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -19924,27 +19926,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   DeathVFX: {fileID: 5771967587512097339, guid: 8a21aa2f0ffe5f74c854d92c4c85ca3d, type: 3}
-  PlayerJump: {fileID: 0}
-  movementParticle: {fileID: 1083541509368115021}
-  fallParticle: {fileID: 6108822775902704487}
-  jumpParticle: {fileID: 8674703657866781318}
-  touchParticle: {fileID: 6712759195562646523}
+  PlayerAction: {fileID: 0}
+  PlayerParticleController: {fileID: 0}
+  PlayerAudioController: {fileID: 0}
   enemyCheck: {fileID: 815430578186765564}
   attackDistance: {x: 0.4, y: 0.56}
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
-  jumpSFX:
-    audioClip: {fileID: 8300000, guid: cca3057b59f8fcd49adc2d55cdd8ac9e, type: 3}
-    volueme: 1
-  dashSFX:
-    audioClip: {fileID: 8300000, guid: 6a47b5e57d666c649bc1c383fb49e128, type: 3}
-    volueme: 1
-  hitSFX:
-    audioClip: {fileID: 8300000, guid: 183bdaf6ee74a33438c243df446ac340, type: 3}
-    volueme: 0.5
-  dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
-  dashItemGet: 0
 --- !u!114 &1515572960323196347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19971,7 +19960,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 11ebe3b0c5f258a4dbe3ccda96907819, type: 2}
   - {fileID: 11400000, guid: 3342b30a173c45d4db69fe0987797a35, type: 2}
   input: {fileID: 11400000, guid: f320cd6610f61d14081ad57a28747d07, type: 2}
---- !u!114 &2853948220100469306
+--- !u!114 &6531179240657514508
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -19980,10 +19969,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 7599041377771758214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdbbd238f18231e4cbe6853f0ab4ba7c, type: 3}
+  m_Script: {fileID: 11500000, guid: 20fd2c506ad5cf24db78ab6c7da78bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpInputBufferTime: 0.5
+  jumpInputBufferTime: 0.1
+  dashGhost: {fileID: 2945649113444535467, guid: afeb304cbe47191499f34d15e56e80b3, type: 3}
+  dashItemGet: 0
+--- !u!114 &4074208165816760995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599041377771758214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe9c2a3393d74046af1029c2644cdb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementParticle: {fileID: 1083541509368115021}
+  fallParticle: {fileID: 6108822775902704487}
+  jumpParticle: {fileID: 8674703657866781318}
+  touchParticle: {fileID: 6712759195562646523}
+--- !u!114 &8522939234999417502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599041377771758214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e8fed2217a4584b9b8af2f082d90fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpSFX:
+    audioClip: {fileID: 8300000, guid: cca3057b59f8fcd49adc2d55cdd8ac9e, type: 3}
+    volueme: 1
+  dashSFX:
+    audioClip: {fileID: 8300000, guid: 6a47b5e57d666c649bc1c383fb49e128, type: 3}
+    volueme: 1
+  hitSFX:
+    audioClip: {fileID: 8300000, guid: 183bdaf6ee74a33438c243df446ac340, type: 3}
+    volueme: 0.5
 --- !u!1 &7926411463840503482
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,14 +12,14 @@ public class PlayerWallJumpState : PlayerAirState
     {
         //Debug.Log("PlayerWallJump");
         base.Enter();
-        AudioManager.Instance.PlaySFX(player.jumpSFX);
+        AudioManager.Instance.PlaySFX(playerAudioController.jumpSFX);
         // ジャンプの持続時間を設定
         stateTimer = jumpDuration;
         // 壁から離れる方向に速度を設定
         player.SetVelocity(jumpVelocity);
 
         // ジャンプ時のパーティクルエフェクトを再生
-        player.jumpParticle.Play();
+        playerParticleController.jumpParticle.Play();
     }
 
     public override void Exit()

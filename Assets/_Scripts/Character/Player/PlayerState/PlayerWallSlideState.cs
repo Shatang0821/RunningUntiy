@@ -20,7 +20,7 @@ public class PlayerWallSlideState : PlayerState
         player.SetVelocity(Vector2.zero);
 
         // 壁触れ時のパーティクルエフェクトを再生
-        player.touchParticle.Play();
+        playerParticleController.touchParticle.Play();
     }
 
     public override void Exit()

@@ -47,7 +47,7 @@ public class PlayerMoveState : PlayerGroundedState
         // 移動パーティクルエフェクトの再生間隔を制御
         if (counter > 0.1)
         {
-            player.movementParticle.Play();
+            playerParticleController.movementParticle.Play();
             counter = 0;
         }
         

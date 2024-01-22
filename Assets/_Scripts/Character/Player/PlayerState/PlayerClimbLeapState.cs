@@ -16,7 +16,7 @@ public class PlayerClimbLeapState : PlayerAirState
         player.SetVelocityY(JumpForce);
 
         // ジャンプ時のパーティクルエフェクトを再生
-        player.jumpParticle.Play();
+        playerParticleController.jumpParticle.Play();
 
         stateTimer = jumpTime;
     }

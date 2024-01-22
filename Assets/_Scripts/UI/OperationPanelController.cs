@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class OperationPanelController : MonoBehaviour
 {
@@ -16,7 +17,9 @@ public class OperationPanelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKeyDown)
+        // ゲームパッドのBボタンをチェック
+        bool isBButtonPressed = Gamepad.current != null && Gamepad.current.buttonEast.isPressed;
+        if (isBButtonPressed)
         {
             gameObject.SetActive(false);
             UIInput.Instance.EnableUIInputs();

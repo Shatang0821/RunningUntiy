@@ -38,6 +38,6 @@ public class EndPointController : MonoBehaviour
     {
         EventCenter.TriggerEvent(TimeEvents.StartTime);
         EventCenter.TriggerEvent(InputEvents.FixedInput);
-        SceneLoader.Instance.LoadGameClearScene();
+        SceneLoader.Instance.LoadStageSelectScene();
     }
 }

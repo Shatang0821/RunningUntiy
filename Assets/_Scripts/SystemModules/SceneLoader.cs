@@ -4,10 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : PersistentSingleton<SceneLoader>
 {
-    const string GAMESCENE = "Stage1";
+    const string STAGE1 = "Stage1";
     const string MAIN_MENU = "TitleScene";
-    const string GAME_CLEAR = "ClearScene";
-
+    const string TUTORIAL = "TutorialScene";
+    const string SCENESELECT = "StageSelect";
     void Load(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
@@ -30,10 +30,10 @@ public class SceneLoader : PersistentSingleton<SceneLoader>
         GameManager.GameState = GameState.Initialize;
     }
 
-    public void LoadGamePlayScene()
+    public void LoadStage1Scene()
     {
-        StopAllCoroutines();    
-        StartCoroutine(LoadingCoroutine(GAMESCENE));
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(STAGE1));
     }
 
     public void LoadMainMenuScene()
@@ -42,10 +42,18 @@ public class SceneLoader : PersistentSingleton<SceneLoader>
         StartCoroutine(LoadingCoroutine(MAIN_MENU));
     }
 
-    public void LoadGameClearScene()
+    public void LoadStageSelectScene()
     {
         StopAllCoroutines();
-        StartCoroutine(LoadingCoroutine(GAME_CLEAR));
+        StartCoroutine(LoadingCoroutine(SCENESELECT));
     }
 
+    /// <summary>
+    /// チュートリアルシーンに遷移
+    /// </summary>
+    public void LoadTutorialScene()
+    {
+        StopAllCoroutines();
+        StartCoroutine(LoadingCoroutine(TUTORIAL));
+    }
 }

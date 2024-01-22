@@ -6,7 +6,10 @@ public class PlayerState : ScriptableObject, IState
 {
     protected PlayerStateMachine stateMachine; // 状態マシン
     protected Player player;                  // プレイヤーの参照
-    protected PlayerAction playerAction;
+
+    protected PlayerAction playerAction;      //行動関係クラス
+    protected PlayerParticleController playerParticleController;
+    protected PlayerAudioController playerAudioController;
 
 
     protected Rigidbody2D rb;                 // リジッドボディの参照
@@ -56,7 +59,9 @@ public class PlayerState : ScriptableObject, IState
         this.stateMachine = _stateMachine;
         this.input = _input;
 
-        this.playerAction = _player.PlayerJump;
+        this.playerAction = _player.PlayerAction;
+        this.playerParticleController = _player.PlayerParticleController;
+        this.playerAudioController = _player.PlayerAudioController;
     }
 
     // 状態に入った時の処理
@@ -97,15 +102,15 @@ public class PlayerState : ScriptableObject, IState
     // ダッシュ入力のチェック処理
     bool CheckForDashInput()
     {
-        if (dashTrigger && !player.dashItemGet)
+        if (dashTrigger && !playerAction.dashItemGet)
             return false;
 
         if (Dash)
         {
             stateMachine.SwitchState(typeof(PlayerDashState)); // ダッシュ状態に切り替える
-            if (player.dashItemGet == true)
+            if (playerAction.dashItemGet == true)
             {
-                player.dashItemGet = false;
+                playerAction.dashItemGet = false;
             }
             return true;
         }

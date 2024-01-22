@@ -9,7 +9,7 @@ public class PlayerLandState : PlayerState
     {
         base.Enter();
 
-        player.fallParticle.Play();
+        playerParticleController.fallParticle.Play();
     }
 
     public override void Exit()

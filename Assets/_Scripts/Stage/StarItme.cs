@@ -14,8 +14,7 @@ public class StarItme : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.dashItemGet = true;
-            Debug.Log(player.dashItemGet);
+            player.PlayerAction.dashItemGet = true;
             
             animator.SetTrigger("Get");
         }

@@ -11,12 +11,12 @@ public class PlayerJumpState : PlayerAirState
     public override void Enter()
     {
         base.Enter();
-        AudioManager.Instance.PlaySFX(player.jumpSFX);
+        AudioManager.Instance.PlaySFX(playerAudioController.jumpSFX);
         // プレイヤーにジャンプ力を適用
         player.SetVelocityY(jumpForce);
 
         // ジャンプ時のパーティクルエフェクトを再生
-        player.jumpParticle.Play();
+        playerParticleController.jumpParticle.Play();
 
         stateTimer = jumpTime;
     }

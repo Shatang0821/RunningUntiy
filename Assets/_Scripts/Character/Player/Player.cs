@@ -3,40 +3,34 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public PlayerAction PlayerJump;
-
-    [Header("==== PARTICLE ====")]
-    public ParticleSystem movementParticle;
-    public ParticleSystem fallParticle;
-    public ParticleSystem jumpParticle;
-    public ParticleSystem touchParticle;
+    [HideInInspector]
+    public PlayerAction PlayerAction;
+    [HideInInspector]
+    public PlayerParticleController PlayerParticleController;
+    [HideInInspector]
+    public PlayerAudioController PlayerAudioController;
 
     [Header("Collision info")]
-    [SerializeField] public Transform enemyCheck;
-    [SerializeField] public Vector2 attackDistance;
-    [SerializeField] public LayerMask whatIsEnemy;
+    public Transform enemyCheck;
+    public Vector2 attackDistance;
+    public LayerMask whatIsEnemy;
 
-    [Header("Audio info")]
-    [SerializeField] public AudioData jumpSFX;
-    [SerializeField] public AudioData dashSFX;
-    [SerializeField] public AudioData hitSFX;
-
-
-
-    public GameObject dashGhost;
-    public bool dashItemGet = false;
-    [HideInInspector]
-    public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+    //public GameObject dashGhost;
+    //public bool dashItemGet = false;
+    //[HideInInspector]
+    //public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
     private void Initialize()
     {
-        PlayerJump = GetComponent<PlayerAction>();
+        PlayerAction = GetComponent<PlayerAction>();
+        PlayerParticleController = GetComponent<PlayerParticleController>();
+        PlayerAudioController = GetComponent<PlayerAudioController>();
     }
     // ライフサイクルメソッド
     protected override void Awake()
     {
         base.Awake();
         Initialize();
-        PlayerJump.Initialize();
+        PlayerAction.Initialize();
     }
 
     private void OnEnable()
@@ -60,7 +54,7 @@ public class Player : Entity
     public override void Die()
     {
         base.Die();
-        AudioManager.Instance.PlaySFX(hitSFX);
+        AudioManager.Instance.PlaySFX(PlayerAudioController.hitSFX);
         CameraController.Instance.CameraShake(0.06f, 0.1f);
         GameManager.GameState = GameState.Respawn;
         EventCenter.TriggerEvent(StateEvents.SpawnPlayer);

@@ -30,7 +30,7 @@ public class PlayerClimbState : PlayerState
         player.SetUseGravity(gravity);
 
         //パーティクルをプレイ
-        player.touchParticle.Play();
+        playerParticleController.touchParticle.Play();
     }
 
     public override void Exit()

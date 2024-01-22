@@ -12,6 +12,12 @@ public class PlayerAction : MonoBehaviour
     public bool HasJumpInputBuffer { get; private set; }
     public float customJumpForce { get; private set; }
     #endregion
+
+    #region DASH
+    public GameObject dashGhost;
+    public bool dashItemGet = false;
+    public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+    #endregion
     public void Initialize()
     {
         waitJumpInputBufferTime = new WaitForSeconds(jumpInputBufferTime);

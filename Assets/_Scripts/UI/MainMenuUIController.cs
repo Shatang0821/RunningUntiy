@@ -43,7 +43,7 @@ public class MainMenuUIController : MonoBehaviour
     /// </summary>
     private void OnStartButtonClicked()
     {
-        SceneLoader.Instance.LoadGamePlayScene();
+        SceneLoader.Instance.LoadStageSelectScene();
     }
 
     private void OnOptionButtonClicked()

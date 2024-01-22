@@ -16,7 +16,7 @@ public class PlayerDashState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        AudioManager.Instance.PlaySFX(player.dashSFX);
+        AudioManager.Instance.PlaySFX(playerAudioController.dashSFX);
         releaseTimer = dashEffectInterval;
 
         dashTrigger = true;
@@ -65,7 +65,7 @@ public class PlayerDashState : PlayerState
         {
             float alpha = 1 - (stateTimer % 6 / dashDuration);
             alpha = Mathf.Clamp(alpha, 0, 1); // alpha 値を 0 から 1 の間に保持
-            PoolManager.Release(player.dashGhost, player.transform.position,player.transform.rotation, player.sprite, alpha);
+            PoolManager.Release(playerAction.dashGhost, player.transform.position,player.transform.rotation, playerAction.sprite, alpha);
             releaseTimer = dashEffectInterval; // タイマーをリセット
         }
         else
