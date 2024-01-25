@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 public class MainMenuUIController : MonoBehaviour
@@ -22,6 +23,9 @@ public class MainMenuUIController : MonoBehaviour
         EventCenter.Subscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Subscribe(ButtonEvents.quitButton, OnQuitButtonClicked);
 
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
+
     }
 
     private void OnDisable()
@@ -29,10 +33,16 @@ public class MainMenuUIController : MonoBehaviour
         EventCenter.Unsubscribe(ButtonEvents.startButton, OnStartButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.quitButton, OnQuitButtonClicked);
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     private void Start()
     {
+        Cursor.visible = false;                     // マウスカーソルを不可視にします。
+        Cursor.lockState = CursorLockMode.Locked;   // マウスカーソルをロックする。
+
         GameManager.GameState = GameState.MainMenu;
         UIInput.Instance.SelectUI(buttonStart);
         operationPanel.SetActive(false);

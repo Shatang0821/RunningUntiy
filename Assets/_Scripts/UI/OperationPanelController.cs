@@ -8,11 +8,17 @@ public class OperationPanelController : MonoBehaviour
     private void OnEnable()
     {
         UIInput.Instance.DisableUIInputs();
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     private void OnDisable()
     {
         UIInput.Instance.EnableUIInputs();
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
     // Update is called once per frame
     void Update()

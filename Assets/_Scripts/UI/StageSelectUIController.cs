@@ -26,12 +26,18 @@ public class StageSelectUIController : MonoBehaviour
     {
         EventCenter.Subscribe(stages[0].name, LoadTutorial);
         EventCenter.Subscribe(stages[1].name, LoadStage1);
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     private void OnDisable()
     {
         EventCenter.Unsubscribe(stages[0].name, LoadTutorial);
         EventCenter.Unsubscribe(stages[1].name, LoadStage1);
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     private void Update()

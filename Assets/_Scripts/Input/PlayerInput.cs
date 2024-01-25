@@ -176,7 +176,7 @@ public class PlayerInput : ScriptableObject
     /// <summary>
     /// UI“ü—Íƒ}ƒbƒv‚ÉØ‚è‘Ö‚¦‚é
     /// </summary>
-    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,true);
+    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,false);
 
     #endregion
 

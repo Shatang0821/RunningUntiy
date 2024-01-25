@@ -26,6 +26,9 @@ public class PlayerDashState : PlayerState
         
         player.SetUseGravity(0);
 
+        // ダッシュ方向に速度を設定
+        dashDir = (dirInput == Vector2.zero) ? facDashDir : dirInput.normalized;
+
         // カメラを揺らす
         CameraController.Instance.CameraShake(0.1f, 0.1f);
 
@@ -81,7 +84,6 @@ public class PlayerDashState : PlayerState
     {
         base.PhysicUpdate();
         // ダッシュ方向に速度を設定
-        var dashDir = (dirInput == Vector2.zero) ? facDashDir : dirInput.normalized;
         player.SetVelocity(dashSpeed * dashDir);
     }
 

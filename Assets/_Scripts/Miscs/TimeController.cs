@@ -5,7 +5,9 @@ using UnityEngine;
 public class TimeController : MonoBehaviour
 {
     //一時停止前のスケールを記録する
-    float currentScale;
+    private float currentScale;
+
+    private Coroutine countCoroutine;
 
     private void OnEnable()
     {
@@ -37,6 +39,34 @@ public class TimeController : MonoBehaviour
     {
         Time.timeScale = currentScale;
         EventCenter.TriggerEvent(InputEvents.FixedInput);
+    }
+
+    /// <summary>
+    /// カウントコルーチンを開始
+    /// </summary>
+    private void StartCount()
+    {
+        if(countCoroutine == null)
+        {
+            countCoroutine = StartCoroutine(nameof(CountTimer));
+        }
+        
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    private void StopCount()
+    {
+        if(countCoroutine != null)
+        {
+            StopCoroutine(nameof(CountTimer));
+        }
+    }
+
+    private IEnumerator CountTimer()
+    {
+        yield return null;
     }
 
 }
