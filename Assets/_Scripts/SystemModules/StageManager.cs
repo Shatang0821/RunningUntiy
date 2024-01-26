@@ -28,7 +28,7 @@ public class StageManager : Singleton<StageManager>
             child.gameObject.SetActive(false);
             yield return null;
         }
-        //アクティブ化にするステージを更新する
+        //アクティブ化の必要のあるステージを更新する
         UpdateStageIndex(currentIndex);
     }
 
@@ -67,6 +67,7 @@ public class StageManager : Singleton<StageManager>
     /// <param name="isActive">アクティブ状態</param>
     private void SetStageActive(int stageIndex, bool isActive)
     {
+        //リスト内にあるステージをチェック
         if (stageIndex >= 0 && stageIndex < stages.Count)
         {
             stages[stageIndex].SetActive(isActive);

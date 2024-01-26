@@ -7,8 +7,6 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         currentFrame = 0;
-
-
         base.Enter();
     }
 
@@ -29,8 +27,6 @@ public class PlayerGroundedState : PlayerState
             stateMachine.SwitchState(typeof(PlayerJumpState));
             return;
         }
-            
-
         // 地面を検出していない場合の処理
         if (!player.IsGroundDetected() && !Dash)
             stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
@@ -54,10 +50,13 @@ public class PlayerGroundedState : PlayerState
     /// <param name="totalFrames">最高速度に達するまでのフレーム数</param>
     protected void ChangeVelocity(float targetSpeed, int currentFrame, int totalFrames)
     {
+        
         if (currentFrame < totalFrames)
         {
-            float lerpFactor = (float)currentFrame / totalFrames;
-            float currentVelocityX = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpFactor);
+            //フレームごとの比率を計算する
+            var lerpFactor = (float)currentFrame / totalFrames;
+            //速度を変化させる
+            var currentVelocityX = Mathf.Lerp(rb.velocity.x, targetSpeed, lerpFactor);
             player.SetVelocityX(currentVelocityX);
         }
         else

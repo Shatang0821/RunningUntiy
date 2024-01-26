@@ -5,18 +5,13 @@ using UnityEngine.Tilemaps;
 
 public class TileGenerator : MonoBehaviour
 {
-    [SerializeField] Tilemap tilemap;
-    [SerializeField] TileBase tileBase; // 
-    [SerializeField] GameObject prefab;
-    [SerializeField] Vector3 spawnPos;
-
+    [SerializeField] Tilemap tilemap;       //使用するタイルマップ
+    [SerializeField] TileBase tileBase;     //生成するオブジェクトのベースタイル
+    [SerializeField] GameObject prefab;     //生成するプレハブ
+    [SerializeField] Vector3 spawnPos;      //生成する位置
     private void Awake()
     {
-        Generator();
-    }
-    protected virtual void OnEnable()
-    {
-        
+        Generator(); // 起動時にジェネレーター関数を呼び出す
     }
 
     /// <summary>
@@ -24,30 +19,25 @@ public class TileGenerator : MonoBehaviour
     /// </summary>
     protected void Generator()
     {
-        //Debug.Log("in the method");
-        foreach (var pos in tilemap.cellBounds.allPositionsWithin)
+        foreach (var pos in tilemap.cellBounds.allPositionsWithin) // タイルマップの全セルをループ
         {
-            
-            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z);
-            if (!tilemap.HasTile(localPlace)) continue;
-            //Debug.Log("in the Loop");
+            Vector3Int localPlace = new Vector3Int(pos.x, pos.y, pos.z); // 現在のセル位置を取得
+            if (!tilemap.HasTile(localPlace)) continue; // タイルがない場合はスキップ
+
             TileBase tile = tilemap.GetTile(localPlace);
-            if (tile != null && tile == tileBase) // 
+            if (tile != null && tile == tileBase) // 指定したタイルが見つかった場合
             {
-                //Debug.Log("in the generator");
-                Vector3 worldPosition = tilemap.CellToWorld(localPlace);
+                Vector3 worldPosition = tilemap.CellToWorld(localPlace); // セルのワールド座標を取得
 
+                // プレハブを生成して位置を設定
                 GameObject spawnedObject = Instantiate(prefab, worldPosition + spawnPos, Quaternion.identity, this.transform);
-                // 
 
-               // GameObject spawnedObject = PoolManager.Release(prefab, worldPosition += spawnPos);
-
-                //正しい位置に回転させる
+                // タイルの変換行列を使用して正しい位置に回転させる
                 Matrix4x4 tileMatrix = tilemap.GetTransformMatrix(localPlace);
                 spawnedObject.transform.rotation = tileMatrix.rotation;
             }
         }
 
-        tilemap.gameObject.SetActive(false);
+        tilemap.gameObject.SetActive(false); // タイルマップを非表示にする
     }
 }
