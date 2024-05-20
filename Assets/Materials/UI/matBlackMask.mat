@@ -69,7 +69,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _Radius: 2000
     m_Colors:
-    - _Center: {r: -14.537796, g: -292.9127, b: 0, a: 0}
+    - _Center: {r: 0.0001472075, g: -0.00007360375, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _MaskColor: {r: 0, g: 0, b: 0, a: 1}

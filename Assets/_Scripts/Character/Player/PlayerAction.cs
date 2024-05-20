@@ -15,7 +15,7 @@ public class PlayerAction : MonoBehaviour
 
     #region DASH
     public GameObject dashGhost;
-    public bool dashTrigger { get; private set; } // ƒ_ƒbƒVƒ…§ŒÀ
+    public bool dashTrigger { get; private set; } // ãƒ€ãƒƒã‚·ãƒ¥åˆ¶é™
     public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
     public GameObject dashMask;
     private SpriteRenderer dashMaskSprite;
@@ -38,7 +38,7 @@ public class PlayerAction : MonoBehaviour
     }
 
     #region JUMP METHOD
-    // ƒWƒƒƒ“ƒv“ü—Íƒoƒbƒtƒ@‚Ìİ’è
+    // ã‚¸ãƒ£ãƒ³ãƒ—å…¥åŠ›ãƒãƒƒãƒ•ã‚¡ã®è¨­å®š
     public void SetJumpInputBufferTimer()
     {
         StopCoroutine(nameof(JumpInputBufferCoroutine));

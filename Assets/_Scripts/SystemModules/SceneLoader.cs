@@ -10,6 +10,7 @@ public class SceneLoader : PersistentSingleton<SceneLoader>
     const string SCENESELECT = "StageSelect";
     void Load(string sceneName)
     {
+        EventCenter.TriggerEvent(InputEvents.StopGamepadVibration);
         SceneManager.LoadScene(sceneName);
     }
 

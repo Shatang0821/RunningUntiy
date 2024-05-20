@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/WallJump", fileName = "PlayerState_WallJump")]
 public class PlayerWallJumpState : PlayerAirState
 {
-    [SerializeField] private float jumpDuration;  // •ÇƒWƒƒƒ“ƒv‚Ì‘±ŠÔ
-    [SerializeField] private Vector2 jumpVelocity; // •ÇƒWƒƒƒ“ƒv‚Ì‘¬“x
+    [SerializeField] private float jumpDuration;  // å£ã‚¸ãƒ£ãƒ³ãƒ—ã®æŒç¶šæ™‚é–“
+    [SerializeField] private Vector2 jumpVelocity; // å£ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã®é€Ÿåº¦
 
     public override void Enter()
     {
         //Debug.Log("PlayerWallJump");
         base.Enter();
         AudioManager.Instance.PlaySFX(playerAudioController.jumpSFX);
-        // ƒWƒƒƒ“ƒv‚Ì‘±ŠÔ‚ğİ’è
+        // ã‚¸ãƒ£ãƒ³ãƒ—ã®æŒç¶šæ™‚é–“ã‚’è¨­å®š
         stateTimer = jumpDuration;
-        // •Ç‚©‚ç—£‚ê‚é•ûŒü‚É‘¬“x‚ğİ’è
+        // å£ã‹ã‚‰é›¢ã‚Œã‚‹æ–¹å‘ã«é€Ÿåº¦ã‚’è¨­å®š
         player.SetVelocity(jumpVelocity);
 
-        // ƒWƒƒƒ“ƒv‚Ìƒp[ƒeƒBƒNƒ‹ƒGƒtƒFƒNƒg‚ğÄ¶
+        // ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã®ãƒ‘ãƒ¼ãƒ†ã‚£ã‚¯ãƒ«ã‚¨ãƒ•ã‚§ã‚¯ãƒˆã‚’å†ç”Ÿ
         playerParticleController.jumpParticle.Play();
     }
 
@@ -30,15 +30,15 @@ public class PlayerWallJumpState : PlayerAirState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        // ƒWƒƒƒ“ƒv‚Ì‘±ŠÔ‚ªI—¹‚µ‚½‚çA—‰ºó‘Ô‚ÉØ‚è‘Ö‚¦‚é
+        if(stateMachine.CheckCurrentState(this)) return;
+        // ã‚¸ãƒ£ãƒ³ãƒ—ã®æŒç¶šæ™‚é–“ãŒçµ‚äº†ã—ãŸã‚‰ã€è½ä¸‹çŠ¶æ…‹ã«åˆ‡ã‚Šæ›¿ãˆã‚‹
         if (stateTimer < 0)
             stateMachine.SwitchState(typeof(PlayerFallState));
     }
 
     public override void PhysicUpdate()
     {
-        // •ÇƒWƒƒƒ“ƒv‚ÌX²•ûŒü‚Ì‘¬“x‚ğİ’èiƒvƒŒƒCƒ„[‚ÌŒü‚«‚ÉˆË‘¶j
+        // å£ã‚¸ãƒ£ãƒ³ãƒ—æ™‚ã®Xè»¸æ–¹å‘ã®é€Ÿåº¦ã‚’è¨­å®šï¼ˆãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®å‘ãã«ä¾å­˜ï¼‰
         player.SetVelocityX(jumpVelocity.x * player.facingDir);
     }
 }

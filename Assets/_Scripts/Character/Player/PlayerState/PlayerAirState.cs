@@ -9,28 +9,14 @@ public class PlayerAirState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        //d—Í‚Ìİ’è
+        //é‡åŠ›ã®è¨­å®š
         player.SetUseGravity(gravity);
     }
-
-    //d—Í‚ğŠî‚É–ß‚·
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()  
-    {
-
-        base.LogicUpdate();
-
-    }
-
     
     public override void PhysicUpdate()
     {
         base.PhysicUpdate();
-        //‹ó’†‚Å‚àˆÚ“®‚Å‚«‚é‚æ‚¤‚É‚·‚é
+        //ç©ºä¸­ã§ã‚‚ç§»å‹•ã§ãã‚‹ã‚ˆã†ã«ã™ã‚‹
         player.SetVelocityX(xInput * moveSpeed);
     }
 }

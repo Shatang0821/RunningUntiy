@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class GamePlayUIController : MonoBehaviour
@@ -33,6 +34,9 @@ public class GamePlayUIController : MonoBehaviour
         EventCenter.Subscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
         EventCenter.Subscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Subscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     private void OnDisable()
@@ -43,6 +47,9 @@ public class GamePlayUIController : MonoBehaviour
         EventCenter.Unsubscribe(ButtonEvents.resumeButton, OnResumeButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.optionButton, OnOptionButtonClicked);
         EventCenter.Unsubscribe(ButtonEvents.mainMenuButton, OnMainMenuButtonClicked);
+
+        // 振動を停止し、パラメータリセット
+        InputSystem.ResetHaptics();
     }
 
     /// <summary>

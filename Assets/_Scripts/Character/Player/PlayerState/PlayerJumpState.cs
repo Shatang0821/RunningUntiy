@@ -32,10 +32,15 @@ public class PlayerJumpState : PlayerAirState
         player.FlipController(xInput);
 
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
+        
         // 上昇が終わり、下降を始めたら落下状態に切り替える
-        if (rb.velocity.y<=0 && !Dash)
+        if (rb.velocity.y <= 0 && !Dash)
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
 
         // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
         if ((playerAction.HasJumpInputBuffer || Jump) && player.IsWallDetected() && stateTimer <0)

@@ -154,9 +154,7 @@ public class PlayerInput : ScriptableObject
     //public void SwitchToDynamicUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
     public void SwitchToDynamicUpdateMode()
     {
-        Debug.Log(InputSystem.settings.updateMode.ToString());
         InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInDynamicUpdate;
-        Debug.Log(InputSystem.settings.updateMode.ToString());
     }
     /// <summary>
     /// 入力をProcessEventsInFixedUpdateに変える
@@ -164,9 +162,7 @@ public class PlayerInput : ScriptableObject
     //public void SwitchToFixedUpdateMode() => InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
     public void SwitchToFixedUpdateMode()
     {
-        Debug.Log(InputSystem.settings.updateMode.ToString());
         InputSystem.settings.updateMode = InputSettings.UpdateMode.ProcessEventsInFixedUpdate;
-        Debug.Log(InputSystem.settings.updateMode.ToString());
     }
     /// <summary>
     /// ゲーム内でキャラクターを操作する時に入力を有効化するメソッド。
@@ -176,7 +172,7 @@ public class PlayerInput : ScriptableObject
     /// <summary>
     /// UI入力マップに切り替える
     /// </summary>
-    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,true);
+    private void EnablePauseMenuInput() => SwitchActionMap(inputActions.PauseMenu,false);
 
     #endregion
 

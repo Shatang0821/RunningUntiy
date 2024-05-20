@@ -12,7 +12,6 @@ public class PlayerMoveState : PlayerGroundedState
     float counter;                                         // 移動パーティクルエフェクトのタイマー
     float TargetVelocityX => xInput * moveSpeed;           // 目標のX軸上の速度
 
-
     public override void Enter()
     {
         base.Enter();
@@ -27,10 +26,14 @@ public class PlayerMoveState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
         // 入力がなくなった場合、アイドル状態に切り替える
         if (xInput == 0)
+        {
             stateMachine.SwitchState(typeof(PlayerIdleState));
+            return;
+        }
+            
 
 
         // 移動パーティクルエフェクトのタイマーを更新
@@ -42,7 +45,7 @@ public class PlayerMoveState : PlayerGroundedState
         base.PhysicUpdate();
 
         // 加速しながら目標速度に向けて速度を変更
-        ChangeVelocity(TargetVelocityX, currentFrame, accelerationFrames);
+        ChangeVelocity(TargetVelocityX, accelerationFrames);
 
         // 移動パーティクルエフェクトの再生間隔を制御
         if (counter > 0.1)
