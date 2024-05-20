@@ -43,17 +43,24 @@ public class PlayerClimbState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        //Debug.Log(xInput);
+        if(stateMachine.CheckCurrentState(this)) return;
 
         SetFacingDir();
         // プレイヤーが登っていない場合、PlayerIdleState状態に切り替える。
         if (!Climb)
+        {
             stateMachine.SwitchState(typeof(PlayerIdleState));
+            return;
+        }
+            
 
         // プレイヤーが壁を検出し、入力方向がプレイヤーの向いている方向と一致し、かつ登っていない場合、PlayerWallSlideState状態に切り替える。
         if (player.IsWallDetected() && xInput == player.facingDir && !Climb)
+        {
             stateMachine.SwitchState(typeof(PlayerWallSlideState));
+            return;
+        }
+            
 
         // プレイヤーがジャンプ中に壁を検出した場合。
         if (Jump && player.IsWallDetected())
@@ -65,20 +72,32 @@ public class PlayerClimbState : PlayerState
                 player.Flip();
                 //PlayerWallJumpState状態に切り替える。
                 stateMachine.SwitchState(typeof(PlayerWallJumpState));
+                return;
             }
-            //そうでなければプレイヤーのを反転せず
             else
+            {
+                //そうでなければプレイヤーのを反転せず
                 stateMachine.SwitchState(typeof(PlayerWallJumpState));
+                return;
+            }
         }
 
         // プレイヤーが壁を検出していない場合、PlayerFallState状態に切り替える。
         //要修正
-        if (!player.IsWallDetected())
+        if (!player.IsWallDetected() && yInput == 0)
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
 
         //登る途中で壁を検出していない場合、PlayerClimbLeapState状態に切り替える
         if (!player.IsWallDetected() && yInput > 0 && !Jump)
+        {
             stateMachine.SwitchState(typeof(PlayerClimbLeapState));
+            return;
+        }
+            
             
     }
 
@@ -92,8 +111,11 @@ public class PlayerClimbState : PlayerState
         else
             player.SetVelocityY(0);
     }
-
-    void SetFacingDir()
+    
+    /// <summary>
+    /// ジャンプ方向設定
+    /// </summary>
+    private void SetFacingDir()
     {
         // ジャンプ方向の設定...
         if (player.facingDir == xInput || xInput == 0)

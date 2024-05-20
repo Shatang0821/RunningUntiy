@@ -14,10 +14,6 @@ public class TileGenerator : MonoBehaviour
     {
         Generator();
     }
-    protected virtual void OnEnable()
-    {
-        
-    }
 
     /// <summary>
     /// 指定したタイルに指定したプレハブを生成

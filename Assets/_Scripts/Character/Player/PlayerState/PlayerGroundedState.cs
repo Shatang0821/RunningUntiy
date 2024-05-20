@@ -7,8 +7,7 @@ public class PlayerGroundedState : PlayerState
     public override void Enter()
     {
         currentFrame = 0;
-
-
+        
         base.Enter();
     }
 
@@ -20,7 +19,7 @@ public class PlayerGroundedState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
         // 入力に基づいてプレイヤーの向きを制御
         player.FlipController(xInput);
         // ジャンプ入力がある場合、ジャンプ状態に切り替える
@@ -33,11 +32,19 @@ public class PlayerGroundedState : PlayerState
 
         // 地面を検出していない場合の処理
         if (!player.IsGroundDetected() && !Dash)
+        {
             stateMachine.SwitchState(typeof(PlayerCoyoteTimeState));
+            return;
+        }
+            
 
         // 壁に接触していて、登る入力がある場合、登り状態に切り替える
         if (player.IsWallDetected() && Climb)
+        {
             stateMachine.SwitchState(typeof(PlayerClimbState));
+            return;
+        }
+            
     }
 
     public override void PhysicUpdate()
@@ -52,7 +59,7 @@ public class PlayerGroundedState : PlayerState
     /// <param name="targetSpeed">目標速度</param>
     /// <param name="currentFrame">現在のフレーム数</param>
     /// <param name="totalFrames">最高速度に達するまでのフレーム数</param>
-    protected void ChangeVelocity(float targetSpeed, int currentFrame, int totalFrames)
+    protected void ChangeVelocity(float targetSpeed,  int totalFrames)
     {
         if (currentFrame < totalFrames)
         {

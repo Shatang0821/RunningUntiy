@@ -20,6 +20,7 @@ public class PlayerLandState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(stateMachine.CheckCurrentState(this)) return;
         // ジャンプ入力バッファがある場合、ジャンプ状態に切り替える
         if (playerAction.HasJumpInputBuffer)
         {
@@ -29,15 +30,27 @@ public class PlayerLandState : PlayerState
 
         // 地面にいない場合、落下状態に切り替える
         if (!player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
 
         // 入力がない場合、アイドル状態に切り替える
-        if (xInput ==0 )
+        if (xInput == 0)
+        {
             stateMachine.SwitchState(typeof(PlayerIdleState));
+            return;
+        }
+            
 
         // 入力があり、かつ地面にいる場合、移動状態に切り替える
         if (xInput != 0 && player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerMoveState));
+            return;
+        }
+            
     }
 
     public override void PhysicUpdate()

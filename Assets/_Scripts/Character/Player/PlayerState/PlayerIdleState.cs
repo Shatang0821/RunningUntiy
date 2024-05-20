@@ -19,13 +19,22 @@ public class PlayerIdleState : PlayerGroundedState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
+        
         // 入力があり、かつ地面にいる場合、移動状態に切り替える
         if (xInput != 0 && player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerMoveState));
+            return;
+        }
 
-        if(!player.IsGroundDetected())
+
+        if (!player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
     }
 
     public override void PhysicUpdate()
@@ -33,6 +42,6 @@ public class PlayerIdleState : PlayerGroundedState
         base.PhysicUpdate();
 
         // 減速処理。現在のフレームと減速に要するフレーム数を基に速度を調整
-        ChangeVelocity(0, currentFrame, decelerationFrames);
+        ChangeVelocity(0, decelerationFrames);
     }
 }

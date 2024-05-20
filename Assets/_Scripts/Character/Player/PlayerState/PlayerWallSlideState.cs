@@ -31,29 +31,33 @@ public class PlayerWallSlideState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
         // 地面に着いた場合、アイドル状態に切り替える
         if (player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerIdleState));
+            return;
+        }
+            
 
         // 壁から離れたり、入力が反対方向の場合、落下状態に切り替える
         if (xInput == (player.facingDir * -1) || xInput == 0 || !player.IsWallDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
 
         // ジャンプ入力がある場合、壁ジャンプ状態に切り替える
         if (Jump && player.IsWallDetected())
         {
             player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
+            return;
         }
 
         // 登る入力がある場合、登り状態に切り替える
         if (Climb)
             stateMachine.SwitchState(typeof(PlayerClimbState));
-    }
-
-    public override void PhysicUpdate()
-    {
-        base.PhysicUpdate();
     }
 }

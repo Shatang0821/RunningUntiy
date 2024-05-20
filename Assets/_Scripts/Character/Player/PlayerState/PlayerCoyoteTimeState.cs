@@ -21,11 +21,20 @@ class PlayerCoyoteTimeState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if(stateMachine.CheckCurrentState(this)) return;
         if (input.Jump)
+        {
             stateMachine.SwitchState(typeof(PlayerJumpState));
+            return;
+        }
+
 
         if (stateTimer < 0 && !Dash)
+        {
             stateMachine.SwitchState(typeof(PlayerFallState));
+            return;
+        }
+            
     }
 
     public override void PhysicUpdate()

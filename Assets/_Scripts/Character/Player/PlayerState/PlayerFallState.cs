@@ -21,17 +21,30 @@ public class PlayerFallState : PlayerAirState
         player.FlipController(xInput);
 
         base.LogicUpdate();
-
+        if(stateMachine.CheckCurrentState(this)) return;
+        
         // 地面に着地したかチェックし、着地状態に切り替える
         if (player.IsGroundDetected())
+        {
             stateMachine.SwitchState(typeof(PlayerLandState));
+            return;
+        }
+           
         // ジャンプ入力がある場合、ジャンプバッファタイマーを設定
         if (Jump && !player.IsWallDetected())
+        {
             playerAction.SetJumpInputBufferTimer();
+            return;
+        }
+            
 
         // 壁に接触していて、入力方向がプレイヤーの向いている方向と一致する場合、壁滑り状態に切り替える
-        if (player.IsWallDetected() && xInput ==player.facingDir)
+        if (player.IsWallDetected() && xInput == player.facingDir)
+        {
             stateMachine.SwitchState(typeof(PlayerWallSlideState));
+            return;
+        }
+            
 
         // 壁に接触していて、ジャンプ入力がある場合、壁ジャンプ状態に切り替える
         if (Jump && player.IsWallDetected())
@@ -39,11 +52,16 @@ public class PlayerFallState : PlayerAirState
             //反対側にジャンプするため向きを変更
             player.Flip();
             stateMachine.SwitchState(typeof(PlayerWallJumpState));
+            return;
         }
 
         // 壁に接触していて、登る入力がある場合、登り状態に切り替える
         if (player.IsWallDetected() && Climb)
-            stateMachine.SwitchState(typeof (PlayerClimbState));    
+        {
+            stateMachine.SwitchState(typeof (PlayerClimbState));  
+            return;
+        }
+              
             
             
     }
