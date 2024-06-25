@@ -177,6 +177,10 @@ public class PlayerInput : ScriptableObject
     #endregion
 
     #region Pause
+    
+    /// <summary>
+    /// ポーズ イベント
+    /// </summary>
     private void OnPause(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -184,7 +188,11 @@ public class PlayerInput : ScriptableObject
             OnPause();
         }
     }
-
+    
+    /// <summary>
+    /// ポーズキャンセル イベント
+    /// </summary>
+    /// <param name="context"></param>
     private void UnPause(InputAction.CallbackContext context)
     {
         if(context.performed)
@@ -202,7 +210,10 @@ public class PlayerInput : ScriptableObject
         EventCenter.TriggerEvent(TimeEvents.StopTime);          //TimeScaleを0にする
         EventCenter.TriggerEvent(UIEvents.ShowMenuBar);         //メニューを表示させる
     }
-
+    
+    /// <summary>
+    /// ポーズ中止で呼び出す処理
+    /// </summary>
     private void UnPause()
     {
         EventCenter.TriggerEvent(UIEvents.UnPause);

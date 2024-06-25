@@ -5,18 +5,18 @@ using UnityEngine;
 public class PlayerGenerator : Singleton<PlayerGenerator>
 {
     [Header("Spawn Info")]
-    [SerializeField] GameObject playerSprite;
+    [SerializeField] GameObject playerSprite;   //カットシーンのプレイヤー
 
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player;//プレイヤープレハブ
 
     [SerializeField] Transform spawnPos;    //生成場合
 
-    [SerializeField] GameObject appearVFX;
+    [SerializeField] GameObject appearVFX;  //生成アニメーション
 
     [SerializeField] bool spawnPlayer;//生成制御する
 
     [Header("Coroutine Info")]
-    [SerializeField] float deathEffectDelay;
+    [SerializeField] float deathEffectDelay;//死亡エフェクト時間
     WaitForSeconds waitForEffect;
 
     [Header("Audio Info")]
@@ -65,7 +65,7 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
     {
         if (firstSpawn)
         {
-            //StartCoroutine(BlackMaskController.Instance.ScaleInOut(playerSprite, 145f, 2f));
+            //一回目の生成時だけエフェクトが違う
             yield return StartCoroutine(BlackMaskController.Instance.ScaleInOut(145f, 1f,playerSprite));
             firstSpawn = false;
 
@@ -97,7 +97,11 @@ public class PlayerGenerator : Singleton<PlayerGenerator>
         //ゲーム入力を有効化にする
         EventCenter.TriggerEvent(InputEvents.EnableGameInput);
     }
-
+    
+    /// <summary>
+    /// リスポーン位置設定
+    /// </summary>
+    /// <param name="transform"></param>
     public void SetSpawnPos(Transform transform)
     {
         spawnPos = transform;

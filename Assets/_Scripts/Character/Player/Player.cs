@@ -4,21 +4,17 @@ using UnityEngine;
 public class Player : Entity
 {
     [HideInInspector]
-    public PlayerAction PlayerAction;
+    public PlayerAction PlayerAction;                           //アクション制御コンポーネント
     [HideInInspector]
-    public PlayerParticleController PlayerParticleController;
+    public PlayerParticleController PlayerParticleController;   //パーティクル制御コンポーネント
     [HideInInspector]
-    public PlayerAudioController PlayerAudioController;
+    public PlayerAudioController PlayerAudioController;         //効果音制御コンポーネント
 
     [Header("Collision info")]
     public Transform enemyCheck;
     public Vector2 attackDistance;
     public LayerMask whatIsEnemy;
-
-    //public GameObject dashGhost;
-    //public bool dashItemGet = false;
-    //[HideInInspector]
-    //public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
+    
     private void Initialize()
     {
         PlayerAction = GetComponent<PlayerAction>();
@@ -47,8 +43,7 @@ public class Player : Entity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag == "Traps" && !isDeaded) Die();
-        if (collision.collider.tag == "Enemy" && !isDeaded) Die();
+        if (collision.collider.CompareTag("Traps") && !isDeaded) Die();
     }
 
     public override void Die()

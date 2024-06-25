@@ -10,12 +10,6 @@ public class PlayerGroundedState : PlayerState
         
         base.Enter();
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();

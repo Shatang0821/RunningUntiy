@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+/// <summary>
+/// アイテム取得メソッド
+/// </summary>
 public class ItemsGet : MonoBehaviour
 {
     [SerializeField] GameObject collectVFX;
@@ -12,7 +15,6 @@ public class ItemsGet : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             this.gameObject.SetActive(false);
-            //PoolManager.Release(collectVFX, transform.position);
         }
     }
 

@@ -125,6 +125,9 @@ public class Entity : MonoBehaviour
     #endregion
 
     #region Die
+    /// <summary>
+    /// €–Sˆ—
+    /// </summary>
     public virtual void Die()
     {
         PoolManager.Release(DeathVFX, transform.position);

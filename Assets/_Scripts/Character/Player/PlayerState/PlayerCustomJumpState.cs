@@ -4,8 +4,8 @@ using UnityEngine;
 public class PlayerCustomJumpState : PlayerAirState
 {
     [Header("Jump info")]
-    [SerializeField] private float jumpTime = 0.3f;
-    private float jumpForce;    // ジャンプ力
+    [SerializeField] private float jumpTime = 0.3f; //ジャンプ継続時間
+    private float jumpForce;                        // ジャンプ力
     
 
     public override void Enter()
@@ -23,10 +23,6 @@ public class PlayerCustomJumpState : PlayerAirState
         stateTimer = jumpTime;
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
 
     public override void LogicUpdate()
     {

@@ -6,7 +6,7 @@ public class GameManager : PersistentSingleton<GameManager>
 {
     public static GameState GameState { get => Instance.gameState; set => Instance.gameState = value; }
 
-    [SerializeField] GameState gameState = GameState.Initialize;
+    [SerializeField] GameState gameState = GameState.Initialize;//ƒQ[ƒ€ó‘Ô
 
     protected override void Awake()
     {

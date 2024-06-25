@@ -11,18 +11,7 @@ public class PlayerMoveState : PlayerGroundedState
     [SerializeField] private int accelerationFrames = 6;   // 加速にかかるフレーム数
     float counter;                                         // 移動パーティクルエフェクトのタイマー
     float TargetVelocityX => xInput * moveSpeed;           // 目標のX軸上の速度
-
-    public override void Enter()
-    {
-        base.Enter();
-        
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
+    
     public override void LogicUpdate()
     {
         base.LogicUpdate();

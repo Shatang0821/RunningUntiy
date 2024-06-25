@@ -54,7 +54,7 @@ public class TimeController : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// ƒJƒEƒ“ƒg‚ğ’â~
     /// </summary>
     private void StopCount()
     {

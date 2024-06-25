@@ -12,11 +12,6 @@ public class PlayerLandState : PlayerState
         playerParticleController.fallParticle.Play();
     }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         base.LogicUpdate();
@@ -53,8 +48,4 @@ public class PlayerLandState : PlayerState
             
     }
 
-    public override void PhysicUpdate()
-    {
-        base.PhysicUpdate();
-    }
 }

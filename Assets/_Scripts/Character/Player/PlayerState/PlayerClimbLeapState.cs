@@ -6,7 +6,7 @@ public class PlayerClimbLeapState : PlayerAirState
 {
     [Header("Jump info")]
     [SerializeField] private float JumpForce = 2;    // ジャンプ力
-    [SerializeField] private float jumpTime = 0.3f;
+    [SerializeField] private float jumpTime = 0.3f;  //ジャンプ継続時間
 
     public override void Enter()
     {
@@ -20,12 +20,6 @@ public class PlayerClimbLeapState : PlayerAirState
 
         stateTimer = jumpTime;
     }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
     public override void LogicUpdate()
     {
         // 入力に基づいてプレイヤーの向きを制御
@@ -52,11 +46,6 @@ public class PlayerClimbLeapState : PlayerAirState
         }
 
 
-    }
-
-    public override void PhysicUpdate()
-    {
-        base.PhysicUpdate();
     }
 
 }

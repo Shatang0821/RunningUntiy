@@ -70,7 +70,6 @@ public class PlayerState : ScriptableObject, IState
         {
             EventCenter.TriggerEvent(StateEvents.SetDashTrigger, true);
         }
-//        Debug.Log(stateMachine.currentState);
     }
 
     // 状態から出る時の処理

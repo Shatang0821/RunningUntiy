@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerAirState : PlayerState
 {
     [Header("AirMove info")]
-    [SerializeField] float moveSpeed = 2f;
-    [SerializeField] float gravity;
+    [SerializeField] float moveSpeed = 2f;  //空中での移動速度
+    [SerializeField] float gravity;         //落下にかかる重力
 
     public override void Enter()
     {

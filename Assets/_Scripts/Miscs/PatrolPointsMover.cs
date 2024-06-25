@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
-
-
+/// <summary>
+/// ギミックのパトロール制御クラス
+/// </summary>
 public class PatrolPointsMover : MonoBehaviour
 {
     private enum PatrolType
     {
         Loop,     // 1234, 1234...
-        Static,
+        Static,   //静的
         PingPong  // 1234321, 1234321...
     }
     [Header("Move Info")]
     [SerializeField] private PatrolType patrolType; // 列挙型を使う
 
-    [SerializeField] public List<Transform> points;
-    [SerializeField] private float moveSpeed;
+    [SerializeField] public List<Transform> points; //移動先
+    [SerializeField] private float moveSpeed;       //移動速度
     
-    private int pointIndex = 0;
+    private int pointIndex = 0;//移動先添え字
     private bool isGoingForward = true; //ポイントに向かって前進しているかを追跡
     private void Awake()
     {
@@ -44,6 +44,7 @@ public class PatrolPointsMover : MonoBehaviour
     }
     private IEnumerator MoveToPoints()
     {
+        //生きているならずっと動く
         while (this.isActiveAndEnabled)
         {
             Transform currentPoint = points[pointIndex];

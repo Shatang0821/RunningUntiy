@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 自動削除(非アクティブ)制御クラス
+/// </summary>
 public class AutoDeactivate : MonoBehaviour
 {
     [SerializeField] bool autoStartCoroutine = true; // コルーチンを自動開始、デフォルトはtrue
-    [SerializeField] bool destroyGameObject;
-    [SerializeField] float lifetime = 3f;
+    [SerializeField] bool destroyGameObject;         // trueは削除falseは非アクティブ
+    [SerializeField] float lifetime = 3f;            // オブジェクトの生存時間
 
     WaitForSeconds waitLifetime;
 

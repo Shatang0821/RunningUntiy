@@ -3,8 +3,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Data/StateMachine/PlayerState/CoyoteTime", fileName = "PlayerState_Coyote")]
 class PlayerCoyoteTimeState : PlayerState
 {
-    [SerializeField] float coyoteTime = 0.1f;
-    [SerializeField] float moveSpeed;
+    [SerializeField] float coyoteTime = 0.1f;       //コヨテタイム継続時間
+    [SerializeField] float moveSpeed;               //移動速度
 
     public override void Enter()
     {

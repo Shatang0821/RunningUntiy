@@ -5,16 +5,6 @@ public class PlayerIdleState : PlayerGroundedState
 {
     [Header("deceleration info")]
     [SerializeField] private int decelerationFrames = 3; // 減速に要するフレーム数
-    public override void Enter()
-    {
-        base.Enter();
-        //Debug.Log("Idle");
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 
     public override void LogicUpdate()
     {
@@ -27,8 +17,7 @@ public class PlayerIdleState : PlayerGroundedState
             stateMachine.SwitchState(typeof(PlayerMoveState));
             return;
         }
-
-
+        
         if (!player.IsGroundDetected())
         {
             stateMachine.SwitchState(typeof(PlayerFallState));

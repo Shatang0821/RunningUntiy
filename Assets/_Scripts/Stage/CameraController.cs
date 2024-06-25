@@ -13,22 +13,29 @@ public class CameraController : Singleton<CameraController>
         base.Awake();
         mainCamera = Camera.main;
     }
-    // カメラの位置を変更するメソッド
+    /// <summary>
+    /// カメラの位置を変更するメソッド
+    /// </summary>
+    /// <param name="target"></param>
     public void ChangeCameraPos(Transform target)
     {
         StartCoroutine(ChangeCameraPosCoroutine(target.position));
     }
 
+    /// <summary>
+    /// カメラの位置変更処理
+    /// </summary>
+    /// <param name="cameraPos"></param>
+    /// <returns></returns>
     private IEnumerator ChangeCameraPosCoroutine(Vector3 cameraPos)
     {
         EventCenter.TriggerEvent(TimeEvents.StopTime);
         EventCenter.TriggerEvent(InputEvents.StopGamepadVibration);
-        //Debug.Log(cameraPos);
+        
         while (this.transform.position != cameraPos)
         {
             if (GameManager.GameState == GameState.Playing)
             {
-                //Debug.Log("move");
                 this.transform.position = Vector3.MoveTowards(this.transform.position, cameraPos, cameraSpeed * Time.unscaledDeltaTime);
                 yield return new WaitForSecondsRealtime(0.02f);
             }
@@ -42,7 +49,12 @@ public class CameraController : Singleton<CameraController>
     }
 
     #region カメラシェーク
-    // カメラシェークのメソッド
+    
+    /// <summary>
+    /// カメラシェーク
+    /// </summary>
+    /// <param name="intensity">強さ</param>
+    /// <param name="duration">継続時間</param>
     public void CameraShake(float intensity, float duration)
     {
         StartCoroutine(DoCameraShake(intensity, duration));

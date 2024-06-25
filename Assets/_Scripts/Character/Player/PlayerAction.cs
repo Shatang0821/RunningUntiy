@@ -5,20 +5,20 @@ using UnityEngine;
 public class PlayerAction : MonoBehaviour
 {
     #region JUMP
-    public float jumpInputBufferTime = 0.5f;
+    public float jumpInputBufferTime = 0.5f;            //ジャンプバッファの継続時間
     [HideInInspector]
     public WaitForSeconds waitJumpInputBufferTime;
     [HideInInspector]
     public bool HasJumpInputBuffer { get; private set; }
-    public float customJumpForce { get; private set; }
+    public float customJumpForce { get; private set; }  //カスタムジャンプの力設定      
     #endregion
 
     #region DASH
-    public GameObject dashGhost;
-    public bool dashTrigger { get; private set; } // ダッシュ制限
-    public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;
-    public GameObject dashMask;
-    private SpriteRenderer dashMaskSprite;
+    public GameObject dashGhost;                        //ダッシュ残像
+    public bool dashTrigger { get; private set; }       // ダッシュ制限
+    public Sprite sprite => gameObject.GetComponentInChildren<SpriteRenderer>().sprite;//現在スプライトの取得
+    public GameObject dashMask;                                                        //ダッシュ可能かを示すオブジェクト
+    private SpriteRenderer dashMaskSprite;                                             //オブジェクトのスプライト
     #endregion
     public void Initialize()
     {
@@ -38,7 +38,9 @@ public class PlayerAction : MonoBehaviour
     }
 
     #region JUMP METHOD
-    // ジャンプ入力バッファの設定
+    /// <summary>
+    /// ジャンプ入力バッファの設定
+    /// </summary>
     public void SetJumpInputBufferTimer()
     {
         StopCoroutine(nameof(JumpInputBufferCoroutine));
@@ -51,7 +53,11 @@ public class PlayerAction : MonoBehaviour
         yield return waitJumpInputBufferTime;
         HasJumpInputBuffer = false;
     }
-
+    
+    /// <summary>
+    /// ジャンプ力の設定
+    /// </summary>
+    /// <param name="jumpForceObj">ジャンプ力</param>
     public void SetCustomJumpForce(object jumpForceObj)
     {
         if (jumpForceObj is float)
@@ -62,6 +68,10 @@ public class PlayerAction : MonoBehaviour
     #endregion
 
     #region DASH METHOD
+    /// <summary>
+    /// ダッシュのトリガー設定
+    /// </summary>
+    /// <param name="canDash">トリガー(Bool)</param>
     private void SetDashTrigger(object canDash)
     {
         if(canDash is bool) 
@@ -71,6 +81,10 @@ public class PlayerAction : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ダッシュ可能かを示すマスクの色設定
+    /// </summary>
+    /// <param name="canDash">ダッシュ可能か</param>
     private void SetDashMaskAlpha(bool canDash)
     {
         Color color = dashMaskSprite.color;

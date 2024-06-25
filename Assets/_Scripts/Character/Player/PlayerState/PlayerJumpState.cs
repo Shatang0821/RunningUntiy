@@ -6,7 +6,7 @@ public class PlayerJumpState : PlayerAirState
 {
     [Header("Jump info")]
     [SerializeField] private float jumpForce;    // ジャンプ力
-    [SerializeField] private float jumpTime = 0.3f;
+    [SerializeField] private float jumpTime = 0.3f; //ジャンプ継続時間
 
     public override void Enter()
     {
@@ -19,11 +19,6 @@ public class PlayerJumpState : PlayerAirState
         playerParticleController.jumpParticle.Play();
 
         stateTimer = jumpTime;
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
     }
 
     public override void LogicUpdate()
@@ -52,10 +47,4 @@ public class PlayerJumpState : PlayerAirState
 
 
     }
-
-    public override void PhysicUpdate()
-    {
-        base.PhysicUpdate();
-    }
-
 }

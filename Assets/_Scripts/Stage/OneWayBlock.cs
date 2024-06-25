@@ -6,9 +6,8 @@ public class OneWayBlock : MonoBehaviour
 {
     Collider2D childCollider;
     [Header("Jump Info")]
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float waitSeconds;
-    
+    [SerializeField] private float jumpForce;       //片方移動可能プラットフォーム
+    [SerializeField] private float waitSeconds;     //プレイヤーがすり抜けまでの時間
     WaitForSeconds waitTime;
     private void Awake()
     {
@@ -31,8 +30,9 @@ public class OneWayBlock : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag("Player"))
         {
+            //Playerの状態をカスタムジャンプに強制遷移させる
             childCollider.enabled = false;
             PlayerStateMachine playerStateMachine = collision.gameObject.GetComponent<PlayerStateMachine>();
             if(playerStateMachine != null )
@@ -46,7 +46,7 @@ public class OneWayBlock : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player" && childCollider!= null)
+        if(collision.gameObject.CompareTag("Player") && childCollider!= null)
         {
             StartCoroutine(EnableCollider(childCollider));
         }
@@ -56,7 +56,6 @@ public class OneWayBlock : MonoBehaviour
     /// 当たり判定を一定時間経てから有効にする
     /// </summary>
     /// <param name="collision">有効にするコライダー</param>
-    /// <param name="seconds">待つ時間</param>
     /// <returns></returns>
     IEnumerator EnableCollider(Collider2D collision)
     { 
