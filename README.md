@@ -12,9 +12,6 @@
 </div>
 
 **ゲーム紹介動画**
-<div>
-<iframe width="300" height="200" src="https://www.youtube.com/watch?v=QjvSPw2S2VY"></iframe>
-</div>
 
 [![ゲーム紹介動画](Image/Samune.png)](https://www.youtube.com/watch?v=QjvSPw2S2VY)
 
