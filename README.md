@@ -44,8 +44,7 @@
 プレイヤのダッシュの際に生成した残像はオブジェクトプールを使って効率よく
 <div style="display: flex; flex-wrap: nowarp;">
 <div style="display: flex; justify-content: space-between;">
-      <img src="Image/Player.png" alt="Player" style="width: 100%; margin: 1%;">
+      <img src="Image/Player.png" alt="Player" style="width: 75%; margin: 1%;">
     </div>
 </div>
-
-<a href = "Assets/_Scripts/SystemModules/StageManager.cs">コード</a>
+<a href = "Assets/_Scripts/SystemModules/StageManager.cs" target="_blank">コード</a>
