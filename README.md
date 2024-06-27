@@ -18,11 +18,11 @@
 プレイヤの前後のステージだけ描画してパフォーマンスの最適化
 <div style="display: flex; flex-wrap: wrap;">
   <div style="width: 100%; margin: 1%;">
-    <strong>エディタモードのステージ</strong>
+    <strong style="color: blue;">エディタモードのステージ</strong>
     <img src="Image/Stage02.png" alt="スクリーンショット3" style="width: 100%; margin: 1%;">
   </div>
   <div style="width: 100%; margin: 1%;">
-    <strong>ゲームモードのステージ</strong>
+    <strong style="color: blue;">ゲームモードのステージ</strong>
     <div style="display: flex; justify-content: space-between;">
       <img src="Image/Stage00.png" alt="スクリーンショット1" style="width: 49%; margin: 1%;">
       <img src="Image/Stage01.png" alt="スクリーンショット2" style="width: 49%; margin: 1%;">
