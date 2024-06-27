@@ -47,4 +47,4 @@
       <img src="Image/Player.png" alt="Player" style="width: 75%; margin: 1%;">
     </div>
 </div>
-<a href = "Assets/_Scripts/SystemModules/StageManager.cs" target="_blank">コード</a>
+<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/StageManager.cs" target="_blank">コード</a>
