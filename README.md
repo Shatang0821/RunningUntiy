@@ -11,16 +11,46 @@
   <img src="Image/RunningMan04.png" alt="スクリーンショット4" style="width: 45%; margin: 1%;">
 </div>
 
+**ゲーム紹介動画**
+[![ゲーム紹介動画](Image/Samune.png)](https://www.youtube.com/watch?v=QjvSPw2S2VY)
+
+
 ## ゲーム実行ファイルのダウンロード
+
+パッド(Xboxの方が望ましい)のみ対応しています
+
 <a href="https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link" target="_blank">ここをクリック</a>
 
 ## 技術紹介
 #### 目次
+- [キャラクター](#キャラクター)
 - [ステージ](#ステージ)
 - [オブジェクトプール](#オブジェクトプール)
 - [タイルマップ](#タイルマップ)
-- [キャラクター](#キャラクター)
 - [インスペクター拡張](#インスペクター拡張)
+- [その他](#その他)
+
+---
+
+### キャラクター
+Playerはステートマシンを使って制御しています
+
+パラメータが編集しやすくするためScriptableObjectを使って実行しながらパラメータ調整できます
+
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="Image/Player01.png" alt="スクリーンショット1" style="width: 45%; margin: 1%;">
+  <img src="Image/Player02.png" alt="スクリーンショット2" style="width: 45%; margin: 1%;">
+</div>
+
+**ジャンプ入力バッファ** と **コヨテタイム**(プレイヤーがプラットフォームの端から少しはみ出しても一定時間ジャンプできる機能を指します)
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="Image/PlayerGif001.gif" alt="Player GIF" style="width: 48%; margin: 1%;">
+<img src="Image/PlayerGif002.gif" alt="Player GIF" style="width: 48%; margin: 1%;">
+</div>
+
+<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Character/Player/PlayerStateMachine" target="_blank" rel="noopener noreferrer">詳細コード</a>
+
+---
 
 ### ステージ
 プレイヤの前後のステージだけ描画してパフォーマンスの最適化
@@ -39,6 +69,7 @@
 </div>
 <a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/StageManager.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
 
+---
 
 ### オブジェクトプール
 インスペクターで簡単に設定できる作り方です
@@ -56,6 +87,8 @@
 
 <a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Pool" target="_blank" rel="noopener noreferrer">詳細コード</a>
 
+---
+
 ### タイルマップ
 Unityのタイルマップを応用して、タイルを置くだけで静的なギミックの生成もしくはアイテムの生成ができます
 <div style="display: flex; flex-wrap: wrap;">
@@ -66,16 +99,7 @@ Unityのタイルマップを応用して、タイルを置くだけで静的な
 </div>
 <a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/Stage/Map/TileGenerator.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
 
-### キャラクター
-Playerはステートマシンを使って制御しています
-
-パラメータが編集しやすくするためScriptableObjectを使って実行しながらパラメータ調整できます
-
-<div style="display: flex; flex-wrap: wrap;">
-  <img src="Image/Player01.png" alt="スクリーンショット1" style="width: 45%; margin: 1%;">
-  <img src="Image/Player02.png" alt="スクリーンショット2" style="width: 45%; margin: 1%;">
-</div>
-<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Character/Player/PlayerStateMachine" target="_blank" rel="noopener noreferrer">詳細コード</a>
+---
 
 ### インスペクター拡張
 レベルデザイナーがカッタートラップが配置しやすくするためインスペクター拡張しました
@@ -86,3 +110,26 @@ Playerはステートマシンを使って制御しています
 **新しい通過点を追加** をクリックすると自動でシーンに通過ポイントが生成されて、位置調整ができます
 
 <img src="Image/Trap01.png" alt="スクリーンショット2" style="width: 10%; height: 5%; margin: 1%;">
+
+<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/Editor/CustomEdit/PatrolPointsEditor.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
+
+---
+
+### その他
+
+<details><summary>イベント集中管理システム</summary>
+クラス間の結合度を避けるために使われるシステムとなります。
+
+文字列をキーとして使っています
+<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/SystemModules/EventCenter" target="_blank" rel="noopener noreferrer">詳細コード</a>
+</details>
+
+<details open><summary>音マネージャークラス</summary>
+Audioクラスは音源と音量のデータを管理するクラスです。
+
+効果音を再生するなどの処理をまとめたクラスで、APIとして使用できます。
+
+<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/AudioManager.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
+</details>
+
+
