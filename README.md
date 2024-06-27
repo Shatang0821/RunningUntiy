@@ -17,9 +17,9 @@
 ## 技術紹介
 #### 目次
 - [ステージ](#ステージ)
-- [プレイヤの残像](#プレイヤの残像)
-- [ステージ](#ステージ)
-- [ステージ](#ステージ)
+- [オブジェクトプール](#オブジェクトプール)
+- [タイルマップ](#タイルマップ)
+- [キャラクター](#キャラクター)
 - [ステージ](#ステージ)
 
 ### ステージ
@@ -37,14 +37,33 @@
     </div>
   </div>
 </div>
+<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/StageManager.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
 
 
+### オブジェクトプール
+インスペクターで簡単に設定できる作り方です
+<div style="display: flex; justify-content: space-between;">
+      <img src="Image/Pool.png" alt="Player" style="width: 75%; margin: 1%;">
+</div>
 
-### プレイヤの残像
-プレイヤのダッシュの際に生成した残像はオブジェクトプールを使って効率よく
+プレイヤがダッシュの際に生成した残像はオブジェクトプールを使って頻繁な生成と削除を防ぎます
 <div style="display: flex; flex-wrap: nowarp;">
+
 <div style="display: flex; justify-content: space-between;">
       <img src="Image/Player.png" alt="Player" style="width: 75%; margin: 1%;">
     </div>
 </div>
-<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/StageManager.cs" target="_blank" rel="noopener noreferrer">コード</a>
+
+<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Pool" target="_blank" rel="noopener noreferrer">詳細コード</a>
+
+### タイルマップ
+Unityのタイルマップを応用して、タイルを置くだけで静的なギミックの生成もしくはアイテムの生成ができます
+<div style="display: flex; flex-wrap: wrap;">
+  <div style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%; margin: 1%;">
+      <img src="Image/TileMap00.png" alt="TileMap00" style="width: 49%; margin: 1%;">
+      <img src="Image/TileMap01.png" alt="TileMap01" style="width: 75%; margin: 1%;">
+  </div>
+</div>
+<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/Stage/Map/TileGenerator.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
+
+### キャラクター
