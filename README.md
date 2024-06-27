@@ -11,7 +11,7 @@
   <img src="Image/RunningMan04.png" alt="スクリーンショット4" style="width: 45%; margin: 1%;">
 </div>
 
-## ゲームダウンロード
+## ゲーム実行ファイルのダウンロード
 <a href="https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link" target="_blank">ここをクリック</a>
 
 ## 技術紹介
@@ -20,7 +20,7 @@
 - [オブジェクトプール](#オブジェクトプール)
 - [タイルマップ](#タイルマップ)
 - [キャラクター](#キャラクター)
-- [ステージ](#ステージ)
+- [インスペクター拡張](#インスペクター拡張)
 
 ### ステージ
 プレイヤの前後のステージだけ描画してパフォーマンスの最適化
@@ -67,3 +67,22 @@ Unityのタイルマップを応用して、タイルを置くだけで静的な
 <a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/Stage/Map/TileGenerator.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
 
 ### キャラクター
+Playerはステートマシンを使って制御しています
+
+パラメータが編集しやすくするためScriptableObjectを使って実行しながらパラメータ調整できます
+
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="Image/Player01.png" alt="スクリーンショット1" style="width: 45%; margin: 1%;">
+  <img src="Image/Player02.png" alt="スクリーンショット2" style="width: 45%; margin: 1%;">
+</div>
+<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Character/Player/PlayerStateMachine" target="_blank" rel="noopener noreferrer">詳細コード</a>
+
+### インスペクター拡張
+レベルデザイナーがカッタートラップが配置しやすくするためインスペクター拡張しました
+<div style="display: flex; flex-wrap: wrap;">
+  <img src="Image/Trap00.png" alt="スクリーンショット2" style="width: 45%; margin: 1%;">
+</div>
+
+**新しい通過点を追加** をクリックすると自動でシーンに通過ポイントが生成されて、位置調整ができます
+
+<img src="Image/Trap01.png" alt="スクリーンショット2" style="width: 10%; height: 5%; margin: 1%;">
