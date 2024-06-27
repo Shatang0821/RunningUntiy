@@ -45,8 +45,8 @@ Playerはステートマシンを使って制御しています
 
 **ジャンプ入力バッファ** と **コヨテタイム**(プレイヤーがプラットフォームの端から少しはみ出しても一定時間ジャンプできる機能を指します)
 <div style="display: flex; flex-wrap: wrap;">
-  <img src="Image/PlayerGif001.gif" alt="Player GIF" style="width: 48%; margin: 1%;">
-<img src="Image/PlayerGif002.gif" alt="Player GIF" style="width: 48%; margin: 1%;">
+  <img src="Image/PlayerGif001.gif" alt="Player GIF" style="width: 85%; margin: 1%;">
+<img src="Image/PlayerGif002.gif" alt="Player GIF" style="width: 85%; margin: 1%;">
 </div>
 
 <a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/Character/Player/PlayerStateMachine" target="_blank" rel="noopener noreferrer">詳細コード</a>
