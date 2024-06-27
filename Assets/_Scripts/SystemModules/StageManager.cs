@@ -4,21 +4,20 @@ using UnityEngine;
 
 public class StageManager : Singleton<StageManager>
 {
-    [SerializeField] private List<GameObject>stages = new List<GameObject>();   //ƒXƒe[ƒW‚ğ•Û‚ÂƒŠƒXƒg
+    [SerializeField] private List<GameObject>stages = new List<GameObject>();   //ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ä¿ã¤ãƒªã‚¹ãƒˆ
 
-    private int currentIndex = 0;               //Œ»İ‚ÌƒXƒe[ƒWƒXƒe[ƒW
-    private int previousIndex = -1;             // ˆÈ‘O‚ÌƒXƒe[ƒWƒCƒ“ƒfƒbƒNƒX
+    private int currentIndex = 0;               //ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¹ãƒ†ãƒ¼ã‚¸
+    private int previousIndex = -1;             // ä»¥å‰ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
     /// <summary>
-    /// StageManager‚Ì‰Šú‰»
+    /// StageManagerã®åˆæœŸåŒ–
     /// </summary>
     public IEnumerator Initialize()
     {
         yield return StartCoroutine(nameof(SetStages));
-        Debug.Log("Stage‰Šú‰»Š®—¹");
     }
 
     /// <summary>
-    /// qƒIƒuƒWƒFƒNƒg‚É‚ ‚éƒXƒe[ƒW‚ğƒŠƒXƒg‚É’Ç‰Á
+    /// å­ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã«ã‚ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ãƒªã‚¹ãƒˆã«è¿½åŠ 
     /// </summary>
     private IEnumerator SetStages()
     {
@@ -28,18 +27,18 @@ public class StageManager : Singleton<StageManager>
             child.gameObject.SetActive(false);
             yield return null;
         }
-        //ƒAƒNƒeƒBƒu‰»‚Ì•K—v‚Ì‚ ‚éƒXƒe[ƒW‚ğXV‚·‚é
+        //ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ã®å¿…è¦ã®ã‚ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’æ›´æ–°ã™ã‚‹
         UpdateStageIndex(currentIndex);
     }
 
     /// <summary>
-    /// ƒAƒNƒeƒBƒu‰»‚É‚·‚éƒXƒe[ƒW‚ÌXV
+    /// ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ã«ã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã®æ›´æ–°
     /// </summary>
-    /// <param name="index">Œ»İ‚ÌƒXƒe[ƒW”Ô†</param>
+    /// <param name="index">ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå·</param>
     public void UpdateStageIndex(int index)
     {
         currentIndex = index;
-        // ˆÈ‘O‚ÌƒXƒe[ƒW‚Æ‚»‚Ì—×Ú‚·‚éƒXƒe[ƒW‚ğ”ñƒAƒNƒeƒBƒu‰»
+        // ä»¥å‰ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã¨ãã®éš£æ¥ã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’éã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
         if (previousIndex != -1)
         {
             if ((previousIndex > 0) && (previousIndex - 1) != currentIndex)
@@ -48,26 +47,26 @@ public class StageManager : Singleton<StageManager>
                 SetStageActive(previousIndex + 1, false);
         }
 
-        // Œ»İ‚ÌƒXƒe[ƒW‚ğƒAƒNƒeƒBƒu‰»
+        // ç¾åœ¨ã®ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–
         SetStageActive(currentIndex, true);
 
-        // —×Ú‚·‚éƒXƒe[ƒW‚ğƒAƒNƒeƒBƒu‰»i‚à‚µ‘¶İ‚·‚ê‚Îj
+        // éš£æ¥ã™ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ã‚¢ã‚¯ãƒ†ã‚£ãƒ–åŒ–ï¼ˆã‚‚ã—å­˜åœ¨ã™ã‚Œã°ï¼‰
         if (currentIndex > 0)
             SetStageActive(currentIndex - 1, true);
         if (currentIndex < stages.Count - 1)
             SetStageActive(currentIndex + 1, true);
-        // Œ»İ‚ÌƒCƒ“ƒfƒbƒNƒX‚ğˆÈ‘O‚ÌƒCƒ“ƒfƒbƒNƒX‚Æ‚µ‚Ä•Û‘¶
+        // ç¾åœ¨ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã‚’ä»¥å‰ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã¨ã—ã¦ä¿å­˜
         previousIndex = currentIndex;
     }
 
     /// <summary>
-    /// ƒXƒe[ƒW‚ÌƒAƒNƒeƒBƒuó‘Ô‚ğİ’è‚·‚é
+    /// ã‚¹ãƒ†ãƒ¼ã‚¸ã®ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹ã‚’è¨­å®šã™ã‚‹
     /// </summary>
-    /// <param name="stageIndex">ƒXƒe[ƒW”Ô†</param>
-    /// <param name="isActive">ƒAƒNƒeƒBƒuó‘Ô</param>
+    /// <param name="stageIndex">ã‚¹ãƒ†ãƒ¼ã‚¸ç•ªå·</param>
+    /// <param name="isActive">ã‚¢ã‚¯ãƒ†ã‚£ãƒ–çŠ¶æ…‹</param>
     private void SetStageActive(int stageIndex, bool isActive)
     {
-        //ƒŠƒXƒg“à‚É‚ ‚éƒXƒe[ƒW‚ğƒ`ƒFƒbƒN
+        //ãƒªã‚¹ãƒˆå†…ã«ã‚ã‚‹ã‚¹ãƒ†ãƒ¼ã‚¸ã‚’ãƒã‚§ãƒƒã‚¯
         if (stageIndex >= 0 && stageIndex < stages.Count)
         {
             stages[stageIndex].SetActive(isActive);
