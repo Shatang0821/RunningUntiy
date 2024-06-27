@@ -12,9 +12,17 @@
 </div>
 
 ## ゲームダウンロード
-[ここをクリック](https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link)
+<a href="https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link" target="_blank">ここをクリック</a>
 
-## 詳細紹介
+## 技術紹介
+#### 目次
+- [ステージ](#ステージ)
+- [プレイヤの残像](#プレイヤの残像)
+- [ステージ](#ステージ)
+- [ステージ](#ステージ)
+- [ステージ](#ステージ)
+
+### ステージ
 プレイヤの前後のステージだけ描画してパフォーマンスの最適化
 <div style="display: flex; flex-wrap: wrap;">
   <div style="width: 100%; margin: 1%;">
@@ -31,3 +39,13 @@
 </div>
 
 
+
+### プレイヤの残像
+プレイヤのダッシュの際に生成した残像はオブジェクトプールを使って効率よく
+<div style="display: flex; flex-wrap: nowarp;">
+<div style="display: flex; justify-content: space-between;">
+      <img src="Image/Player.png" alt="Player" style="width: 100%; margin: 1%;">
+    </div>
+</div>
+
+<a href = "Assets/_Scripts/SystemModules/StageManager.cs">コード</a>
