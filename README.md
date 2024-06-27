@@ -118,19 +118,21 @@ Unityのタイルマップを応用して、タイルを置くだけで静的な
 
 ### その他
 
-<details><summary>イベント集中管理システム</summary>
-クラス間の結合度を避けるために使われるシステムとなります。
+<details>
+  <summary>イベント集中管理システム</summary>
+  クラス間の結合度を避けるために使われるシステムとなります。
 
-文字列をキーとして使っています
-<a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/SystemModules/EventCenter" target="_blank" rel="noopener noreferrer">詳細コード</a>
+  文字列をキーとして使っています
+  <a href = "https://github.com/Shatang0821/RunningUntiy/tree/main/Assets/_Scripts/SystemModules/EventCenter" target="_blank" rel="noopener noreferrer">詳細コード</a>
 </details>
 
-<details open><summary>音マネージャークラス</summary>
-Audioクラスは音源と音量のデータを管理するクラスです。
+<details>
+  <summary>音マネージャークラス</summary>
+  Audioクラスは音源と音量のデータを管理するクラスです。
 
-効果音を再生するなどの処理をまとめたクラスで、APIとして使用できます。
+  効果音を再生するなどの処理をまとめたクラスで、APIとして使用できます。
 
-<a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/AudioManager.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
+  <a href = "https://github.com/Shatang0821/RunningUntiy/blob/main/Assets/_Scripts/SystemModules/AudioManager.cs" target="_blank" rel="noopener noreferrer">詳細コード</a>
 </details>
 
 
