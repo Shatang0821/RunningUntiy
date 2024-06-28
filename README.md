@@ -51,7 +51,7 @@ Playerはステートマシンを使って制御しています
 **ジャンプ入力バッファ** 
 
 <div style="display: flex; flex-wrap: wrap;">
-  <img src="Image/JumpBuffer.gif" alt="Player GIF" style="width: 85%; margin: 1%;">
+  <img src="Image/JumpBuffer.gif" alt="Player GIF" style="width: 100%; margin: 1%;">
 </div>
 
 ---
