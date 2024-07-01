@@ -1,7 +1,30 @@
-# RunningMan
+# RunningMan 
+
+
+## ゲーム実行ファイルとソースコードのダウンロード
+
+**実行ファイル**<a href="https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link" target="_blank">ここをクリック</a>
+
+パッド(Xboxの方が望ましい)のみ対応しています
+
+
+**ソースコード**<a href="https://github.com/Shatang0821/RunningUntiy/archive/refs/heads/main.zip" target="_blank">ここをクリック</a>
+
+
 
 ## 概要
-プレイヤを操作してステージをクリアするゲーム
+
+**制作環境** : Unity2022.3.8f1
+
+**制作人数** : チーム制作(2人)
+
+**制作期間** : 2023.12.2~2024.1.22
+
+**担当範囲** : レベル制作以外のすべての作業
+
+**説明** : プレイヤを操作してステージをクリアするゲーム
+
+---
 
 ## ゲーム画面
 
@@ -18,12 +41,6 @@
   <img src="Image/RunningMan03.png" alt="スクリーンショット3" style="width: 45%; margin: 1%;">
   <img src="Image/RunningMan04.png" alt="スクリーンショット4" style="width: 45%; margin: 1%;">
 </div>
-
-## ゲーム実行ファイルのダウンロード
-
-パッド(Xboxの方が望ましい)のみ対応しています
-
-<a href="https://drive.google.com/file/d/1QiQSTChbh0g_XJugiJhidbmwY0Qy1RAP/view?usp=drive_link" target="_blank">ここをクリック</a>
 
 ## 技術紹介
 #### 目次
